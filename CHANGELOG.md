@@ -14,3 +14,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Fixed
 
 - Scanner no longer double-counts `ML-KEM` when the same file is passed twice.
+- The HTML report escapes fixture paths that contain spaces.
+
+## [1.0.0] - 2025-12-09
+

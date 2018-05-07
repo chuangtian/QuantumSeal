@@ -18,3 +18,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [1.0.0] - 2025-12-09
 
+### Added
+
+- Stable `scan`, `diff` and `render` CLI contract with
+  `--format json|markdown|html`.

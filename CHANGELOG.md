@@ -27,3 +27,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [0.7.0] - 2024-12-03
 
 ### Added
+
+- Baseline diff mode: `quantumseal diff baseline.json --path <tree>`.
+- Risk taxonomy table in `docs/RULES.md`.
+

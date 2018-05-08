@@ -35,3 +35,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- TypeScript viewer: terminal, Markdown and HTML briefings.
+- `examples/` with a legacy and a migrated CryptoBOM.
+
+## [0.5.0] - 2022-12-06
+

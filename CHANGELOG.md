@@ -22,3 +22,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - Stable `scan`, `diff` and `render` CLI contract with
   `--format json|markdown|html`.
+- CryptoBOM schema v1 with per-finding priority scores.
+
+## [0.7.0] - 2024-12-03
+
+### Added

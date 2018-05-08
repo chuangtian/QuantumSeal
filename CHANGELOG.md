@@ -40,3 +40,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [0.5.0] - 2022-12-06
 
+### Added
+
+- Priority scoring (exposure, lifespan, migration cost).
+- TLS configuration indicators (ciphersuites, protocol versions).

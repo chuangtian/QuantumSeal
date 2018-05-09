@@ -57,3 +57,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Added
 
 - Config scanning (TOML/JSON/YAML text), not just source files.
+- `--output` for every report format.
+
+## [0.2.0] - 2019-09-17
+

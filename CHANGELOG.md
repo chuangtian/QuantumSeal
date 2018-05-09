@@ -53,3 +53,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Fixture service trees for the legacy and migrated states.
 
 ## [0.3.0] - 2020-11-10
+
+### Added
+
+- Config scanning (TOML/JSON/YAML text), not just source files.

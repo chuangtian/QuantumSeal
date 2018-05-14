@@ -2,3 +2,4 @@
 name = "quantumseal"
 version = "1.0.1"
 edition = "2021"
+description = "Post-quantum migration workbench: inventories cryptographic indicators in source/config files, assigns migration priorities, and emits a CryptoBOM. Analysis tooling only — not a cryptographic implementation."

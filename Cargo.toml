@@ -6,3 +6,5 @@ description = "Post-quantum migration workbench: inventories cryptographic indic
 license = "MIT"
 repository = "https://github.com/chuangtian/QuantumSeal"
 keywords = ["post-quantum", "cbom", "crypto-inventory", "migration", "pqc"]
+categories = ["command-line-utilities"]
+

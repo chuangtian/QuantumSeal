@@ -9,3 +9,5 @@ keywords = ["post-quantum", "cbom", "crypto-inventory", "migration", "pqc"]
 categories = ["command-line-utilities"]
 
 [[bin]]
+name = "quantumseal"
+path = "src/main.rs"

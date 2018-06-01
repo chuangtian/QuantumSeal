@@ -13,3 +13,4 @@ name = "quantumseal"
 path = "src/main.rs"
 
 [lib]
+name = "quantumseal"

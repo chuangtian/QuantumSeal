@@ -16,3 +16,4 @@ path = "src/main.rs"
 name = "quantumseal"
 path = "src/lib.rs"
 
+[profile.release]

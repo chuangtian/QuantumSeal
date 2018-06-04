@@ -5,3 +5,7 @@
 
 CARGO ?= cargo
 NPM ?= npm
+VIEWER_DIR := viewer
+EXAMPLES_DIR := examples
+
+.DEFAULT_GOAL := help

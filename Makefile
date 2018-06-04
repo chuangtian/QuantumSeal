@@ -9,3 +9,7 @@ VIEWER_DIR := viewer
 EXAMPLES_DIR := examples
 
 .DEFAULT_GOAL := help
+
+.PHONY: help
+help: ## Show this help
+	@echo "quantumseal targets:"

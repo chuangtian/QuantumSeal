@@ -21,3 +21,7 @@ help: ## Show this help
 .PHONY: build
 build: ## Build the Rust CLI (release)
 	$(CARGO) build --release
+
+.PHONY: test
+test: ## Run all Rust tests
+	$(CARGO) test

@@ -17,3 +17,7 @@ help: ## Show this help
 		| awk 'BEGIN {FS = ":.*?## "}; {printf "  %-16s %s\n", $$1, $$2}'
 
 # ---- Rust ------------------------------------------------------------------
+
+.PHONY: build
+build: ## Build the Rust CLI (release)
+	$(CARGO) build --release

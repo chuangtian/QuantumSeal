@@ -25,3 +25,8 @@ build: ## Build the Rust CLI (release)
 .PHONY: test
 test: ## Run all Rust tests
 	$(CARGO) test
+
+.PHONY: fmt
+fmt: ## Format Rust sources
+	$(CARGO) fmt
+

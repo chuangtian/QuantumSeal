@@ -30,3 +30,7 @@ test: ## Run all Rust tests
 fmt: ## Format Rust sources
 	$(CARGO) fmt
 
+.PHONY: fmt-check
+fmt-check: ## Check Rust formatting
+	$(CARGO) fmt --check
+

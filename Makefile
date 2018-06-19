@@ -34,3 +34,7 @@ fmt: ## Format Rust sources
 fmt-check: ## Check Rust formatting
 	$(CARGO) fmt --check
 
+.PHONY: clippy
+clippy: ## Run clippy if available (non-fatal if missing)
+	-$(CARGO) clippy --all-targets -- -D warnings
+

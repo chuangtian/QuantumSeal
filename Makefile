@@ -38,3 +38,7 @@ fmt-check: ## Check Rust formatting
 clippy: ## Run clippy if available (non-fatal if missing)
 	-$(CARGO) clippy --all-targets -- -D warnings
 
+# ---- TypeScript viewer -----------------------------------------------------
+
+.PHONY: viewer-install
+viewer-install: ## Install viewer dev dependencies

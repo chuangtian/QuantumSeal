@@ -46,3 +46,7 @@ viewer-install: ## Install viewer dev dependencies
 
 .PHONY: viewer-build
 viewer-build: ## Type-check and compile the viewer
+	cd $(VIEWER_DIR) && $(NPM) run build
+
+.PHONY: viewer-test
+viewer-test: viewer-build ## Run viewer tests

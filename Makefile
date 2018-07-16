@@ -42,3 +42,7 @@ clippy: ## Run clippy if available (non-fatal if missing)
 
 .PHONY: viewer-install
 viewer-install: ## Install viewer dev dependencies
+	cd $(VIEWER_DIR) && $(NPM) install
+
+.PHONY: viewer-build
+viewer-build: ## Type-check and compile the viewer

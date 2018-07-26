@@ -50,3 +50,7 @@ viewer-build: ## Type-check and compile the viewer
 
 .PHONY: viewer-test
 viewer-test: viewer-build ## Run viewer tests
+	cd $(VIEWER_DIR) && $(NPM) test
+
+.PHONY: viewer-typecheck
+viewer-typecheck: ## Type-check the viewer without emitting

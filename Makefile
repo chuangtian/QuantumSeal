@@ -58,3 +58,7 @@ viewer-typecheck: ## Type-check the viewer without emitting
 
 # ---- Combined --------------------------------------------------------------
 
+.PHONY: all
+all: build test viewer-build viewer-test ## Build and test everything
+
+.PHONY: demo

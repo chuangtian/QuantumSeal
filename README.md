@@ -56,3 +56,17 @@ Markdown, or HTML briefing. Diff two scans to watch a migration close.
 ## What the instrument charts
 
 The threat is patient: *harvest now, decrypt later.* Data sealed today with
+Shor-breakable public-key cryptography (RSA, ECC, finite-field Diffie-Hellman,
+DSA) can be captured now and opened once a cryptographically-relevant quantum
+computer exists. Migrating to the NIST PQC standards — ML-KEM (FIPS 203),
+ML-DSA (FIPS 204), SLH-DSA (FIPS 205) — starts with a map of **where** your
+cryptography actually lives.
+
+quantumseal builds that map. It does **not** move you to PQC, and it makes no
+claim to implement any of these algorithms; it recognizes their names to
+*categorize and prioritize* the work ahead.
+
+Two cooperating parts:
+
+| Component | Language | Role | Dependencies |
+| --- | --- | --- | --- |

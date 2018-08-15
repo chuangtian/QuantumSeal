@@ -43,3 +43,16 @@ Markdown, or HTML briefing. Diff two scans to watch a migration close.
 - [The CryptoBOM dossier](#the-cryptobom-dossier)
 - [Indicator rules by example](#indicator-rules-by-example)
 - [Migration workflow](#migration-workflow)
+- [Report formats](#report-formats)
+- [Fixture tour](#fixture-tour)
+- [CI baseline recipe](#ci-baseline-recipe)
+- [Reading the results well](#reading-the-results-well)
+- [False positives & limitations](#false-positives--limitations)
+- [Roadmap](#roadmap)
+- [Layout & license](#layout--license)
+
+---
+
+## What the instrument charts
+
+The threat is patient: *harvest now, decrypt later.* Data sealed today with

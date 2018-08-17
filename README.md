@@ -70,3 +70,17 @@ Two cooperating parts:
 
 | Component | Language | Role | Dependencies |
 | --- | --- | --- | --- |
+| `quantumseal` | Rust | recursive scan → classify → score → emit CryptoBOM; diff vs. baseline | none (std only) |
+| `@quantumseal/viewer` | TypeScript | validate a CryptoBOM and render terminal / Markdown / HTML | none (Node std only) |
+
+---
+
+## Signal-to-orbit: how it works
+
+<div align="center">
+<img src="docs/assets/cryptobom-console.svg" alt="Split mission console: a quantumseal scan transcript on the left and a risk constellation of detected components on the right" width="100%">
+</div>
+
+```mermaid
+flowchart LR
+    FS[(source & config)] --> W[scanner: recursive walk<br/>skip binaries & vendor dirs]

@@ -98,3 +98,16 @@ score and a migration hint. Nothing is executed; the file is only ever read as
 text.
 
 ---
+
+## Getting the instrument running
+
+```bash
+# Rust CLI
+cargo build --release          # -> target/release/quantumseal
+
+# TypeScript viewer
+cd viewer && npm install && npm run build   # -> viewer/dist/
+```
+
+Or drive everything through the Makefile:
+

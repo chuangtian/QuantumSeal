@@ -84,3 +84,17 @@ Two cooperating parts:
 ```mermaid
 flowchart LR
     FS[(source & config)] --> W[scanner: recursive walk<br/>skip binaries & vendor dirs]
+    W --> M[rules: match indicators<br/>class-aware boundaries]
+    M --> P[cbom: classify risk<br/>score 0-100, band]
+    P --> BOM[[CryptoBOM JSON/text]]
+    BOM --> D[diff vs. saved baseline]
+    BOM --> V[viewer: validate + render]
+    V --> R[[terminal · md · html]]
+```
+
+Each line is lowercased once, tested against the indicator catalog, filtered by
+boundary and line-level rules, then aggregated per component with a priority
+score and a migration hint. Nothing is executed; the file is only ever read as
+text.
+
+---

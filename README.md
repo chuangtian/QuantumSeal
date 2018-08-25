@@ -139,3 +139,17 @@ Occurrences:     30
       guidance: MD5 is collision-broken. Replace with SHA-256/SHA-3; ...
 ----------------------------------------------------------------------
 [ 80] RSA — HIGH
+      risk=high_shor  category=public_key  files=2  occurrences=6
+      guidance: Replace RSA key establishment/signatures with NIST PQC ...
+...
+Highest priority band: CRITICAL
+```
+
+Prefer machine-readable output? Send JSON to a file:
+
+```bash
+quantumseal scan ./src --format json --output cbom.json
+quantumseal scan . --max-depth 3 --format text
+quantumseal scan ./src --follow-symlinks --format json --output cbom.json
+```
+

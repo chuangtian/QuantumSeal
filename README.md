@@ -111,3 +111,17 @@ cd viewer && npm install && npm run build   # -> viewer/dist/
 
 Or drive everything through the Makefile:
 
+```bash
+make all      # build + test both halves
+make demo     # full pipeline against the bundled fixtures
+```
+
+---
+
+## Console transcripts
+
+### Quick scan
+
+```console
+$ quantumseal scan fixtures/legacy_service
+quantumseal — CryptoBOM (post-quantum migration inventory)

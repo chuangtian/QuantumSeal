@@ -153,3 +153,16 @@ quantumseal scan . --max-depth 3 --format text
 quantumseal scan ./src --follow-symlinks --format json --output cbom.json
 ```
 
+### Baseline diff
+
+Save a CryptoBOM, migrate some code, then compare current state against the
+snapshot:
+
+```console
+$ quantumseal diff examples/legacy-cbom.json --path fixtures/migrated_service
+quantumseal — CryptoBOM baseline comparison
+======================================================================
+
+ADDED (3):
+  + ML-DSA (Dilithium) (mldsa)  priority=8 occurrences=2
+  + ML-KEM (Kyber) (mlkem)  priority=8 occurrences=2

@@ -125,3 +125,17 @@ make demo     # full pipeline against the bundled fixtures
 ```console
 $ quantumseal scan fixtures/legacy_service
 quantumseal — CryptoBOM (post-quantum migration inventory)
+NOTE: static analysis of crypto indicators only; not a security audit.
+======================================================================
+Root:            fixtures/legacy_service
+Tool:            quantumseal v0.1.0
+Files scanned:   2
+Components:      13
+Occurrences:     30
+
+----------------------------------------------------------------------
+[ 97] MD5 — CRITICAL
+      risk=critical_deprecated  category=hash  files=2  occurrences=3
+      guidance: MD5 is collision-broken. Replace with SHA-256/SHA-3; ...
+----------------------------------------------------------------------
+[ 80] RSA — HIGH

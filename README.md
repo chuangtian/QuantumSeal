@@ -166,3 +166,17 @@ quantumseal — CryptoBOM baseline comparison
 ADDED (3):
   + ML-DSA (Dilithium) (mldsa)  priority=8 occurrences=2
   + ML-KEM (Kyber) (mlkem)  priority=8 occurrences=2
+  + SLH-DSA (SPHINCS+) (slhdsa)  priority=5 occurrences=1
+
+REMOVED (11):
+  - MD5 (md5)  was priority=97 occurrences=3
+  - RSA (rsa)  was priority=80 occurrences=6
+  ...
+```
+
+New post-quantum components appearing while the Shor-breakable and deprecated
+ones vanish is exactly the signature of a migration going well.
+
+### Rendering a dossier
+
+```console

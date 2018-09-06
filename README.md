@@ -180,3 +180,17 @@ ones vanish is exactly the signature of a migration going well.
 ### Rendering a dossier
 
 ```console
+$ quantumseal-view cbom.json                        # colored terminal briefing
+$ quantumseal-view cbom.json --format markdown --out report.md
+$ quantumseal-view cbom.json --format html --out report.html
+$ cat cbom.json | quantumseal-view --no-color       # from stdin
+$ quantumseal-view cbom.json --max-occurrences 0    # show every occurrence
+```
+
+---
+
+## Risk taxonomy
+
+Every indicator carries exactly one quantum-risk class. The class is the
+dominant term in its priority score.
+

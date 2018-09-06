@@ -194,3 +194,16 @@ $ quantumseal-view cbom.json --max-occurrences 0    # show every occurrence
 Every indicator carries exactly one quantum-risk class. The class is the
 dominant term in its priority score.
 
+| Class | Code | What it means | Base weight |
+| --- | --- | --- | ---: |
+| Critical | `critical_deprecated` | Already broken classically **and** quantum-relevant: MD5, SHA-1, DES/3DES, RC4. Highest urgency. | 90 |
+| High | `high_shor` | Public-key primitives broken by Shor's algorithm: RSA, ECC, finite-field DH, DSA, and the protocols/keystores built on them. | 70 |
+| Moderate | `moderate_grover` | Symmetric ciphers / hashes weakened (not broken) by Grover — typically fine with larger sizes: AES, ChaCha20, SHA-2/3. | 25 |
+| Low | `low_resistant` | Post-quantum schemes believed resistant to known quantum attacks: ML-KEM, ML-DSA, SLH-DSA. | 5 |
+
+Categories (`public_key`, `key_exchange`, `signature`, `symmetric`, `hash`,
+`protocol`, `post_quantum`, `random_or_keystore`) are orthogonal facets used for
+grouping in reports — they do not change the score.
+
+---
+

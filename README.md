@@ -207,3 +207,17 @@ grouping in reports — they do not change the score.
 
 ---
 
+## Priority scoring, explained
+
+Each detected component gets a **0–100** priority so you can triage by number:
+
+```
+score = min(100, base_weight(risk) + occurrence_bonus + file_bonus)
+```
+
+- **base_weight(risk)** — the taxonomy weight above; this dominates.
+- **occurrence_bonus** — saturating, by total hits: `0→0`, `2–4→3`, `5–9→6`,
+  `10–24→9`, `25+→12`.
+- **file_bonus** — saturating, by distinct files: `1→0`, `2–4→4`, `5–9→8`,
+  `10+→12`.
+

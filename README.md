@@ -221,3 +221,17 @@ score = min(100, base_weight(risk) + occurrence_bonus + file_bonus)
 - **file_bonus** — saturating, by distinct files: `1→0`, `2–4→4`, `5–9→8`,
   `10+→12`.
 
+Scores collapse into bands used by every report:
+
+| Band | Score |
+| --- | --- |
+| `critical` | 85–100 |
+| `high` | 60–84 |
+| `medium` | 35–59 |
+| `low` | 10–34 |
+| `informational` | 0–9 |
+
+**Risk always outranks prevalence.** One lonely RSA reference (80) still ranks
+above a heavily-used AES (28). The bonuses only break ties *within* a risk
+class — a widespread RSA usage rises above an isolated one, never above a
+deprecated primitive.

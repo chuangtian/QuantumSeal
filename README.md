@@ -235,3 +235,17 @@ Scores collapse into bands used by every report:
 above a heavily-used AES (28). The bonuses only break ties *within* a risk
 class — a widespread RSA usage rises above an isolated one, never above a
 deprecated primitive.
+
+---
+
+## The CryptoBOM dossier
+
+A CryptoBOM is a JSON document with a stable `schema` string,
+`quantumseal-cbom/1`. It carries an explicit `analysis_only: true` flag and a
+`disclaimer` so downstream tooling can never mistake it for an audit verdict.
+
+```json
+{
+  "tool": "quantumseal",
+  "tool_version": "0.1.0",
+  "schema": "quantumseal-cbom/1",

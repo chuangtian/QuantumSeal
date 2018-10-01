@@ -249,3 +249,16 @@ A CryptoBOM is a JSON document with a stable `schema` string,
   "tool": "quantumseal",
   "tool_version": "0.1.0",
   "schema": "quantumseal-cbom/1",
+  "root": "fixtures/legacy_service",
+  "analysis_only": true,
+  "disclaimer": "Static analysis of cryptographic indicators only. ...",
+  "summary": {
+    "files_scanned": 2,
+    "component_count": 13,
+    "total_occurrences": 30,
+    "priority_bands": { "critical": 4, "high": 6, "low": 3 }
+  },
+  "components": [
+    {
+      "id": "md5", "name": "MD5", "category": "hash",
+      "quantum_risk": "critical_deprecated",

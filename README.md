@@ -262,3 +262,17 @@ A CryptoBOM is a JSON document with a stable `schema` string,
     {
       "id": "md5", "name": "MD5", "category": "hash",
       "quantum_risk": "critical_deprecated",
+      "priority": 97, "priority_band": "critical",
+      "file_count": 2, "occurrence_count": 3,
+      "guidance": "MD5 is collision-broken. ...",
+      "occurrences": [
+        { "file": ".../config/tls.toml", "line": 17, "excerpt": "...", "needle": "md5" }
+      ]
+    }
+  ]
+}
+```
+
+Committed samples live under [`examples/`](examples/): `legacy-cbom.json`,
+`migrated-cbom.json`, `legacy-report.md`, and `legacy-report.html`.
+

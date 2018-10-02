@@ -276,3 +276,17 @@ A CryptoBOM is a JSON document with a stable `schema` string,
 Committed samples live under [`examples/`](examples/): `legacy-cbom.json`,
 `migrated-cbom.json`, `legacy-report.md`, and `legacy-report.html`.
 
+---
+
+## Indicator rules by example
+
+The catalog is a static table in [`src/rules.rs`](src/rules.rs); the full
+reference — every needle, exclusion, and guidance string — is in
+[`docs/RULES.md`](docs/RULES.md). A few illustrative entries:
+
+| id | Name | Category | Risk | Fires on (example) |
+| --- | --- | --- | --- | --- |
+| `rsa` | RSA | public_key | high_shor | `let _alg = "RSA-OAEP";` |
+| `ecc` | Elliptic Curve | public_key | high_shor | `secp256r1` · `ECDH with X25519` |
+| `md5` | MD5 | hash | critical_deprecated | `legacy_checksum = "md5"` |
+| `tls` | TLS / SSL | protocol | high_shor | `min_version = "TLSv1.2"` |

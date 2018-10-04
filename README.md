@@ -290,3 +290,17 @@ reference — every needle, exclusion, and guidance string — is in
 | `ecc` | Elliptic Curve | public_key | high_shor | `secp256r1` · `ECDH with X25519` |
 | `md5` | MD5 | hash | critical_deprecated | `legacy_checksum = "md5"` |
 | `tls` | TLS / SSL | protocol | high_shor | `min_version = "TLSv1.2"` |
+| `mlkem` | ML-KEM (Kyber) | post_quantum | low_resistant | `ml-kem-768` |
+| `weak_random` | Non-crypto RNG | random_or_keystore | moderate_grover | `math/rand` |
+
+Two matching refinements keep the noise down:
+
+- **Class-aware boundaries** — a needle is rejected when it is embedded in a
+  larger token of the same character class. This is why `sha3-` does **not**
+  fire on `sha384`, while `Dilithium3` and `generate_rsa_2048` still match.
+- **Line-level exclusions** — the bare `dsa` family is suppressed on lines that
+  also contain `ml-dsa`, `slh-dsa`, or `ecdsa`, so the post-quantum and
+  elliptic variants are counted correctly.
+
+List the live catalog anytime:
+

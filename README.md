@@ -304,3 +304,16 @@ Two matching refinements keep the noise down:
 
 List the live catalog anytime:
 
+```bash
+quantumseal rules
+```
+
+---
+
+## Migration workflow
+
+1. **Baseline.** `quantumseal scan ./src --format json --output baseline.json`
+   and commit it. This is your starting orbit.
+2. **Triage.** Sort the CryptoBOM by priority: retire `critical` primitives
+   first, then plan the `high` / Shor-breakable public-key work.
+3. **Migrate.** Replace RSA/ECC key establishment with ML-KEM; signatures with

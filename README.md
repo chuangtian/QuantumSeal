@@ -331,3 +331,17 @@ quantumseal rules
 | Format | Command flag | Best for |
 | --- | --- | --- |
 | Terminal | *(default)* / `--no-color` | interactive triage; ANSI-colored bands |
+| Markdown | `--format markdown` | pull requests, wikis, migration tickets |
+| HTML | `--format html` | shareable, self-contained briefings (no remote assets) |
+
+Every rendered report repeats the analysis-only disclaimer in its header, and
+`--max-occurrences N` controls how many evidence lines each component lists
+(`0` = all; default `5`).
+
+---
+
+## Fixture tour
+
+Three sample trees under [`fixtures/`](fixtures/) exercise the full range:
+
+| Fixture | Contains | Purpose |

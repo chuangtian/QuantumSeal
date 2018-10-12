@@ -317,3 +317,17 @@ quantumseal rules
 2. **Triage.** Sort the CryptoBOM by priority: retire `critical` primitives
    first, then plan the `high` / Shor-breakable public-key work.
 3. **Migrate.** Replace RSA/ECC key establishment with ML-KEM; signatures with
+   ML-DSA / SLH-DSA (or hybrid modes during transition). quantumseal only
+   *tracks* this — it does not perform any cryptographic change.
+4. **Re-scan & diff.** `quantumseal diff baseline.json --path ./src` shows what
+   left, what arrived, and what grew.
+5. **Gate.** Wire `--fail-on-regression` into CI so new exposure can't merge.
+6. **Refresh the baseline** once a milestone lands, and repeat.
+
+---
+
+## Report formats
+
+| Format | Command flag | Best for |
+| --- | --- | --- |
+| Terminal | *(default)* / `--no-color` | interactive triage; ANSI-colored bands |

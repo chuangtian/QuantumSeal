@@ -345,3 +345,16 @@ Every rendered report repeats the analysis-only disclaimer in its header, and
 Three sample trees under [`fixtures/`](fixtures/) exercise the full range:
 
 | Fixture | Contains | Purpose |
+| --- | --- | --- |
+| `legacy_service/` | RSA, ECDSA, TLS, MD5, SHA-1, 3DES, RC4, JWT/RS256 | a rich pre-migration target |
+| `migrated_service/` | ML-KEM, ML-DSA, SLH-DSA, AES-256-GCM | mid-migration, mostly post-quantum |
+| `clean_service/` | ordinary code, no crypto names | false-positive control (expect zero findings) |
+
+The fixture source is **illustrative text, not working or secure code** — it
+exists purely to give the scanner realistic names to inventory.
+
+---
+
+## CI baseline recipe
+
+Commit a baseline CryptoBOM, then fail the build if exposure regresses:

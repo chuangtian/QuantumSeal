@@ -358,3 +358,17 @@ exists purely to give the scanner realistic names to inventory.
 ## CI baseline recipe
 
 Commit a baseline CryptoBOM, then fail the build if exposure regresses:
+
+```yaml
+# .github/workflows/crypto-baseline.yml (sketch)
+name: crypto-baseline
+on: [pull_request]
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build quantumseal
+        run: cargo build --release
+      - name: Fail on new or increased crypto exposure
+        run: ./target/release/quantumseal diff baseline.json --path ./src --fail-on-regression

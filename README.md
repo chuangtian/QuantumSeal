@@ -372,3 +372,17 @@ jobs:
         run: cargo build --release
       - name: Fail on new or increased crypto exposure
         run: ./target/release/quantumseal diff baseline.json --path ./src --fail-on-regression
+```
+
+`--fail-on-regression` exits non-zero when a scan adds components or increases
+occurrences relative to the baseline. The repository's own
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml) additionally builds and
+tests both halves and runs the end-to-end demo.
+
+---
+
+## Reading the results well
+
+- **Start at the top band, not the top line.** A `critical` MD5 in a comment
+  still outranks a `high` RSA in production — because scoring is name-based, not
+  usage-based. Use the evidence excerpts to judge real impact.

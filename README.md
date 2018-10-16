@@ -386,3 +386,17 @@ tests both halves and runs the end-to-end demo.
 - **Start at the top band, not the top line.** A `critical` MD5 in a comment
   still outranks a `high` RSA in production — because scoring is name-based, not
   usage-based. Use the evidence excerpts to judge real impact.
+- **A high score is a *question*, not an answer.** It says "look here," never
+  "this is broken."
+- **Zero findings ≠ safe.** It only means no catalogued name appeared in
+  scannable text.
+- **Use the diff as your progress meter.** Falling priority totals and rising
+  `post_quantum` components are the real signal.
+
+---
+
+## False positives & limitations
+
+- **Names, not semantics.** A string in a comment, a variable name, a doc
+  example, or dead code counts the same as a live call site. Expect
+  commentary-driven hits (the fixtures include several on purpose).

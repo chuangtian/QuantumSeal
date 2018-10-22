@@ -36,3 +36,16 @@ pub struct Component {
     pub priority: u32,
 }
 
+/// Migration priority band derived from the score.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum PriorityBand {
+    Informational,
+    Low,
+    Medium,
+    High,
+    Critical,
+}
+
+impl PriorityBand {
+    pub fn from_score(score: u32) -> PriorityBand {
+        match score {

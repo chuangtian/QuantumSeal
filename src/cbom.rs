@@ -49,3 +49,17 @@ pub enum PriorityBand {
 impl PriorityBand {
     pub fn from_score(score: u32) -> PriorityBand {
         match score {
+            0..=9 => PriorityBand::Informational,
+            10..=34 => PriorityBand::Low,
+            35..=59 => PriorityBand::Medium,
+            60..=84 => PriorityBand::High,
+            _ => PriorityBand::Critical,
+        }
+    }
+
+    pub fn code(self) -> &'static str {
+        match self {
+            PriorityBand::Informational => "informational",
+            PriorityBand::Low => "low",
+            PriorityBand::Medium => "medium",
+            PriorityBand::High => "high",

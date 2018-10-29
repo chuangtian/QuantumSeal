@@ -63,3 +63,17 @@ impl PriorityBand {
             PriorityBand::Low => "low",
             PriorityBand::Medium => "medium",
             PriorityBand::High => "high",
+            PriorityBand::Critical => "critical",
+        }
+    }
+}
+
+/// The complete CryptoBOM.
+#[derive(Debug, Clone)]
+pub struct CryptoBom {
+    pub tool: String,
+    pub tool_version: String,
+    pub schema: String,
+    pub root: String,
+    pub files_scanned: usize,
+    pub entries_visited: usize,

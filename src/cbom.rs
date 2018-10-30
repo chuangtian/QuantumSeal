@@ -77,3 +77,16 @@ pub struct CryptoBom {
     pub root: String,
     pub files_scanned: usize,
     pub entries_visited: usize,
+    pub components: Vec<Component>,
+}
+
+impl CryptoBom {
+    /// Build a CryptoBOM from a scan result.
+    pub fn from_scan(root: &str, scan: &ScanResult) -> CryptoBom {
+        // Group matches by rule id.
+        let mut by_rule: BTreeMap<&'static str, Vec<Occurrence>> = BTreeMap::new();
+        let mut files_by_rule: BTreeMap<&'static str, std::collections::BTreeSet<String>> =
+            BTreeMap::new();
+
+        for file in &scan.files {
+            let path = file.path.to_string_lossy().replace('\\', "/");

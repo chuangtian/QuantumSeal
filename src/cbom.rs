@@ -90,3 +90,17 @@ impl CryptoBom {
 
         for file in &scan.files {
             let path = file.path.to_string_lossy().replace('\\', "/");
+            for m in &file.matches {
+                by_rule.entry(m.rule_id).or_default().push(Occurrence {
+                    file: path.clone(),
+                    line: m.line_number,
+                    excerpt: m.excerpt.clone(),
+                    needle: m.needle.clone(),
+                });
+                files_by_rule
+                    .entry(m.rule_id)
+                    .or_default()
+                    .insert(path.clone());
+            }
+        }
+

@@ -104,3 +104,17 @@ impl CryptoBom {
             }
         }
 
+        let mut components = Vec::new();
+        for rule in RULES {
+            if let Some(occurrences) = by_rule.get(rule.id) {
+                let file_count = files_by_rule.get(rule.id).map(|s| s.len()).unwrap_or(0);
+                let priority = compute_priority(rule.risk, occurrences.len(), file_count);
+                components.push(Component {
+                    rule_id: rule.id,
+                    name: rule.name,
+                    category: rule.category,
+                    risk: rule.risk,
+                    guidance: rule.guidance,
+                    occurrences: occurrences.clone(),
+                    file_count,
+                    priority,

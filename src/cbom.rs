@@ -118,3 +118,16 @@ impl CryptoBom {
                     occurrences: occurrences.clone(),
                     file_count,
                     priority,
+                });
+            }
+        }
+
+        // Sort by descending priority, then by name for stability.
+        components.sort_by(|a, b| b.priority.cmp(&a.priority).then_with(|| a.name.cmp(b.name)));
+
+        CryptoBom {
+            tool: "quantumseal".to_string(),
+            tool_version: env!("CARGO_PKG_VERSION").to_string(),
+            schema: SCHEMA_VERSION.to_string(),
+            root: root.replace('\\', "/"),
+            files_scanned: scan.files_scanned,

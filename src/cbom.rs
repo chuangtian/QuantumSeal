@@ -145,3 +145,17 @@ impl CryptoBom {
     pub fn top_band(&self) -> Option<PriorityBand> {
         self.components
             .iter()
+            .map(|c| PriorityBand::from_score(c.priority))
+            .max_by_key(|b| *b as u8)
+    }
+
+    /// Serialize to the internal [`Json`] value.
+    pub fn to_json(&self) -> Json {
+        let mut root = BTreeMap::new();
+        root.insert("tool".to_string(), Json::String(self.tool.clone()));
+        root.insert(
+            "tool_version".to_string(),
+            Json::String(self.tool_version.clone()),
+        );
+        root.insert("schema".to_string(), Json::String(self.schema.clone()));
+        root.insert("root".to_string(), Json::String(self.root.clone()));

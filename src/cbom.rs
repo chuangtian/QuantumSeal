@@ -131,3 +131,17 @@ impl CryptoBom {
             schema: SCHEMA_VERSION.to_string(),
             root: root.replace('\\', "/"),
             files_scanned: scan.files_scanned,
+            entries_visited: scan.entries_visited,
+            components,
+        }
+    }
+
+    /// Total occurrences across all components.
+    pub fn total_occurrences(&self) -> usize {
+        self.components.iter().map(|c| c.occurrences.len()).sum()
+    }
+
+    /// Highest priority band present, if any.
+    pub fn top_band(&self) -> Option<PriorityBand> {
+        self.components
+            .iter()

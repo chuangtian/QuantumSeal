@@ -186,3 +186,17 @@ impl CryptoBom {
             Json::int(self.total_occurrences() as i64),
         );
 
+        // Band histogram.
+        let mut bands: BTreeMap<String, i64> = BTreeMap::new();
+        for c in &self.components {
+            *bands
+                .entry(PriorityBand::from_score(c.priority).code().to_string())
+                .or_insert(0) += 1;
+        }
+        let mut band_obj = BTreeMap::new();
+        for (k, v) in bands {
+            band_obj.insert(k, Json::int(v));
+        }
+        summary.insert("priority_bands".to_string(), Json::Object(band_obj));
+        root.insert("summary".to_string(), Json::Object(summary));
+

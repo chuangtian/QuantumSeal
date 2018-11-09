@@ -159,3 +159,16 @@ impl CryptoBom {
         );
         root.insert("schema".to_string(), Json::String(self.schema.clone()));
         root.insert("root".to_string(), Json::String(self.root.clone()));
+        root.insert("analysis_only".to_string(), Json::Bool(true));
+        root.insert(
+            "disclaimer".to_string(),
+            Json::String(
+                "Static analysis of cryptographic indicators only. Not a cryptographic implementation and not a security audit."
+                    .to_string(),
+            ),
+        );
+
+        let mut summary = BTreeMap::new();
+        summary.insert(
+            "files_scanned".to_string(),
+            Json::int(self.files_scanned as i64),

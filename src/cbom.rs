@@ -172,3 +172,17 @@ impl CryptoBom {
         summary.insert(
             "files_scanned".to_string(),
             Json::int(self.files_scanned as i64),
+        );
+        summary.insert(
+            "entries_visited".to_string(),
+            Json::int(self.entries_visited as i64),
+        );
+        summary.insert(
+            "component_count".to_string(),
+            Json::int(self.components.len() as i64),
+        );
+        summary.insert(
+            "total_occurrences".to_string(),
+            Json::int(self.total_occurrences() as i64),
+        );
+

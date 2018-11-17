@@ -213,3 +213,17 @@ impl CryptoBom {
     pub fn to_json_string(&self) -> String {
         self.to_json().to_pretty_string()
     }
+
+    /// Render a human-readable text report.
+    pub fn to_text(&self) -> String {
+        let mut out = String::new();
+        out.push_str("quantumseal — CryptoBOM (post-quantum migration inventory)\n");
+        out.push_str("NOTE: static analysis of crypto indicators only; not a security audit.\n");
+        out.push_str(&"=".repeat(70));
+        out.push('\n');
+        out.push_str(&format!("Root:            {}\n", self.root));
+        out.push_str(&format!(
+            "Tool:            {} v{}\n",
+            self.tool, self.tool_version
+        ));
+        out.push_str(&format!("Files scanned:   {}\n", self.files_scanned));

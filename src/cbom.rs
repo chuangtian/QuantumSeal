@@ -227,3 +227,17 @@ impl CryptoBom {
             self.tool, self.tool_version
         ));
         out.push_str(&format!("Files scanned:   {}\n", self.files_scanned));
+        out.push_str(&format!("Entries visited: {}\n", self.entries_visited));
+        out.push_str(&format!("Components:      {}\n", self.components.len()));
+        out.push_str(&format!("Occurrences:     {}\n", self.total_occurrences()));
+        out.push('\n');
+
+        if self.components.is_empty() {
+            out.push_str("No cryptographic indicators detected.\n");
+            return out;
+        }
+
+        for c in &self.components {
+            let band = PriorityBand::from_score(c.priority);
+            out.push_str(&"-".repeat(70));
+            out.push('\n');

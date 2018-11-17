@@ -200,3 +200,16 @@ impl CryptoBom {
         summary.insert("priority_bands".to_string(), Json::Object(band_obj));
         root.insert("summary".to_string(), Json::Object(summary));
 
+        let mut comps = Vec::new();
+        for c in &self.components {
+            comps.push(component_to_json(c));
+        }
+        root.insert("components".to_string(), Json::Array(comps));
+
+        Json::Object(root)
+    }
+
+    /// Serialize to a pretty JSON string.
+    pub fn to_json_string(&self) -> String {
+        self.to_json().to_pretty_string()
+    }

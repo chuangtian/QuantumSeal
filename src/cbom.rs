@@ -309,3 +309,17 @@ fn component_to_json(c: &Component) -> Json {
     let mut occs = Vec::new();
     for occ in &c.occurrences {
         let mut o = BTreeMap::new();
+        o.insert("file".to_string(), Json::String(occ.file.clone()));
+        o.insert("line".to_string(), Json::int(occ.line as i64));
+        o.insert("excerpt".to_string(), Json::String(occ.excerpt.clone()));
+        o.insert("needle".to_string(), Json::String(occ.needle.clone()));
+        occs.push(Json::Object(o));
+    }
+    obj.insert("occurrences".to_string(), Json::Array(occs));
+    Json::Object(obj)
+}
+
+/// Compute a 0-100 migration priority score.
+///
+/// The score blends the intrinsic quantum risk (dominant) with prevalence
+/// (how many files/occurrences), so a broadly-used Shor-breakable algorithm

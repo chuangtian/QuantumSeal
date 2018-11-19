@@ -295,3 +295,17 @@ fn component_to_json(c: &Component) -> Json {
         Json::String(c.risk.label().to_string()),
     );
     obj.insert("priority".to_string(), Json::int(c.priority as i64));
+    obj.insert(
+        "priority_band".to_string(),
+        Json::String(PriorityBand::from_score(c.priority).code().to_string()),
+    );
+    obj.insert("file_count".to_string(), Json::int(c.file_count as i64));
+    obj.insert(
+        "occurrence_count".to_string(),
+        Json::int(c.occurrences.len() as i64),
+    );
+    obj.insert("guidance".to_string(), Json::String(c.guidance.to_string()));
+
+    let mut occs = Vec::new();
+    for occ in &c.occurrences {
+        let mut o = BTreeMap::new();

@@ -241,3 +241,16 @@ impl CryptoBom {
             let band = PriorityBand::from_score(c.priority);
             out.push_str(&"-".repeat(70));
             out.push('\n');
+            out.push_str(&format!(
+                "[{:>3}] {} — {}\n",
+                c.priority,
+                c.name,
+                band.code().to_uppercase()
+            ));
+            out.push_str(&format!(
+                "      risk={}  category={}  files={}  occurrences={}\n",
+                c.risk.code(),
+                c.category.code(),
+                c.file_count,
+                c.occurrences.len()
+            ));

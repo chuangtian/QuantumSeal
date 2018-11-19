@@ -254,3 +254,17 @@ impl CryptoBom {
                 c.file_count,
                 c.occurrences.len()
             ));
+            out.push_str(&format!("      guidance: {}\n", c.guidance));
+            // Show up to 5 occurrences.
+            for occ in c.occurrences.iter().take(5) {
+                out.push_str(&format!(
+                    "        {}:{}  «{}»\n",
+                    occ.file, occ.line, occ.excerpt
+                ));
+            }
+            if c.occurrences.len() > 5 {
+                out.push_str(&format!("        … and {} more\n", c.occurrences.len() - 5));
+            }
+        }
+        out.push_str(&"=".repeat(70));
+        out.push('\n');

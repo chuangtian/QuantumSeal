@@ -268,3 +268,17 @@ impl CryptoBom {
         }
         out.push_str(&"=".repeat(70));
         out.push('\n');
+        if let Some(band) = self.top_band() {
+            out.push_str(&format!(
+                "Highest priority band: {}\n",
+                band.code().to_uppercase()
+            ));
+        }
+        out
+    }
+}
+
+fn component_to_json(c: &Component) -> Json {
+    let mut obj = BTreeMap::new();
+    obj.insert("id".to_string(), Json::String(c.rule_id.to_string()));
+    obj.insert("name".to_string(), Json::String(c.name.to_string()));

@@ -282,3 +282,16 @@ fn component_to_json(c: &Component) -> Json {
     let mut obj = BTreeMap::new();
     obj.insert("id".to_string(), Json::String(c.rule_id.to_string()));
     obj.insert("name".to_string(), Json::String(c.name.to_string()));
+    obj.insert(
+        "category".to_string(),
+        Json::String(c.category.code().to_string()),
+    );
+    obj.insert(
+        "quantum_risk".to_string(),
+        Json::String(c.risk.code().to_string()),
+    );
+    obj.insert(
+        "quantum_risk_label".to_string(),
+        Json::String(c.risk.label().to_string()),
+    );
+    obj.insert("priority".to_string(), Json::int(c.priority as i64));

@@ -62,3 +62,19 @@ const TEXT_EXTENSIONS: &[&str] = &[
     "makefile",
     "sql",
 ];
+
+/// Directory names skipped during the walk.
+const SKIP_DIRS: &[&str] = &[
+    ".git",
+    "node_modules",
+    "target",
+    "dist",
+    "build",
+    ".venv",
+    "venv",
+    "__pycache__",
+    ".idea",
+    ".vscode",
+    "vendor",
+    ".next",
+    "out",

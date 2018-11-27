@@ -323,3 +323,16 @@ fn component_to_json(c: &Component) -> Json {
 ///
 /// The score blends the intrinsic quantum risk (dominant) with prevalence
 /// (how many files/occurrences), so a broadly-used Shor-breakable algorithm
+/// scores higher than a single isolated occurrence, while capping at 100.
+pub fn compute_priority(risk: QuantumRisk, occurrences: usize, file_count: usize) -> u32 {
+    let base = risk.base_weight();
+    // Prevalence bonus: logarithmic-ish, saturating.
+    let occ_bonus = match occurrences {
+        0 => 0,
+        1 => 0,
+        2..=4 => 3,
+        5..=9 => 6,
+        10..=24 => 9,
+        _ => 12,
+    };
+    let file_bonus = match file_count {

@@ -127,3 +127,19 @@ pub fn scan(root: &Path, options: &ScanOptions) -> io::Result<ScanResult> {
     let mut result = ScanResult::default();
     walk(root, 0, options, &mut result)?;
     // Deterministic ordering for reproducible output.
+    result.files.sort_by(|a, b| a.path.cmp(&b.path));
+    Ok(result)
+}
+
+fn walk(
+    dir: &Path,
+    depth: usize,
+    options: &ScanOptions,
+    result: &mut ScanResult,
+) -> io::Result<()> {
+    if let Some(max) = options.max_depth {
+        if depth > max {
+            return Ok(());
+        }
+    }
+

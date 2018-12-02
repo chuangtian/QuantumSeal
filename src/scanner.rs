@@ -143,3 +143,20 @@ fn walk(
         }
     }
 
+    // A single file target is also valid input.
+    let meta = fs::symlink_metadata(dir)?;
+    if meta.file_type().is_file() {
+        result.entries_visited += 1;
+        if let Some(ff) = scan_file(dir)? {
+            result.files_scanned += 1;
+            if !ff.matches.is_empty() {
+                result.files.push(ff);
+            }
+        } else {
+            result.files_scanned += 0;
+        }
+        return Ok(());
+    }
+
+    if !meta.file_type().is_dir() {
+        return Ok(());

@@ -111,3 +111,19 @@ pub struct ScanResult {
     pub entries_visited: usize,
 }
 
+/// Options controlling a scan.
+///
+/// The [`Default`] is a non-following, unlimited-depth walk.
+#[derive(Debug, Clone, Default)]
+pub struct ScanOptions {
+    /// Follow symbolic links. Off by default to avoid cycles.
+    pub follow_symlinks: bool,
+    /// Maximum recursion depth (`None` = unlimited).
+    pub max_depth: Option<usize>,
+}
+
+/// Scan `root` recursively and return all findings.
+pub fn scan(root: &Path, options: &ScanOptions) -> io::Result<ScanResult> {
+    let mut result = ScanResult::default();
+    walk(root, 0, options, &mut result)?;
+    // Deterministic ordering for reproducible output.

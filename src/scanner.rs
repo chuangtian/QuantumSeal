@@ -78,3 +78,19 @@ const SKIP_DIRS: &[&str] = &[
     "vendor",
     ".next",
     "out",
+];
+
+/// Maximum bytes read per file (guards against huge/binary files).
+const MAX_FILE_BYTES: usize = 4 * 1024 * 1024;
+
+/// One matched indicator occurrence within a file.
+#[derive(Debug, Clone, PartialEq)]
+pub struct Match {
+    pub rule_id: &'static str,
+    pub line_number: usize,
+    /// The trimmed, length-capped source line, for context.
+    pub excerpt: String,
+    /// The specific needle that fired.
+    pub needle: String,
+}
+

@@ -94,3 +94,20 @@ pub struct Match {
     pub needle: String,
 }
 
+/// All matches for a single file.
+#[derive(Debug, Clone)]
+pub struct FileFindings {
+    pub path: PathBuf,
+    pub matches: Vec<Match>,
+}
+
+/// Aggregated scan result.
+#[derive(Debug, Clone, Default)]
+pub struct ScanResult {
+    pub files: Vec<FileFindings>,
+    /// Count of files inspected (text files opened).
+    pub files_scanned: usize,
+    /// Count of filesystem entries visited overall.
+    pub entries_visited: usize,
+}
+

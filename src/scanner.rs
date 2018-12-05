@@ -160,3 +160,19 @@ fn walk(
 
     if !meta.file_type().is_dir() {
         return Ok(());
+    }
+
+    let entries = match fs::read_dir(dir) {
+        Ok(e) => e,
+        Err(_) => return Ok(()), // unreadable dir: skip gracefully
+    };
+
+    for entry in entries {
+        let entry = match entry {
+            Ok(e) => e,
+            Err(_) => continue,
+        };
+        let path = entry.path();
+        result.entries_visited += 1;
+
+        let file_type = match entry.file_type() {

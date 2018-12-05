@@ -176,3 +176,19 @@ fn walk(
         result.entries_visited += 1;
 
         let file_type = match entry.file_type() {
+            Ok(ft) => ft,
+            Err(_) => continue,
+        };
+
+        if file_type.is_symlink() && !options.follow_symlinks {
+            continue;
+        }
+
+        let effective_type = if file_type.is_symlink() {
+            match fs::metadata(&path) {
+                Ok(m) => m.file_type(),
+                Err(_) => continue,
+            }
+        } else {
+            file_type
+        };

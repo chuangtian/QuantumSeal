@@ -209,3 +209,19 @@ fn walk(
             }
         }
     }
+    Ok(())
+}
+
+/// Decide whether a path is a text file we should scan.
+fn is_scannable(path: &Path) -> bool {
+    if let Some(ext) = path.extension().and_then(|e| e.to_str()) {
+        let ext = ext.to_lowercase();
+        if TEXT_EXTENSIONS.contains(&ext.as_str()) {
+            return true;
+        }
+    }
+    // Extensionless well-known files.
+    if let Some(name) = path.file_name().and_then(|n| n.to_str()) {
+        let lower = name.to_lowercase();
+        if matches!(
+            lower.as_str(),

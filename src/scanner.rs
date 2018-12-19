@@ -274,3 +274,19 @@ pub fn match_lines(text: &str) -> Vec<Match> {
     for (idx, raw_line) in text.lines().enumerate() {
         let lower = raw_line.to_lowercase();
         for rule in RULES {
+            // Skip this rule entirely if the line contains a disambiguating
+            // token (e.g. don't flag "dsa" on a line that says "ml-dsa").
+            if rule
+                .exclude_if_line_contains
+                .iter()
+                .any(|token| lower.contains(token))
+            {
+                continue;
+            }
+            for needle in rule.needles {
+                if contains_indicator(&lower, needle) {
+                    matches.push(Match {
+                        rule_id: rule.id,
+                        line_number: idx + 1,
+                        excerpt: excerpt(raw_line),
+                        needle: (*needle).to_string(),

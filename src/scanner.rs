@@ -192,3 +192,20 @@ fn walk(
         } else {
             file_type
         };
+
+        if effective_type.is_dir() {
+            if let Some(name) = path.file_name().and_then(|n| n.to_str()) {
+                if SKIP_DIRS.contains(&name) {
+                    continue;
+                }
+            }
+            walk(&path, depth + 1, options, result)?;
+        } else if effective_type.is_file() {
+            if let Some(ff) = scan_file(&path)? {
+                result.files_scanned += 1;
+                if !ff.matches.is_empty() {
+                    result.files.push(ff);
+                }
+            }
+        }
+    }

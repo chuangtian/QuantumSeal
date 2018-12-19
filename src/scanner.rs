@@ -258,3 +258,19 @@ fn scan_file(path: &Path) -> io::Result<Option<FileFindings>> {
 
     let text = match String::from_utf8(buf) {
         Ok(t) => t,
+        Err(e) => String::from_utf8_lossy(e.as_bytes()).into_owned(),
+    };
+
+    let matches = match_lines(&text);
+    Ok(Some(FileFindings {
+        path: path.to_path_buf(),
+        matches,
+    }))
+}
+
+/// Match all rules against every line of `text`.
+pub fn match_lines(text: &str) -> Vec<Match> {
+    let mut matches = Vec::new();
+    for (idx, raw_line) in text.lines().enumerate() {
+        let lower = raw_line.to_lowercase();
+        for rule in RULES {

@@ -225,3 +225,19 @@ fn is_scannable(path: &Path) -> bool {
         let lower = name.to_lowercase();
         if matches!(
             lower.as_str(),
+            "dockerfile" | "makefile" | ".env" | ".gitignore" | ".gitattributes"
+        ) {
+            return true;
+        }
+    }
+    false
+}
+
+/// Read and scan a single file. Returns `Ok(None)` if the file is skipped.
+fn scan_file(path: &Path) -> io::Result<Option<FileFindings>> {
+    if !is_scannable(path) {
+        return Ok(None);
+    }
+
+    let mut file = match fs::File::open(path) {
+        Ok(f) => f,

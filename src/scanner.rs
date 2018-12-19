@@ -241,3 +241,20 @@ fn scan_file(path: &Path) -> io::Result<Option<FileFindings>> {
 
     let mut file = match fs::File::open(path) {
         Ok(f) => f,
+        Err(_) => return Ok(None),
+    };
+
+    let mut buf = Vec::new();
+    let mut limited = (&mut file).take(MAX_FILE_BYTES as u64);
+    if limited.read_to_end(&mut buf).is_err() {
+        return Ok(None);
+    }
+
+    // Reject files that look binary (contain NUL in the first chunk).
+    let probe_len = buf.len().min(8000);
+    if buf[..probe_len].contains(&0) {
+        return Ok(None);
+    }
+
+    let text = match String::from_utf8(buf) {
+        Ok(t) => t,

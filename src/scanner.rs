@@ -290,3 +290,20 @@ pub fn match_lines(text: &str) -> Vec<Match> {
                         line_number: idx + 1,
                         excerpt: excerpt(raw_line),
                         needle: (*needle).to_string(),
+                    });
+                    // One match per rule per line is enough signal.
+                    break;
+                }
+            }
+        }
+    }
+    matches
+}
+
+/// Substring search with class-aware boundary checks to reduce false positives.
+///
+/// The needle is rejected as an embedded fragment when the character adjacent
+/// to it belongs to the *same character class* as the needle's own boundary
+/// character:
+///   * an alphabetic boundary must not be flanked by another letter
+///     (so "dss" does not match inside "oddssue"), and

@@ -323,3 +323,19 @@ fn contains_indicator(haystack: &str, needle: &str) -> bool {
     let ndl = needle.as_bytes();
     let first = ndl[0];
     let last = ndl[ndl.len() - 1];
+
+    let mut start = 0;
+    while let Some(rel) = find_subslice(&hay[start..], ndl) {
+        let pos = start + rel;
+        let after_idx = pos + ndl.len();
+
+        let before_ok = pos == 0 || !same_class_break(hay[pos - 1], first);
+        let after_ok = after_idx >= hay.len() || !same_class_break(hay[after_idx], last);
+
+        if before_ok && after_ok {
+            return true;
+        }
+        start = pos + 1;
+    }
+    false
+}

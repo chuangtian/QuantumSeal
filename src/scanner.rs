@@ -307,3 +307,19 @@ pub fn match_lines(text: &str) -> Vec<Match> {
 /// character:
 ///   * an alphabetic boundary must not be flanked by another letter
 ///     (so "dss" does not match inside "oddssue"), and
+///   * a digit boundary must not be flanked by another digit
+///     (so "sha3" does not match inside "sha384").
+///
+/// Underscores and separators (`-`, space) are always acceptable boundaries, so
+/// identifiers like `generate_rsa_2048`, `ML-KEM-768`, and `Dilithium3` match.
+/// Needles that contain a separator are specific enough that only the class of
+/// their first/last character is checked at each end.
+fn contains_indicator(haystack: &str, needle: &str) -> bool {
+    if needle.is_empty() {
+        return false;
+    }
+
+    let hay = haystack.as_bytes();
+    let ndl = needle.as_bytes();
+    let first = ndl[0];
+    let last = ndl[ndl.len() - 1];

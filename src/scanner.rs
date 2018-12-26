@@ -339,3 +339,20 @@ fn contains_indicator(haystack: &str, needle: &str) -> bool {
     }
     false
 }
+
+/// Returns true when `adjacent` would incorrectly extend a needle whose
+/// boundary character is `boundary` — i.e. both are letters, or both are
+/// digits. Underscores and separators never break a match.
+fn same_class_break(adjacent: u8, boundary: u8) -> bool {
+    (boundary.is_ascii_alphabetic() && adjacent.is_ascii_alphabetic())
+        || (boundary.is_ascii_digit() && adjacent.is_ascii_digit())
+}
+
+/// Naive substring search over byte slices (stdlib has no slice::find for this).
+fn find_subslice(haystack: &[u8], needle: &[u8]) -> Option<usize> {
+    if needle.len() > haystack.len() {
+        return None;
+    }
+    haystack
+        .windows(needle.len())
+        .position(|window| window == needle)

@@ -372,3 +372,19 @@ fn excerpt(line: &str) -> String {
 
 /// Convenience: count matches per rule id across a scan result.
 pub fn matches_per_rule(result: &ScanResult) -> BTreeMap<&'static str, usize> {
+    let mut counts: BTreeMap<&'static str, usize> = BTreeMap::new();
+    for file in &result.files {
+        for m in &file.matches {
+            *counts.entry(m.rule_id).or_insert(0) += 1;
+        }
+    }
+    counts
+}
+
+/// Look up the rule struct for a match's rule id (always succeeds for matches
+/// produced by [`match_lines`]).
+pub fn rule_for(m: &Match) -> &'static Rule {
+    RULES
+        .iter()
+        .find(|r| r.id == m.rule_id)
+        .expect("match carries a valid rule id")

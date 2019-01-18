@@ -388,3 +388,20 @@ pub fn rule_for(m: &Match) -> &'static Rule {
         .iter()
         .find(|r| r.id == m.rule_id)
         .expect("match carries a valid rule id")
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn matches_rsa_and_ecc() {
+        let text = "let key = generate_rsa_2048();\nuse ECDSA for signing";
+        let matches = match_lines(text);
+        let ids: Vec<&str> = matches.iter().map(|m| m.rule_id).collect();
+        assert!(ids.contains(&"rsa"));
+        assert!(ids.contains(&"ecc"));
+    }
+
+    #[test]
+    fn word_boundaries_reduce_false_positives() {

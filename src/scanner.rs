@@ -356,3 +356,19 @@ fn find_subslice(haystack: &[u8], needle: &[u8]) -> Option<usize> {
     haystack
         .windows(needle.len())
         .position(|window| window == needle)
+}
+
+/// Trim and cap a line for use as report context.
+fn excerpt(line: &str) -> String {
+    let trimmed = line.trim();
+    const MAX: usize = 160;
+    if trimmed.chars().count() <= MAX {
+        trimmed.to_string()
+    } else {
+        let capped: String = trimmed.chars().take(MAX).collect();
+        format!("{capped}…")
+    }
+}
+
+/// Convenience: count matches per rule id across a scan result.
+pub fn matches_per_rule(result: &ScanResult) -> BTreeMap<&'static str, usize> {

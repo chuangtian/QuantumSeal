@@ -400,3 +400,55 @@ tests both halves and runs the end-to-end demo.
 - **Names, not semantics.** A string in a comment, a variable name, a doc
   example, or dead code counts the same as a live call site. Expect
   commentary-driven hits (the fixtures include several on purpose).
+- **Text-only reach.** Binaries, minified blobs, and files with NUL bytes are
+  skipped; crypto reached solely through an opaque dependency is invisible.
+- **Extension-gated.** Only text-like extensions are scanned; vendor dirs
+  (`node_modules`, `target`, `.git`, `dist`, `build`, …) are skipped by design.
+- **Substring ambiguity.** Boundary and exclusion rules cut most collisions, but
+  novel naming can still slip through or be missed — the catalog is a heuristic.
+- **No usage or config depth.** It cannot tell a 512-bit RSA from a 4096-bit one,
+  or a disabled cipher suite from an active one.
+- **Not an audit, not a crypto library.** Treat the CryptoBOM as a starting map
+  for human experts.
+
+---
+
+## Roadmap
+
+- SARIF and CycloneDX-crypto export for BOM interoperability.
+- User-supplied rule packs (extend the catalog without editing the crate).
+- Per-finding suppression comments and an ignore file.
+- Key-size / parameter hints where they appear on the same line.
+- Optional JSON-schema publication for `quantumseal-cbom/1`.
+- Viewer: sortable/filterable HTML briefings.
+
+*Roadmap items describe inventory & reporting features only — quantumseal will
+remain a static-analysis instrument and will never implement cryptography.*
+
+---
+
+## Layout & license
+
+```
+quantumseal/
+├── src/            # Rust CLI: main · lib · json · rules · scanner · cbom · diff
+├── tests/          # fixture-driven end-to-end tests
+├── viewer/         # TypeScript viewer (model · formatters · cli), dependency-free
+├── fixtures/       # legacy / migrated / clean sample trees
+├── examples/       # committed sample CryptoBOMs & reports
+├── docs/           # RULES.md + assets/ (observatory & console SVGs)
+├── Makefile        # build · test · demo
+└── .github/        # CI workflow
+```
+
+Testing:
+
+```bash
+cargo test                 # Rust unit + integration tests
+cd viewer && npm test      # viewer tests (node --test)
+```
+
+Licensed under [MIT](LICENSE). quantumseal is an analysis instrument — it charts
+the migration; it never claims to fly it.
+
+<!-- draft note 1 -->

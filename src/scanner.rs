@@ -405,3 +405,19 @@ mod tests {
 
     #[test]
     fn word_boundaries_reduce_false_positives() {
+        // "medsafe" should not match the "dsa" needle... but note our dsa rule
+        // uses multi-char needles like "dss"; verify "dss" doesn't match inside
+        // a larger word.
+        let text = "address the oddssue";
+        let matches = match_lines(text);
+        assert!(matches.iter().all(|m| m.rule_id != "dsa"));
+    }
+
+    #[test]
+    fn detects_post_quantum_algorithms() {
+        let text = "cipher = ML-KEM-768\nsig = Dilithium3";
+        let matches = match_lines(text);
+        let ids: Vec<&str> = matches.iter().map(|m| m.rule_id).collect();
+        assert!(ids.contains(&"mlkem"));
+        assert!(ids.contains(&"mldsa"));
+    }

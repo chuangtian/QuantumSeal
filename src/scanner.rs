@@ -421,3 +421,57 @@ mod tests {
         assert!(ids.contains(&"mlkem"));
         assert!(ids.contains(&"mldsa"));
     }
+
+    #[test]
+    fn excerpt_is_trimmed_and_capped() {
+        let long = "x".repeat(500);
+        let e = excerpt(&format!("   {long}   "));
+        assert!(e.chars().count() <= 161);
+    }
+
+    #[test]
+    fn subslice_search_works() {
+        assert_eq!(find_subslice(b"hello world", b"world"), Some(6));
+        assert_eq!(find_subslice(b"abc", b"xyz"), None);
+    }
+
+    #[test]
+    fn sha3_does_not_match_inside_sha384() {
+        // "sha384" must not trigger the SHA-3 rule via the "sha3" needle.
+        let matches = match_lines("cipher = ECDHE-RSA-AES256-GCM-SHA384");
+        assert!(
+            matches.iter().all(|m| m.rule_id != "sha3"),
+            "sha3 should not match sha384: {matches:?}"
+        );
+        // But an explicit SHA-3 usage still matches.
+        let matches = match_lines("hash = SHA3-256");
+        assert!(matches.iter().any(|m| m.rule_id == "sha3"));
+    }
+
+    #[test]
+    fn dsa_does_not_match_inside_ecdsa() {
+        // "ecdsa-sha2" must not trigger the DSA rule.
+        let matches = match_lines("algs = ecdsa-sha2-nistp256");
+        assert!(
+            matches.iter().all(|m| m.rule_id != "dsa"),
+            "dsa should not match ecdsa: {matches:?}"
+        );
+        // ECDSA itself is still detected as ECC.
+        assert!(matches.iter().any(|m| m.rule_id == "ecc"));
+    }
+
+    #[test]
+    fn dsa_suppressed_on_pqc_signature_lines() {
+        // ML-DSA / SLH-DSA names must not be mislabeled as finite-field DSA.
+        let m1 = match_lines("const SIG = \"SLH-DSA-SHA2-128s\";");
+        assert!(m1.iter().all(|m| m.rule_id != "dsa"), "{m1:?}");
+        assert!(m1.iter().any(|m| m.rule_id == "slhdsa"));
+
+        let m2 = match_lines("sig = ML-DSA-65");
+        assert!(m2.iter().all(|m| m.rule_id != "dsa"), "{m2:?}");
+        assert!(m2.iter().any(|m| m.rule_id == "mldsa"));
+
+        // But a genuine finite-field DSA line is still flagged.
+        let m3 = match_lines("cert_sig = dsaWithSHA1");
+        assert!(m3.iter().any(|m| m.rule_id == "dsa"), "{m3:?}");
+    }

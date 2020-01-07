@@ -49,3 +49,17 @@ impl QuantumRisk {
     }
 
     /// Base priority weight contributed by the risk class.
+    pub fn base_weight(self) -> u32 {
+        match self {
+            QuantumRisk::LowResistant => 5,
+            QuantumRisk::ModerateGrover => 25,
+            QuantumRisk::HighShor => 70,
+            QuantumRisk::CriticalDeprecated => 90,
+        }
+    }
+}
+
+/// The broad category of a cryptographic indicator.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Category {
+    PublicKey,

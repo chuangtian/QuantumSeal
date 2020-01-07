@@ -34,3 +34,18 @@ impl QuantumRisk {
             QuantumRisk::LowResistant => "low_resistant",
             QuantumRisk::ModerateGrover => "moderate_grover",
             QuantumRisk::HighShor => "high_shor",
+            QuantumRisk::CriticalDeprecated => "critical_deprecated",
+        }
+    }
+
+    /// Human-readable label.
+    pub fn label(self) -> &'static str {
+        match self {
+            QuantumRisk::LowResistant => "Low (quantum-resistant)",
+            QuantumRisk::ModerateGrover => "Moderate (Grover-affected)",
+            QuantumRisk::HighShor => "High (Shor-breakable)",
+            QuantumRisk::CriticalDeprecated => "Critical (deprecated + quantum-relevant)",
+        }
+    }
+
+    /// Base priority weight contributed by the risk class.

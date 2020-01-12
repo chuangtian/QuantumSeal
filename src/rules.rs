@@ -63,3 +63,18 @@ impl QuantumRisk {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Category {
     PublicKey,
+    KeyExchange,
+    Signature,
+    Symmetric,
+    Hash,
+    Protocol,
+    PostQuantum,
+    RandomOrKeystore,
+}
+
+impl Category {
+    pub fn code(self) -> &'static str {
+        match self {
+            Category::PublicKey => "public_key",
+            Category::KeyExchange => "key_exchange",
+            Category::Signature => "signature",

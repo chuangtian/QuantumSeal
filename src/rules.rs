@@ -78,3 +78,18 @@ impl Category {
             Category::PublicKey => "public_key",
             Category::KeyExchange => "key_exchange",
             Category::Signature => "signature",
+            Category::Symmetric => "symmetric",
+            Category::Hash => "hash",
+            Category::Protocol => "protocol",
+            Category::PostQuantum => "post_quantum",
+            Category::RandomOrKeystore => "random_or_keystore",
+        }
+    }
+}
+
+/// A single detection rule.
+///
+/// `needles` are lowercase substrings; a rule matches a line when any needle is
+/// present (word-ish boundary aware — see [`crate::scanner`]). Keeping needles
+/// lowercase lets the scanner do a single case-fold per line.
+#[derive(Debug, Clone)]

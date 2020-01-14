@@ -93,3 +93,18 @@ impl Category {
 /// present (word-ish boundary aware — see [`crate::scanner`]). Keeping needles
 /// lowercase lets the scanner do a single case-fold per line.
 #[derive(Debug, Clone)]
+pub struct Rule {
+    /// Stable rule identifier, e.g. `rsa`.
+    pub id: &'static str,
+    /// Display name, e.g. `RSA`.
+    pub name: &'static str,
+    pub category: Category,
+    pub risk: QuantumRisk,
+    /// Lowercase substrings that trigger this rule.
+    pub needles: &'static [&'static str],
+    /// Lowercase substrings that, if present anywhere on the same line, suppress
+    /// a would-be match. Used to disambiguate names that are substrings of
+    /// unrelated primitives (e.g. the bare `dsa` family versus `ml-dsa`).
+    pub exclude_if_line_contains: &'static [&'static str],
+    /// Short guidance shown in reports.
+    pub guidance: &'static str,

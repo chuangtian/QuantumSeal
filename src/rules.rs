@@ -108,3 +108,18 @@ pub struct Rule {
     pub exclude_if_line_contains: &'static [&'static str],
     /// Short guidance shown in reports.
     pub guidance: &'static str,
+}
+
+/// The full built-in rule catalog.
+///
+/// The list is intentionally conservative and well-documented rather than
+/// exhaustive; teams can extend it. Each entry maps a recognizable name to a
+/// quantum-risk classification grounded in the NIST PQC transition guidance
+/// (Shor breaks RSA/ECC/DH; Grover halves symmetric strength).
+pub const RULES: &[Rule] = &[
+    // ---- Public-key / key-exchange / signatures: Shor-breakable ----
+    Rule {
+        id: "rsa",
+        name: "RSA",
+        category: Category::PublicKey,
+        risk: QuantumRisk::HighShor,

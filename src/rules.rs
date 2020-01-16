@@ -152,3 +152,18 @@ pub const RULES: &[Rule] = &[
         id: "dsa",
         name: "DSA",
         category: Category::Signature,
+        risk: QuantumRisk::HighShor,
+        needles: &["dsa-sha", "dsawithsha", "dss", "id-dsa", "dsaencryption"],
+        // The bare DSA family is a substring of the PQC schemes ML-DSA and
+        // SLH-DSA and of ECDSA. Suppress those to avoid mislabeling migrated or
+        // elliptic-curve code as finite-field DSA.
+        exclude_if_line_contains: &["ml-dsa", "mldsa", "slh-dsa", "slhdsa", "ecdsa", "eddsa"],
+        guidance: "DSA is Shor-breakable and largely deprecated. Migrate signatures to ML-DSA or SLH-DSA.",
+    },
+    // ---- Symmetric ciphers: Grover-affected ----
+    Rule {
+        id: "aes",
+        name: "AES",
+        category: Category::Symmetric,
+        risk: QuantumRisk::ModerateGrover,
+        needles: &["aes-128", "aes128", "aes-192", "aes192", "aes-256", "aes256", "aesgcm", "aes-gcm", "aes-cbc"],

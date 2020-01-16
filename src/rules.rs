@@ -123,3 +123,18 @@ pub const RULES: &[Rule] = &[
         name: "RSA",
         category: Category::PublicKey,
         risk: QuantumRisk::HighShor,
+        needles: &["rsa", "rsassa", "rsa-oaep", "rsa-pss", "pkcs1"],
+        exclude_if_line_contains: &[],
+        guidance: "Replace RSA key establishment/signatures with NIST PQC (ML-KEM for KEM, ML-DSA/SLH-DSA for signatures) or hybrid modes.",
+    },
+    Rule {
+        id: "ecc",
+        name: "Elliptic Curve (ECDSA/ECDH/EdDSA)",
+        category: Category::PublicKey,
+        risk: QuantumRisk::HighShor,
+        needles: &[
+            "ecdsa", "ecdh", "eddsa", "ed25519", "ed448", "x25519", "x448",
+            "secp256", "secp384", "secp521", "prime256v1", "nistp256", "curve25519",
+        ],
+        exclude_if_line_contains: &[],
+        guidance: "Elliptic-curve schemes are Shor-breakable. Migrate to ML-KEM/ML-DSA; consider hybrid X25519+ML-KEM during transition.",

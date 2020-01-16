@@ -138,3 +138,17 @@ pub const RULES: &[Rule] = &[
         ],
         exclude_if_line_contains: &[],
         guidance: "Elliptic-curve schemes are Shor-breakable. Migrate to ML-KEM/ML-DSA; consider hybrid X25519+ML-KEM during transition.",
+    },
+    Rule {
+        id: "dh",
+        name: "Diffie-Hellman (finite field)",
+        category: Category::KeyExchange,
+        risk: QuantumRisk::HighShor,
+        needles: &["diffie-hellman", "diffiehellman", "dhparam", "modp", "ffdhe"],
+        exclude_if_line_contains: &[],
+        guidance: "Finite-field DH is Shor-breakable. Move to ML-KEM or hybrid key establishment.",
+    },
+    Rule {
+        id: "dsa",
+        name: "DSA",
+        category: Category::Signature,

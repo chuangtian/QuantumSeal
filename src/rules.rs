@@ -167,3 +167,18 @@ pub const RULES: &[Rule] = &[
         category: Category::Symmetric,
         risk: QuantumRisk::ModerateGrover,
         needles: &["aes-128", "aes128", "aes-192", "aes192", "aes-256", "aes256", "aesgcm", "aes-gcm", "aes-cbc"],
+        exclude_if_line_contains: &[],
+        guidance: "AES remains viable; ensure >=256-bit keys so Grover's algorithm leaves ~128-bit effective strength.",
+    },
+    Rule {
+        id: "chacha20",
+        name: "ChaCha20 / Poly1305",
+        category: Category::Symmetric,
+        risk: QuantumRisk::ModerateGrover,
+        needles: &["chacha20", "chacha", "poly1305", "xchacha20"],
+        exclude_if_line_contains: &[],
+        guidance: "ChaCha20-Poly1305 (256-bit) is a solid symmetric choice; no PQC replacement needed, retain large keys.",
+    },
+    Rule {
+        id: "3des",
+        name: "3DES / DES",

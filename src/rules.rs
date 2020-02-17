@@ -182,3 +182,18 @@ pub const RULES: &[Rule] = &[
     Rule {
         id: "3des",
         name: "3DES / DES",
+        category: Category::Symmetric,
+        risk: QuantumRisk::CriticalDeprecated,
+        needles: &["3des", "tripledes", "triple-des", "des-ede", "des-cbc", "desede"],
+        exclude_if_line_contains: &[],
+        guidance: "DES/3DES are deprecated and weak. Replace immediately with AES-256; this is both a classical and quantum concern.",
+    },
+    Rule {
+        id: "rc4",
+        name: "RC4",
+        category: Category::Symmetric,
+        risk: QuantumRisk::CriticalDeprecated,
+        needles: &["rc4", "arcfour"],
+        exclude_if_line_contains: &[],
+        guidance: "RC4 is broken classically. Remove entirely and replace with an AEAD cipher (AES-GCM or ChaCha20-Poly1305).",
+    },

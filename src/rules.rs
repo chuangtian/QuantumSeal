@@ -197,3 +197,18 @@ pub const RULES: &[Rule] = &[
         exclude_if_line_contains: &[],
         guidance: "RC4 is broken classically. Remove entirely and replace with an AEAD cipher (AES-GCM or ChaCha20-Poly1305).",
     },
+    Rule {
+        id: "blowfish",
+        name: "Blowfish",
+        category: Category::Symmetric,
+        risk: QuantumRisk::ModerateGrover,
+        needles: &["blowfish", "bf-cbc", "bf-ecb"],
+        exclude_if_line_contains: &[],
+        guidance: "Blowfish uses a 64-bit block and is dated. Prefer AES-256-GCM.",
+    },
+    // ---- Hash functions ----
+    Rule {
+        id: "md5",
+        name: "MD5",
+        category: Category::Hash,
+        risk: QuantumRisk::CriticalDeprecated,

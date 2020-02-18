@@ -212,3 +212,18 @@ pub const RULES: &[Rule] = &[
         name: "MD5",
         category: Category::Hash,
         risk: QuantumRisk::CriticalDeprecated,
+        needles: &["md5"],
+        exclude_if_line_contains: &[],
+        guidance: "MD5 is collision-broken. Replace with SHA-256/SHA-3; never use for signatures or integrity.",
+    },
+    Rule {
+        id: "sha1",
+        name: "SHA-1",
+        category: Category::Hash,
+        risk: QuantumRisk::CriticalDeprecated,
+        needles: &["sha1", "sha-1"],
+        exclude_if_line_contains: &[],
+        guidance: "SHA-1 is collision-broken. Migrate to SHA-256 or SHA-3.",
+    },
+    Rule {
+        id: "sha2",

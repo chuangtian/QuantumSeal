@@ -256,3 +256,18 @@ pub const RULES: &[Rule] = &[
     Rule {
         id: "ssh",
         name: "SSH",
+        category: Category::Protocol,
+        risk: QuantumRisk::HighShor,
+        needles: &["ssh-rsa", "ssh-ed25519", "ecdsa-sha2", "openssh"],
+        exclude_if_line_contains: &[],
+        guidance: "SSH host/user keys use RSA/ECDSA/Ed25519. Track OpenSSH PQC hybrid KEX (e.g. sntrup761x25519) adoption.",
+    },
+    Rule {
+        id: "jwt",
+        name: "JWT / JOSE",
+        category: Category::Protocol,
+        risk: QuantumRisk::HighShor,
+        needles: &["jwt", "jws", "jwe", "rs256", "es256", "ps256", "hs256"],
+        exclude_if_line_contains: &[],
+        guidance: "Asymmetric JWT algs (RS256/ES256/PS256) are Shor-breakable. Plan for PQC-capable token signing; HS256 is symmetric.",
+    },

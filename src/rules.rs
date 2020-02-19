@@ -241,3 +241,18 @@ pub const RULES: &[Rule] = &[
         risk: QuantumRisk::ModerateGrover,
         needles: &["sha3-", "sha-3", "keccak", "shake128", "shake256"],
         exclude_if_line_contains: &[],
+        guidance: "SHA-3/SHAKE are modern and quantum-appropriate at large sizes.",
+    },
+    // ---- Protocols ----
+    Rule {
+        id: "tls",
+        name: "TLS / SSL",
+        category: Category::Protocol,
+        risk: QuantumRisk::HighShor,
+        needles: &["tlsv1", "tls1", "sslv3", "ssl_ctx", "ssl_context", "starttls", "tls_"],
+        exclude_if_line_contains: &[],
+        guidance: "TLS key exchange relies on ECDHE/RSA today. Adopt TLS 1.3 and enable hybrid PQC key exchange when your stack supports it.",
+    },
+    Rule {
+        id: "ssh",
+        name: "SSH",

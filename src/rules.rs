@@ -227,3 +227,17 @@ pub const RULES: &[Rule] = &[
     },
     Rule {
         id: "sha2",
+        name: "SHA-2 family",
+        category: Category::Hash,
+        risk: QuantumRisk::ModerateGrover,
+        needles: &["sha256", "sha-256", "sha384", "sha-384", "sha512", "sha-512", "sha224"],
+        exclude_if_line_contains: &[],
+        guidance: "SHA-2 is fine; use >=SHA-384 where Grover margin matters for long-lived integrity.",
+    },
+    Rule {
+        id: "sha3",
+        name: "SHA-3 / SHAKE",
+        category: Category::Hash,
+        risk: QuantumRisk::ModerateGrover,
+        needles: &["sha3-", "sha-3", "keccak", "shake128", "shake256"],
+        exclude_if_line_contains: &[],

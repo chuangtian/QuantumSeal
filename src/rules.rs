@@ -271,3 +271,18 @@ pub const RULES: &[Rule] = &[
         exclude_if_line_contains: &[],
         guidance: "Asymmetric JWT algs (RS256/ES256/PS256) are Shor-breakable. Plan for PQC-capable token signing; HS256 is symmetric.",
     },
+    // ---- Post-quantum (already migrating) ----
+    Rule {
+        id: "mlkem",
+        name: "ML-KEM (Kyber)",
+        category: Category::PostQuantum,
+        risk: QuantumRisk::LowResistant,
+        needles: &["ml-kem", "mlkem", "kyber", "crystals-kyber"],
+        exclude_if_line_contains: &[],
+        guidance: "ML-KEM (FIPS 203) is a standardized PQ KEM. Good target; verify parameter set (512/768/1024).",
+    },
+    Rule {
+        id: "mldsa",
+        name: "ML-DSA (Dilithium)",
+        category: Category::PostQuantum,
+        risk: QuantumRisk::LowResistant,

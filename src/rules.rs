@@ -286,3 +286,18 @@ pub const RULES: &[Rule] = &[
         name: "ML-DSA (Dilithium)",
         category: Category::PostQuantum,
         risk: QuantumRisk::LowResistant,
+        needles: &["ml-dsa", "mldsa", "dilithium", "crystals-dilithium"],
+        exclude_if_line_contains: &[],
+        guidance: "ML-DSA (FIPS 204) is a standardized PQ signature scheme. Good target.",
+    },
+    Rule {
+        id: "slhdsa",
+        name: "SLH-DSA (SPHINCS+)",
+        category: Category::PostQuantum,
+        risk: QuantumRisk::LowResistant,
+        needles: &["slh-dsa", "slhdsa", "sphincs", "sphincs+"],
+        exclude_if_line_contains: &[],
+        guidance: "SLH-DSA (FIPS 205) is a stateless hash-based PQ signature scheme. Good conservative target.",
+    },
+    // ---- Randomness / keystores ----
+    Rule {

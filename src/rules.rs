@@ -301,3 +301,18 @@ pub const RULES: &[Rule] = &[
     },
     // ---- Randomness / keystores ----
     Rule {
+        id: "keystore",
+        name: "Key material / keystore",
+        category: Category::RandomOrKeystore,
+        risk: QuantumRisk::HighShor,
+        needles: &["private key", "begin rsa private", "begin ec private", "pkcs12", "keystore", "-----begin"],
+        exclude_if_line_contains: &[],
+        guidance: "Stored asymmetric key material may need reissuing with PQC algorithms; inventory and rotate as part of migration.",
+    },
+    Rule {
+        id: "weak_random",
+        name: "Non-cryptographic RNG",
+        category: Category::RandomOrKeystore,
+        risk: QuantumRisk::ModerateGrover,
+        needles: &["math.random", "mersenne", "rand()", "srand("],
+        exclude_if_line_contains: &[],

@@ -31,3 +31,18 @@ pub struct Diff {
 
 /// A component present in both, with differing metrics.
 #[derive(Debug, Clone, PartialEq)]
+pub struct ChangedComponent {
+    pub id: String,
+    pub name: String,
+    pub baseline: ComponentSnapshot,
+    pub current: ComponentSnapshot,
+}
+
+impl Diff {
+    /// Whether anything changed at all.
+    pub fn is_empty(&self) -> bool {
+        self.added.is_empty() && self.removed.is_empty() && self.changed.is_empty()
+    }
+
+    /// True when the current BOM is strictly "better or equal": nothing new was
+    /// added and no occurrence counts increased. Useful for CI gates.

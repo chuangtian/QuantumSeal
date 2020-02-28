@@ -46,3 +46,18 @@ impl Diff {
 
     /// True when the current BOM is strictly "better or equal": nothing new was
     /// added and no occurrence counts increased. Useful for CI gates.
+    pub fn is_regression(&self) -> bool {
+        if !self.added.is_empty() {
+            return true;
+        }
+        self.changed
+            .iter()
+            .any(|c| c.current.occurrence_count > c.baseline.occurrence_count)
+    }
+
+    /// Render a text summary.
+    pub fn to_text(&self) -> String {
+        let mut out = String::new();
+        out.push_str("quantumseal — CryptoBOM baseline comparison\n");
+        out.push_str(&"=".repeat(70));
+        out.push('\n');

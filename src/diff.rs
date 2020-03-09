@@ -106,3 +106,18 @@ impl Diff {
         out.push('\n');
         out.push_str(&"=".repeat(70));
         out.push('\n');
+        out.push_str(&format!(
+            "Regression (new or increased crypto exposure): {}\n",
+            if self.is_regression() { "YES" } else { "no" }
+        ));
+        out
+    }
+
+    /// Render the diff as a [`Json`] value.
+    pub fn to_json(&self) -> Json {
+        let mut root = BTreeMap::new();
+        root.insert(
+            "kind".to_string(),
+            Json::String("quantumseal-diff/1".to_string()),
+        );
+        root.insert("regression".to_string(), Json::Bool(self.is_regression()));

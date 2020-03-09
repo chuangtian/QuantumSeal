@@ -76,3 +76,18 @@ impl Diff {
                 ));
             }
         }
+        if !self.removed.is_empty() {
+            out.push_str(&format!("\nREMOVED ({}):\n", self.removed.len()));
+            for c in &self.removed {
+                out.push_str(&format!(
+                    "  - {} ({})  was priority={} occurrences={}\n",
+                    c.name, c.id, c.priority, c.occurrence_count
+                ));
+            }
+        }
+        if !self.changed.is_empty() {
+            out.push_str(&format!("\nCHANGED ({}):\n", self.changed.len()));
+            for c in &self.changed {
+                let occ_delta = c.current.occurrence_count - c.baseline.occurrence_count;
+                let arrow = if occ_delta > 0 { "▲" } else { "▼" };
+                out.push_str(&format!(

@@ -91,3 +91,18 @@ impl Diff {
                 let occ_delta = c.current.occurrence_count - c.baseline.occurrence_count;
                 let arrow = if occ_delta > 0 { "▲" } else { "▼" };
                 out.push_str(&format!(
+                    "  ~ {} ({}) {} occurrences {}→{} ({:+}), priority {}→{}\n",
+                    c.name,
+                    c.id,
+                    arrow,
+                    c.baseline.occurrence_count,
+                    c.current.occurrence_count,
+                    occ_delta,
+                    c.baseline.priority,
+                    c.current.priority,
+                ));
+            }
+        }
+        out.push('\n');
+        out.push_str(&"=".repeat(70));
+        out.push('\n');

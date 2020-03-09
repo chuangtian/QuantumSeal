@@ -61,3 +61,18 @@ impl Diff {
         out.push_str("quantumseal — CryptoBOM baseline comparison\n");
         out.push_str(&"=".repeat(70));
         out.push('\n');
+
+        if self.is_empty() {
+            out.push_str("No changes: current inventory matches the baseline.\n");
+            return out;
+        }
+
+        if !self.added.is_empty() {
+            out.push_str(&format!("\nADDED ({}):\n", self.added.len()));
+            for c in &self.added {
+                out.push_str(&format!(
+                    "  + {} ({})  priority={} occurrences={}\n",
+                    c.name, c.id, c.priority, c.occurrence_count
+                ));
+            }
+        }

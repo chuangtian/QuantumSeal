@@ -137,3 +137,18 @@ impl Diff {
                 Json::int(c.current.occurrence_count - c.baseline.occurrence_count),
             );
             changed.push(Json::Object(obj));
+        }
+        root.insert("changed".to_string(), Json::Array(changed));
+
+        let unchanged: Vec<Json> = self
+            .unchanged
+            .iter()
+            .map(|id| Json::String(id.clone()))
+            .collect();
+        root.insert("unchanged".to_string(), Json::Array(unchanged));
+
+        Json::Object(root)
+    }
+}
+
+fn snapshots_to_json(items: &[ComponentSnapshot]) -> Json {

@@ -152,3 +152,18 @@ impl Diff {
 }
 
 fn snapshots_to_json(items: &[ComponentSnapshot]) -> Json {
+    Json::Array(items.iter().map(snapshot_to_json).collect())
+}
+
+fn snapshot_to_json(s: &ComponentSnapshot) -> Json {
+    let mut obj = BTreeMap::new();
+    obj.insert("id".to_string(), Json::String(s.id.clone()));
+    obj.insert("name".to_string(), Json::String(s.name.clone()));
+    obj.insert("priority".to_string(), Json::int(s.priority));
+    obj.insert(
+        "occurrence_count".to_string(),
+        Json::int(s.occurrence_count),
+    );
+    obj.insert("file_count".to_string(), Json::int(s.file_count));
+    Json::Object(obj)
+}

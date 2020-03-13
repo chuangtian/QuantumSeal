@@ -182,3 +182,18 @@ pub fn snapshots_from_json(doc: &Json) -> Result<BTreeMap<String, ComponentSnaps
         let id = co
             .get("id")
             .and_then(|v| v.as_str())
+            .ok_or("component missing 'id'")?
+            .to_string();
+        let name = co
+            .get("name")
+            .and_then(|v| v.as_str())
+            .unwrap_or(&id)
+            .to_string();
+        let priority = co.get("priority").and_then(|v| v.as_i64()).unwrap_or(0);
+        let occurrence_count = co
+            .get("occurrence_count")
+            .and_then(|v| v.as_i64())
+            .unwrap_or(0);
+        let file_count = co.get("file_count").and_then(|v| v.as_i64()).unwrap_or(0);
+        map.insert(
+            id.clone(),

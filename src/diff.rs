@@ -167,3 +167,18 @@ fn snapshot_to_json(s: &ComponentSnapshot) -> Json {
     obj.insert("file_count".to_string(), Json::int(s.file_count));
     Json::Object(obj)
 }
+
+/// Extract component snapshots from a parsed CryptoBOM JSON document.
+pub fn snapshots_from_json(doc: &Json) -> Result<BTreeMap<String, ComponentSnapshot>, String> {
+    let obj = doc.as_object().ok_or("baseline root is not an object")?;
+    let components = obj
+        .get("components")
+        .and_then(|c| c.as_array())
+        .ok_or("baseline has no 'components' array")?;
+
+    let mut map = BTreeMap::new();
+    for comp in components {
+        let co = comp.as_object().ok_or("component is not an object")?;
+        let id = co
+            .get("id")
+            .and_then(|v| v.as_str())

@@ -121,3 +121,19 @@ impl Diff {
             Json::String("quantumseal-diff/1".to_string()),
         );
         root.insert("regression".to_string(), Json::Bool(self.is_regression()));
+
+        root.insert("added".to_string(), snapshots_to_json(&self.added));
+        root.insert("removed".to_string(), snapshots_to_json(&self.removed));
+
+        let mut changed = Vec::new();
+        for c in &self.changed {
+            let mut obj = BTreeMap::new();
+            obj.insert("id".to_string(), Json::String(c.id.clone()));
+            obj.insert("name".to_string(), Json::String(c.name.clone()));
+            obj.insert("baseline".to_string(), snapshot_to_json(&c.baseline));
+            obj.insert("current".to_string(), snapshot_to_json(&c.current));
+            obj.insert(
+                "occurrence_delta".to_string(),
+                Json::int(c.current.occurrence_count - c.baseline.occurrence_count),
+            );
+            changed.push(Json::Object(obj));

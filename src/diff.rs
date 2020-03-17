@@ -212,3 +212,18 @@ pub fn snapshots_from_json(doc: &Json) -> Result<BTreeMap<String, ComponentSnaps
 /// Build snapshots directly from an in-memory CryptoBOM.
 pub fn snapshots_from_bom(bom: &CryptoBom) -> BTreeMap<String, ComponentSnapshot> {
     let mut map = BTreeMap::new();
+    for c in &bom.components {
+        map.insert(
+            c.rule_id.to_string(),
+            ComponentSnapshot {
+                id: c.rule_id.to_string(),
+                name: c.name.to_string(),
+                priority: c.priority as i64,
+                occurrence_count: c.occurrences.len() as i64,
+                file_count: c.file_count as i64,
+            },
+        );
+    }
+    map
+}
+

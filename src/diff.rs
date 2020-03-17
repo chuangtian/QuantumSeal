@@ -227,3 +227,18 @@ pub fn snapshots_from_bom(bom: &CryptoBom) -> BTreeMap<String, ComponentSnapshot
     map
 }
 
+/// Compare a baseline (parsed JSON text) with a current BOM.
+pub fn compare(baseline_json: &str, current: &CryptoBom) -> Result<Diff, String> {
+    let parsed = json::parse(baseline_json).map_err(|e| e.to_string())?;
+    let baseline = snapshots_from_json(&parsed)?;
+    let current_snaps = snapshots_from_bom(current);
+    Ok(diff_maps(&baseline, &current_snaps))
+}
+
+/// Core set-difference over two snapshot maps.
+pub fn diff_maps(
+    baseline: &BTreeMap<String, ComponentSnapshot>,
+    current: &BTreeMap<String, ComponentSnapshot>,
+) -> Diff {
+    let mut diff = Diff::default();
+

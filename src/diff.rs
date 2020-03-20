@@ -258,3 +258,18 @@ pub fn diff_maps(
                 }
             }
         }
+    }
+    for (id, base) in baseline {
+        if !current.contains_key(id) {
+            diff.removed.push(base.clone());
+        }
+    }
+
+    diff.added.sort_by_key(|c| std::cmp::Reverse(c.priority));
+    diff.removed.sort_by_key(|c| std::cmp::Reverse(c.priority));
+    diff.changed.sort_by(|a, b| a.id.cmp(&b.id));
+    diff.unchanged.sort();
+    diff
+}
+
+#[cfg(test)]

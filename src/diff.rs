@@ -273,3 +273,18 @@ pub fn diff_maps(
 }
 
 #[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn snap(id: &str, occ: i64) -> ComponentSnapshot {
+        ComponentSnapshot {
+            id: id.to_string(),
+            name: id.to_uppercase(),
+            priority: 70,
+            occurrence_count: occ,
+            file_count: 1,
+        }
+    }
+
+    #[test]
+    fn detects_added_removed_changed() {

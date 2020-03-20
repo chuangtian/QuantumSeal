@@ -242,3 +242,19 @@ pub fn diff_maps(
 ) -> Diff {
     let mut diff = Diff::default();
 
+    for (id, cur) in current {
+        match baseline.get(id) {
+            None => diff.added.push(cur.clone()),
+            Some(base) => {
+                if base == cur {
+                    diff.unchanged.push(id.clone());
+                } else {
+                    diff.changed.push(ChangedComponent {
+                        id: id.clone(),
+                        name: cur.name.clone(),
+                        baseline: base.clone(),
+                        current: cur.clone(),
+                    });
+                }
+            }
+        }

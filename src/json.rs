@@ -46,3 +46,21 @@ impl Json {
             _ => None,
         }
     }
+
+    /// Borrow the value as an array, if it is an array.
+    pub fn as_array(&self) -> Option<&Vec<Json>> {
+        match self {
+            Json::Array(a) => Some(a),
+            _ => None,
+        }
+    }
+
+    /// Interpret the value as an integer, if it is a whole number.
+    pub fn as_i64(&self) -> Option<i64> {
+        match self {
+            Json::Number(n) if n.fract() == 0.0 => Some(*n as i64),
+            _ => None,
+        }
+    }
+
+    /// Serialize with 2-space indentation.

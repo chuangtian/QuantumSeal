@@ -64,3 +64,21 @@ impl Json {
     }
 
     /// Serialize with 2-space indentation.
+    pub fn to_pretty_string(&self) -> String {
+        let mut out = String::new();
+        self.write_pretty(&mut out, 0);
+        out
+    }
+
+    fn write_pretty(&self, out: &mut String, indent: usize) {
+        match self {
+            Json::Null => out.push_str("null"),
+            Json::Bool(b) => out.push_str(if *b { "true" } else { "false" }),
+            Json::Number(n) => {
+                if n.fract() == 0.0 && n.is_finite() {
+                    let _ = write!(out, "{}", *n as i64);
+                } else {
+                    let _ = write!(out, "{}", n);
+                }
+            }
+            Json::String(s) => write_json_string(out, s),

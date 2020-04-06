@@ -100,3 +100,21 @@ impl Json {
                 out.push(']');
             }
             Json::Object(map) => {
+                if map.is_empty() {
+                    out.push_str("{}");
+                    return;
+                }
+                out.push_str("{\n");
+                let len = map.len();
+                for (i, (key, value)) in map.iter().enumerate() {
+                    push_indent(out, indent + 1);
+                    write_json_string(out, key);
+                    out.push_str(": ");
+                    value.write_pretty(out, indent + 1);
+                    if i + 1 < len {
+                        out.push(',');
+                    }
+                    out.push('\n');
+                }
+                push_indent(out, indent);
+                out.push('}');

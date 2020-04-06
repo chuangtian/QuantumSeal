@@ -82,3 +82,21 @@ impl Json {
                 }
             }
             Json::String(s) => write_json_string(out, s),
+            Json::Array(items) => {
+                if items.is_empty() {
+                    out.push_str("[]");
+                    return;
+                }
+                out.push_str("[\n");
+                for (i, item) in items.iter().enumerate() {
+                    push_indent(out, indent + 1);
+                    item.write_pretty(out, indent + 1);
+                    if i + 1 < items.len() {
+                        out.push(',');
+                    }
+                    out.push('\n');
+                }
+                push_indent(out, indent);
+                out.push(']');
+            }
+            Json::Object(map) => {

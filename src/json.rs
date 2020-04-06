@@ -154,3 +154,22 @@ fn write_json_string(out: &mut String, s: &str) {
 pub struct ParseError {
     pub offset: usize,
     pub message: String,
+}
+
+impl std::fmt::Display for ParseError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
+            "JSON parse error at byte {}: {}",
+            self.offset, self.message
+        )
+    }
+}
+
+impl std::error::Error for ParseError {}
+
+/// Parse a JSON document from text.
+pub fn parse(input: &str) -> Result<Json, ParseError> {
+    let mut parser = Parser {
+        bytes: input.as_bytes(),
+        pos: 0,

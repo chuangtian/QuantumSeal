@@ -191,3 +191,21 @@ struct Parser<'a> {
 impl<'a> Parser<'a> {
     fn err(&self, msg: &str) -> ParseError {
         ParseError {
+            offset: self.pos,
+            message: msg.to_string(),
+        }
+    }
+
+    fn peek(&self) -> Option<u8> {
+        self.bytes.get(self.pos).copied()
+    }
+
+    fn skip_ws(&mut self) {
+        while let Some(b) = self.peek() {
+            if b == b' ' || b == b'\t' || b == b'\n' || b == b'\r' {
+                self.pos += 1;
+            } else {
+                break;
+            }
+        }
+    }

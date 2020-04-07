@@ -227,3 +227,21 @@ impl<'a> Parser<'a> {
     fn expect(&mut self, byte: u8) -> Result<(), ParseError> {
         if self.peek() == Some(byte) {
             self.pos += 1;
+            Ok(())
+        } else {
+            Err(self.err(&format!("expected '{}'", byte as char)))
+        }
+    }
+
+    fn parse_object(&mut self) -> Result<Json, ParseError> {
+        self.expect(b'{')?;
+        let mut map = BTreeMap::new();
+        self.skip_ws();
+        if self.peek() == Some(b'}') {
+            self.pos += 1;
+            return Ok(Json::Object(map));
+        }
+        loop {
+            self.skip_ws();
+            let key = self.parse_string()?;
+            self.skip_ws();

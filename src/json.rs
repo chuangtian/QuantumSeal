@@ -209,3 +209,21 @@ impl<'a> Parser<'a> {
             }
         }
     }
+
+    fn parse_value(&mut self) -> Result<Json, ParseError> {
+        self.skip_ws();
+        match self.peek() {
+            Some(b'{') => self.parse_object(),
+            Some(b'[') => self.parse_array(),
+            Some(b'"') => Ok(Json::String(self.parse_string()?)),
+            Some(b't') | Some(b'f') => self.parse_bool(),
+            Some(b'n') => self.parse_null(),
+            Some(b'-') | Some(b'0'..=b'9') => self.parse_number(),
+            Some(_) => Err(self.err("unexpected character")),
+            None => Err(self.err("unexpected end of input")),
+        }
+    }
+
+    fn expect(&mut self, byte: u8) -> Result<(), ParseError> {
+        if self.peek() == Some(byte) {
+            self.pos += 1;

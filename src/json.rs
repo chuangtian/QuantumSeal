@@ -263,3 +263,21 @@ impl<'a> Parser<'a> {
         Ok(Json::Object(map))
     }
 
+    fn parse_array(&mut self) -> Result<Json, ParseError> {
+        self.expect(b'[')?;
+        let mut items = Vec::new();
+        self.skip_ws();
+        if self.peek() == Some(b']') {
+            self.pos += 1;
+            return Ok(Json::Array(items));
+        }
+        loop {
+            let value = self.parse_value()?;
+            items.push(value);
+            self.skip_ws();
+            match self.peek() {
+                Some(b',') => {
+                    self.pos += 1;
+                }
+                Some(b']') => {
+                    self.pos += 1;

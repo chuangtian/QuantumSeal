@@ -299,3 +299,21 @@ impl<'a> Parser<'a> {
                     self.pos += 1;
                     break;
                 }
+                Some(b'\\') => {
+                    self.pos += 1;
+                    match self.peek() {
+                        Some(b'"') => out.push('"'),
+                        Some(b'\\') => out.push('\\'),
+                        Some(b'/') => out.push('/'),
+                        Some(b'n') => out.push('\n'),
+                        Some(b'r') => out.push('\r'),
+                        Some(b't') => out.push('\t'),
+                        Some(b'b') => out.push('\u{08}'),
+                        Some(b'f') => out.push('\u{0c}'),
+                        Some(b'u') => {
+                            self.pos += 1;
+                            let cp = self.parse_hex4()?;
+                            // Handle surrogate pairs.
+                            if (0xD800..=0xDBFF).contains(&cp) {
+                                if self.peek() == Some(b'\\') {
+                                    self.pos += 1;

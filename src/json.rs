@@ -335,3 +335,21 @@ impl<'a> Parser<'a> {
                             } else if let Some(c) = char::from_u32(cp as u32) {
                                 out.push(c);
                             } else {
+                                return Err(self.err("invalid unicode escape"));
+                            }
+                            continue;
+                        }
+                        _ => return Err(self.err("invalid escape sequence")),
+                    }
+                    self.pos += 1;
+                }
+                Some(_) => {
+                    // Copy a full UTF-8 sequence.
+                    let start = self.pos;
+                    let first = self.bytes[start];
+                    let len = utf8_len(first);
+                    if start + len > self.bytes.len() {
+                        return Err(self.err("truncated UTF-8 sequence"));
+                    }
+                    let slice = &self.bytes[start..start + len];
+                    match std::str::from_utf8(slice) {

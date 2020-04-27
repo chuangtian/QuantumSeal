@@ -317,3 +317,21 @@ impl<'a> Parser<'a> {
                             if (0xD800..=0xDBFF).contains(&cp) {
                                 if self.peek() == Some(b'\\') {
                                     self.pos += 1;
+                                    if self.peek() == Some(b'u') {
+                                        self.pos += 1;
+                                        let low = self.parse_hex4()?;
+                                        let combined = 0x10000
+                                            + (((cp - 0xD800) as u32) << 10)
+                                            + (low - 0xDC00) as u32;
+                                        if let Some(c) = char::from_u32(combined) {
+                                            out.push(c);
+                                        } else {
+                                            return Err(self.err("invalid surrogate pair"));
+                                        }
+                                        continue;
+                                    }
+                                }
+                                return Err(self.err("unpaired high surrogate"));
+                            } else if let Some(c) = char::from_u32(cp as u32) {
+                                out.push(c);
+                            } else {

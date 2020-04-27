@@ -245,3 +245,21 @@ impl<'a> Parser<'a> {
             self.skip_ws();
             let key = self.parse_string()?;
             self.skip_ws();
+            self.expect(b':')?;
+            let value = self.parse_value()?;
+            map.insert(key, value);
+            self.skip_ws();
+            match self.peek() {
+                Some(b',') => {
+                    self.pos += 1;
+                }
+                Some(b'}') => {
+                    self.pos += 1;
+                    break;
+                }
+                _ => return Err(self.err("expected ',' or '}' in object")),
+            }
+        }
+        Ok(Json::Object(map))
+    }
+

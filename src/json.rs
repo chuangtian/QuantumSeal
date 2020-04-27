@@ -281,3 +281,21 @@ impl<'a> Parser<'a> {
                 }
                 Some(b']') => {
                     self.pos += 1;
+                    break;
+                }
+                _ => return Err(self.err("expected ',' or ']' in array")),
+            }
+        }
+        Ok(Json::Array(items))
+    }
+
+    fn parse_string(&mut self) -> Result<String, ParseError> {
+        self.expect(b'"')?;
+        let mut out = String::new();
+        loop {
+            match self.peek() {
+                None => return Err(self.err("unterminated string")),
+                Some(b'"') => {
+                    self.pos += 1;
+                    break;
+                }

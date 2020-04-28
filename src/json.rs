@@ -353,3 +353,21 @@ impl<'a> Parser<'a> {
                     }
                     let slice = &self.bytes[start..start + len];
                     match std::str::from_utf8(slice) {
+                        Ok(s) => out.push_str(s),
+                        Err(_) => return Err(self.err("invalid UTF-8 in string")),
+                    }
+                    self.pos += len;
+                }
+            }
+        }
+        Ok(out)
+    }
+
+    fn parse_hex4(&mut self) -> Result<u16, ParseError> {
+        if self.pos + 4 > self.bytes.len() {
+            return Err(self.err("truncated \\u escape"));
+        }
+        let mut value: u16 = 0;
+        for _ in 0..4 {
+            let b = self.bytes[self.pos];
+            let digit = match b {

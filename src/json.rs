@@ -371,3 +371,21 @@ impl<'a> Parser<'a> {
         for _ in 0..4 {
             let b = self.bytes[self.pos];
             let digit = match b {
+                b'0'..=b'9' => b - b'0',
+                b'a'..=b'f' => b - b'a' + 10,
+                b'A'..=b'F' => b - b'A' + 10,
+                _ => return Err(self.err("invalid hex digit in \\u escape")),
+            };
+            value = value * 16 + digit as u16;
+            self.pos += 1;
+        }
+        Ok(value)
+    }
+
+    fn parse_bool(&mut self) -> Result<Json, ParseError> {
+        if self.bytes[self.pos..].starts_with(b"true") {
+            self.pos += 4;
+            Ok(Json::Bool(true))
+        } else if self.bytes[self.pos..].starts_with(b"false") {
+            self.pos += 5;
+            Ok(Json::Bool(false))

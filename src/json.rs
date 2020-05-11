@@ -389,3 +389,22 @@ impl<'a> Parser<'a> {
         } else if self.bytes[self.pos..].starts_with(b"false") {
             self.pos += 5;
             Ok(Json::Bool(false))
+        } else {
+            Err(self.err("invalid literal"))
+        }
+    }
+
+    fn parse_null(&mut self) -> Result<Json, ParseError> {
+        if self.bytes[self.pos..].starts_with(b"null") {
+            self.pos += 4;
+            Ok(Json::Null)
+        } else {
+            Err(self.err("invalid literal"))
+        }
+    }
+
+    fn parse_number(&mut self) -> Result<Json, ParseError> {
+        let start = self.pos;
+        if self.peek() == Some(b'-') {
+            self.pos += 1;
+        }

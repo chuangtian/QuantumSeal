@@ -408,3 +408,21 @@ impl<'a> Parser<'a> {
         if self.peek() == Some(b'-') {
             self.pos += 1;
         }
+        while let Some(b'0'..=b'9') = self.peek() {
+            self.pos += 1;
+        }
+        if self.peek() == Some(b'.') {
+            self.pos += 1;
+            while let Some(b'0'..=b'9') = self.peek() {
+                self.pos += 1;
+            }
+        }
+        if let Some(b'e') | Some(b'E') = self.peek() {
+            self.pos += 1;
+            if let Some(b'+') | Some(b'-') = self.peek() {
+                self.pos += 1;
+            }
+            while let Some(b'0'..=b'9') = self.peek() {
+                self.pos += 1;
+            }
+        }

@@ -11,3 +11,6 @@
 //!
 //! quantumseal performs **static text analysis only**. It does not implement,
 //! execute, break, or evaluate any cryptography. A match indicates that a name
+//! associated with a cryptographic primitive appears in a file — it is a
+//! *starting point for human review*, not a vulnerability finding or a security
+//! audit. The Rust implementation uses the **standard library only**.

@@ -1,2 +1,6 @@
 //! # quantumseal
 //!
+//! A **post-quantum migration workbench**. `quantumseal` recursively inventories
+//! source and configuration files for textual indicators of cryptographic
+//! algorithms and protocols, classifies each by quantum risk, assigns a
+//! migration priority, and emits a Cryptographic Bill of Materials (CryptoBOM)

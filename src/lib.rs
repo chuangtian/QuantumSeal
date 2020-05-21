@@ -7,3 +7,7 @@
 //! as JSON or human-readable text. It can also compare a fresh scan against a
 //! previously saved baseline to track migration progress.
 //!
+//! ## Scope and disclaimer
+//!
+//! quantumseal performs **static text analysis only**. It does not implement,
+//! execute, break, or evaluate any cryptography. A match indicates that a name

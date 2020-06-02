@@ -14,3 +14,6 @@
 //! associated with a cryptographic primitive appears in a file — it is a
 //! *starting point for human review*, not a vulnerability finding or a security
 //! audit. The Rust implementation uses the **standard library only**.
+//!
+//! ## Modules
+//! - [`json`]: minimal dependency-free JSON reader/writer.

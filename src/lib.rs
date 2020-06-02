@@ -17,3 +17,7 @@
 //!
 //! ## Modules
 //! - [`json`]: minimal dependency-free JSON reader/writer.
+//! - [`rules`]: the crypto indicator catalog and quantum-risk classification.
+//! - [`scanner`]: recursive file walking and line matching.
+//! - [`cbom`]: CryptoBOM assembly, prioritization, and rendering.
+//! - [`diff`]: baseline comparison.

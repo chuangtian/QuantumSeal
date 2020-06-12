@@ -39,3 +39,20 @@ DIFF OPTIONS:
     --format <json|text>     Output format (default: text).
     --fail-on-regression     Exit non-zero if new/increased crypto exposure is found.
 
+EXAMPLES:
+    quantumseal scan ./src --format json --output cbom.json
+    quantumseal diff cbom.json --path ./src --fail-on-regression
+    quantumseal rules
+
+NOTE: quantumseal analyzes textual indicators of cryptography to help plan a
+post-quantum migration. It is NOT a cryptographic implementation or a security
+audit; every finding warrants human review.
+"#;
+
+fn main() -> ExitCode {
+    let args: Vec<String> = std::env::args().skip(1).collect();
+    match run(&args) {
+        Ok(code) => code,
+        Err(e) => {
+            eprintln!("error: {e}");
+            ExitCode::from(2)

@@ -90,3 +90,20 @@ struct Args {
     flags: std::collections::BTreeMap<String, Option<String>>,
 }
 
+fn parse_args(args: &[String], valued: &[&str], boolean: &[&str]) -> Result<Args, String> {
+    let mut positionals = Vec::new();
+    let mut flags = std::collections::BTreeMap::new();
+    let mut i = 0;
+    while i < args.len() {
+        let arg = &args[i];
+        if let Some(name) = arg.strip_prefix("--") {
+            if boolean.contains(&name) {
+                flags.insert(name.to_string(), None);
+            } else if valued.contains(&name) {
+                let value = args
+                    .get(i + 1)
+                    .ok_or_else(|| format!("flag --{name} requires a value"))?;
+                flags.insert(name.to_string(), Some(value.clone()));
+                i += 1;
+            } else {
+                return Err(format!("unknown flag --{name}"));

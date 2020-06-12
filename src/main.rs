@@ -107,3 +107,20 @@ fn parse_args(args: &[String], valued: &[&str], boolean: &[&str]) -> Result<Args
                 i += 1;
             } else {
                 return Err(format!("unknown flag --{name}"));
+            }
+        } else {
+            positionals.push(arg.clone());
+        }
+        i += 1;
+    }
+    Ok(Args { positionals, flags })
+}
+
+fn cmd_scan(args: &[String]) -> Result<ExitCode, String> {
+    let parsed = parse_args(
+        args,
+        &["format", "output", "max-depth"],
+        &["follow-symlinks"],
+    )?;
+
+    let path = parsed

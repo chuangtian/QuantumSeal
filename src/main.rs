@@ -73,3 +73,20 @@ fn run(args: &[String]) -> Result<ExitCode, String> {
         "help" | "-h" | "--help" => {
             print!("{USAGE}");
             Ok(ExitCode::SUCCESS)
+        }
+        "--version" | "-V" => {
+            println!("quantumseal {}", env!("CARGO_PKG_VERSION"));
+            Ok(ExitCode::SUCCESS)
+        }
+        other => Err(format!(
+            "unknown command '{other}'. Run 'quantumseal help'."
+        )),
+    }
+}
+
+/// Simple flag/positional splitter.
+struct Args {
+    positionals: Vec<String>,
+    flags: std::collections::BTreeMap<String, Option<String>>,
+}
+

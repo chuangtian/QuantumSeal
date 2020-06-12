@@ -56,3 +56,20 @@ fn main() -> ExitCode {
         Err(e) => {
             eprintln!("error: {e}");
             ExitCode::from(2)
+        }
+    }
+}
+
+fn run(args: &[String]) -> Result<ExitCode, String> {
+    let Some(command) = args.first() else {
+        print!("{USAGE}");
+        return Ok(ExitCode::from(1));
+    };
+
+    match command.as_str() {
+        "scan" => cmd_scan(&args[1..]),
+        "diff" => cmd_diff(&args[1..]),
+        "rules" => cmd_rules(),
+        "help" | "-h" | "--help" => {
+            print!("{USAGE}");
+            Ok(ExitCode::SUCCESS)

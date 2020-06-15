@@ -124,3 +124,21 @@ fn cmd_scan(args: &[String]) -> Result<ExitCode, String> {
     )?;
 
     let path = parsed
+        .positionals
+        .first()
+        .cloned()
+        .ok_or("scan requires a PATH argument")?;
+    let root = PathBuf::from(&path);
+    if !root.exists() {
+        return Err(format!("path does not exist: {path}"));
+    }
+
+    let format = parsed
+        .flags
+        .get("format")
+        .and_then(|v| v.clone())
+        .unwrap_or_else(|| "text".to_string());
+
+    let max_depth = match parsed.flags.get("max-depth").and_then(|v| v.clone()) {
+        Some(s) => Some(
+            s.parse::<usize>()

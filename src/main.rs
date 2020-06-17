@@ -142,3 +142,20 @@ fn cmd_scan(args: &[String]) -> Result<ExitCode, String> {
     let max_depth = match parsed.flags.get("max-depth").and_then(|v| v.clone()) {
         Some(s) => Some(
             s.parse::<usize>()
+                .map_err(|_| "--max-depth must be a non-negative integer")?,
+        ),
+        None => None,
+    };
+
+    let options = ScanOptions {
+        follow_symlinks: parsed.flags.contains_key("follow-symlinks"),
+        max_depth,
+    };
+
+    let scan = scanner::scan(&root, &options).map_err(|e| format!("scan failed: {e}"))?;
+    let bom = CryptoBom::from_scan(&path, &scan);
+
+    let rendered = match format.as_str() {
+        "json" => bom.to_json_string(),
+        "text" => bom.to_text(),
+        other => return Err(format!("unknown format '{other}' (use json|text)")),

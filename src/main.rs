@@ -159,3 +159,20 @@ fn cmd_scan(args: &[String]) -> Result<ExitCode, String> {
         "json" => bom.to_json_string(),
         "text" => bom.to_text(),
         other => return Err(format!("unknown format '{other}' (use json|text)")),
+    };
+
+    if let Some(Some(out)) = parsed.flags.get("output") {
+        std::fs::write(out, rendered.as_bytes())
+            .map_err(|e| format!("failed to write {out}: {e}"))?;
+        eprintln!("wrote CryptoBOM to {out}");
+    } else {
+        print!("{rendered}");
+        if !rendered.ends_with('\n') {
+            println!();
+        }
+    }
+
+    Ok(ExitCode::SUCCESS)
+}
+
+fn cmd_diff(args: &[String]) -> Result<ExitCode, String> {

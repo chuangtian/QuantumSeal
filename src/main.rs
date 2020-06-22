@@ -176,3 +176,20 @@ fn cmd_scan(args: &[String]) -> Result<ExitCode, String> {
 }
 
 fn cmd_diff(args: &[String]) -> Result<ExitCode, String> {
+    let parsed = parse_args(args, &["path", "format"], &["fail-on-regression"])?;
+
+    let baseline_path = parsed
+        .positionals
+        .first()
+        .cloned()
+        .ok_or("diff requires a BASELINE json file argument")?;
+    let baseline_text = std::fs::read_to_string(&baseline_path)
+        .map_err(|e| format!("failed to read baseline {baseline_path}: {e}"))?;
+
+    let scan_path = parsed
+        .flags
+        .get("path")
+        .and_then(|v| v.clone())
+        .unwrap_or_else(|| ".".to_string());
+    let root = Path::new(&scan_path);
+    if !root.exists() {

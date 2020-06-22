@@ -193,3 +193,20 @@ fn cmd_diff(args: &[String]) -> Result<ExitCode, String> {
         .unwrap_or_else(|| ".".to_string());
     let root = Path::new(&scan_path);
     if !root.exists() {
+        return Err(format!("scan path does not exist: {scan_path}"));
+    }
+
+    let format = parsed
+        .flags
+        .get("format")
+        .and_then(|v| v.clone())
+        .unwrap_or_else(|| "text".to_string());
+
+    let scan =
+        scanner::scan(root, &ScanOptions::default()).map_err(|e| format!("scan failed: {e}"))?;
+    let current = CryptoBom::from_scan(&scan_path, &scan);
+
+    let diff = diff::compare(&baseline_text, &current)?;
+
+    let rendered = match format.as_str() {
+        "json" => diff.to_json().to_pretty_string(),

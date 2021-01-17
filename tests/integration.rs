@@ -25,3 +25,13 @@ fn legacy_fixture_flags_high_risk_components() {
     assert!(ids.contains(&"rc4"), "expected RC4, got {ids:?}");
 
     // The top band should be Critical (md5/sha1/3des/rc4 present).
+    assert_eq!(bom.top_band(), Some(PriorityBand::Critical));
+
+    // Components are sorted by descending priority.
+    let priorities: Vec<u32> = bom.components.iter().map(|c| c.priority).collect();
+    let mut sorted = priorities.clone();
+    sorted.sort_by(|a, b| b.cmp(a));
+    assert_eq!(priorities, sorted);
+}
+
+#[test]

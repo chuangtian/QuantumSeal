@@ -44,3 +44,12 @@ fn migrated_fixture_flags_pqc_components() {
     assert!(ids.contains(&"aes"), "expected AES, got {ids:?}");
 }
 
+#[test]
+fn clean_fixture_has_no_findings() {
+    let bom = scan_fixture("fixtures/clean_service");
+    assert!(
+        bom.components.is_empty(),
+        "clean fixture should produce no findings, got {:?}",
+        bom.components.iter().map(|c| c.rule_id).collect::<Vec<_>>()
+    );
+}

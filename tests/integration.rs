@@ -35,3 +35,12 @@ fn legacy_fixture_flags_high_risk_components() {
 }
 
 #[test]
+fn migrated_fixture_flags_pqc_components() {
+    let bom = scan_fixture("fixtures/migrated_service");
+    let ids: Vec<&str> = bom.components.iter().map(|c| c.rule_id).collect();
+    assert!(ids.contains(&"mlkem"), "expected ML-KEM, got {ids:?}");
+    assert!(ids.contains(&"mldsa"), "expected ML-DSA, got {ids:?}");
+    assert!(ids.contains(&"slhdsa"), "expected SLH-DSA, got {ids:?}");
+    assert!(ids.contains(&"aes"), "expected AES, got {ids:?}");
+}
+

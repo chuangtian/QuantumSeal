@@ -53,3 +53,13 @@ fn clean_fixture_has_no_findings() {
         bom.components.iter().map(|c| c.rule_id).collect::<Vec<_>>()
     );
 }
+
+#[test]
+fn json_roundtrips_and_is_parseable() {
+    let bom = scan_fixture("fixtures/legacy_service");
+    let json_text = bom.to_json_string();
+    // Ensure it parses back with our own parser.
+    let parsed = quantumseal::json::parse(&json_text).expect("emitted JSON must parse");
+    let obj = parsed.as_object().unwrap();
+    assert_eq!(
+        obj.get("analysis_only").unwrap(),

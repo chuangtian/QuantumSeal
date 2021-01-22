@@ -63,3 +63,12 @@ fn json_roundtrips_and_is_parseable() {
     let obj = parsed.as_object().unwrap();
     assert_eq!(
         obj.get("analysis_only").unwrap(),
+        &quantumseal::json::Json::Bool(true)
+    );
+    assert!(obj.get("components").unwrap().as_array().unwrap().len() >= 5);
+}
+
+#[test]
+fn diff_detects_migration_progress() {
+    // Baseline = legacy service; current = migrated service.
+    let baseline = scan_fixture("fixtures/legacy_service");

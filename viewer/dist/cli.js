@@ -25,3 +25,16 @@ USAGE:
 OPTIONS:
   --format <terminal|markdown|html>   Output format (default: terminal).
   --out <FILE>                        Write to FILE instead of stdout.
+  --no-color                          Disable ANSI color (terminal format).
+  --max-occurrences <N>               Limit occurrences per component (0 = all; default 5).
+  -h, --help                          Show this help.
+
+EXAMPLES:
+  quantumseal-view cbom.json --format markdown --out report.md
+  quantumseal-view cbom.json --format html --out report.html
+  cat cbom.json | quantumseal-view --no-color
+`;
+function parseCliArgs(argv) {
+    const options = {
+        format: "terminal",
+        color: true,

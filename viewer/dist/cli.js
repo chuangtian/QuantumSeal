@@ -13,3 +13,15 @@
  * only.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+const node_fs_1 = require("node:fs");
+const formatters_1 = require("./formatters");
+const model_1 = require("./model");
+const USAGE = `quantumseal-view — render a quantumseal CryptoBOM (static analysis only)
+
+USAGE:
+  quantumseal-view <cbom.json> [OPTIONS]
+  cat cbom.json | quantumseal-view [OPTIONS]
+
+OPTIONS:
+  --format <terminal|markdown|html>   Output format (default: terminal).
+  --out <FILE>                        Write to FILE instead of stdout.

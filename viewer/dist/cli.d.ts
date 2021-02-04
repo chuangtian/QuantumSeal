@@ -7,3 +7,4 @@
  *                                [--no-color] [--max-occurrences N]
  *   quantumseal-view --help
  *
+ * Reads a quantumseal CryptoBOM (JSON) and prints a formatted report. When no

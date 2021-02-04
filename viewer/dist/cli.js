@@ -38,3 +38,15 @@ function parseCliArgs(argv) {
     const options = {
         format: "terminal",
         color: true,
+        maxOccurrences: 5,
+        help: false,
+    };
+    for (let i = 0; i < argv.length; i++) {
+        const arg = argv[i];
+        switch (arg) {
+            case "-h":
+            case "--help":
+                options.help = true;
+                break;
+            case "--no-color":
+                options.color = false;

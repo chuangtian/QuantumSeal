@@ -50,3 +50,16 @@ function parseCliArgs(argv) {
                 break;
             case "--no-color":
                 options.color = false;
+                break;
+            case "--format": {
+                const value = argv[++i];
+                if (value !== "terminal" && value !== "markdown" && value !== "html") {
+                    throw new Error(`invalid --format '${value ?? ""}' (terminal|markdown|html)`);
+                }
+                options.format = value;
+                break;
+            }
+            case "--out": {
+                const value = argv[++i];
+                if (value === undefined) {
+                    throw new Error("--out requires a file path");

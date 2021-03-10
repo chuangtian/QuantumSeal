@@ -316,3 +316,46 @@ pub const RULES: &[Rule] = &[
         risk: QuantumRisk::ModerateGrover,
         needles: &["math.random", "mersenne", "rand()", "srand("],
         exclude_if_line_contains: &[],
+        guidance: "Non-CSPRNG usage near crypto is a red flag independent of quantum concerns; use an OS/CSPRNG source.",
+    },
+];
+
+/// Look up a rule by its stable id.
+pub fn rule_by_id(id: &str) -> Option<&'static Rule> {
+    RULES.iter().find(|r| r.id == id)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn rule_ids_are_unique() {
+        let mut ids: Vec<&str> = RULES.iter().map(|r| r.id).collect();
+        ids.sort();
+        let before = ids.len();
+        ids.dedup();
+        assert_eq!(before, ids.len(), "duplicate rule id detected");
+    }
+
+    #[test]
+    fn all_needles_are_lowercase() {
+        for rule in RULES {
+            for needle in rule.needles {
+                assert_eq!(
+                    needle.to_string(),
+                    needle.to_lowercase(),
+                    "needle '{}' in rule '{}' must be lowercase",
+                    needle,
+                    rule.id
+                );
+            }
+        }
+    }
+
+    #[test]
+    fn risk_ordering_is_sane() {
+        assert!(QuantumRisk::CriticalDeprecated > QuantumRisk::HighShor);
+        assert!(QuantumRisk::HighShor > QuantumRisk::ModerateGrover);
+        assert!(QuantumRisk::ModerateGrover > QuantumRisk::LowResistant);
+    }

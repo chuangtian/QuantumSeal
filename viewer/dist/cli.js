@@ -76,3 +76,15 @@ function parseCliArgs(argv) {
                 options.maxOccurrences = n;
                 break;
             }
+            default:
+                if (arg.startsWith("--")) {
+                    throw new Error(`unknown option '${arg}'`);
+                }
+                if (options.input !== undefined) {
+                    throw new Error("only one input file may be given");
+                }
+                options.input = arg;
+        }
+    }
+    return options;
+}

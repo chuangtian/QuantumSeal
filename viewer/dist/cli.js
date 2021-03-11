@@ -88,3 +88,16 @@ function parseCliArgs(argv) {
     }
     return options;
 }
+function readInput(input) {
+    if (input !== undefined) {
+        return (0, node_fs_1.readFileSync)(input, "utf8");
+    }
+    // Read from stdin.
+    return (0, node_fs_1.readFileSync)(0, "utf8");
+}
+function main(argv) {
+    let options;
+    try {
+        options = parseCliArgs(argv);
+    }
+    catch (err) {

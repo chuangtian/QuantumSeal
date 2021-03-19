@@ -113,3 +113,16 @@ function main(argv) {
         text = readInput(options.input);
     }
     catch (err) {
+        process.stderr.write(`error: cannot read input: ${err.message}\n`);
+        return 2;
+    }
+    let rendered;
+    try {
+        const bom = (0, model_1.parseCryptoBom)(text);
+        switch (options.format) {
+            case "terminal":
+                rendered = (0, formatters_1.formatTerminal)(bom, {
+                    color: options.color,
+                    maxOccurrences: options.maxOccurrences,
+                });
+                break;

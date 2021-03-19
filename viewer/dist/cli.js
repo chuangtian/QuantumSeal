@@ -101,3 +101,15 @@ function main(argv) {
         options = parseCliArgs(argv);
     }
     catch (err) {
+        process.stderr.write(`error: ${err.message}\n\n${USAGE}`);
+        return 2;
+    }
+    if (options.help) {
+        process.stdout.write(USAGE);
+        return 0;
+    }
+    let text;
+    try {
+        text = readInput(options.input);
+    }
+    catch (err) {

@@ -6,3 +6,6 @@
  *   - `formatMarkdown`  GitHub-flavored Markdown with a summary table.
  *   - `formatHtml`      a self-contained, dependency-free HTML page.
  */
+import { type Component, type CryptoBom, type PriorityBand } from "./model";
+/** Sort components most-urgent first, matching the CLI ordering. */
+declare function sortComponents(components: readonly Component[]): Component[];

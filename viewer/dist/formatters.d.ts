@@ -9,3 +9,6 @@
 import { type Component, type CryptoBom, type PriorityBand } from "./model";
 /** Sort components most-urgent first, matching the CLI ordering. */
 declare function sortComponents(components: readonly Component[]): Component[];
+/** Group components by band, preserving BAND_ORDER. */
+declare function groupByBand(components: readonly Component[]): Map<PriorityBand, Component[]>;
+/** Options common to the formatters. */

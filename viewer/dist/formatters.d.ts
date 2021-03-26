@@ -12,3 +12,6 @@ declare function sortComponents(components: readonly Component[]): Component[];
 /** Group components by band, preserving BAND_ORDER. */
 declare function groupByBand(components: readonly Component[]): Map<PriorityBand, Component[]>;
 /** Options common to the formatters. */
+export interface FormatOptions {
+    /** Enable ANSI color (terminal only). */
+    color?: boolean;

@@ -15,3 +15,6 @@ declare function groupByBand(components: readonly Component[]): Map<PriorityBand
 export interface FormatOptions {
     /** Enable ANSI color (terminal only). */
     color?: boolean;
+    /** Max occurrences to show per component (default 5, 0 = all). */
+    maxOccurrences?: number;
+}

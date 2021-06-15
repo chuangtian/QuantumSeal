@@ -336,3 +336,47 @@ pub fn compute_priority(risk: QuantumRisk, occurrences: usize, file_count: usize
         _ => 12,
     };
     let file_bonus = match file_count {
+        0 | 1 => 0,
+        2..=4 => 4,
+        5..=9 => 8,
+        _ => 12,
+    };
+    (base + occ_bonus + file_bonus).min(100)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn priority_is_bounded() {
+        let p = compute_priority(QuantumRisk::CriticalDeprecated, 1000, 1000);
+        assert!(p <= 100);
+        assert_eq!(p, 100);
+    }
+
+    #[test]
+    fn risk_dominates_priority() {
+        let low = compute_priority(QuantumRisk::LowResistant, 100, 100);
+        let high = compute_priority(QuantumRisk::HighShor, 1, 1);
+        assert!(high > low);
+    }
+
+    #[test]
+    fn band_thresholds() {
+        assert_eq!(PriorityBand::from_score(0), PriorityBand::Informational);
+        assert_eq!(PriorityBand::from_score(25), PriorityBand::Low);
+        assert_eq!(PriorityBand::from_score(50), PriorityBand::Medium);
+        assert_eq!(PriorityBand::from_score(70), PriorityBand::High);
+        assert_eq!(PriorityBand::from_score(95), PriorityBand::Critical);
+    }
+
+    #[test]
+    fn empty_scan_produces_empty_bom() {
+        let scan = ScanResult::default();
+        let bom = CryptoBom::from_scan("/tmp", &scan);
+        assert!(bom.components.is_empty());
+        assert_eq!(bom.total_occurrences(), 0);
+        let json = bom.to_json_string();
+        assert!(json.contains("analysis_only"));
+    }

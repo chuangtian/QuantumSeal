@@ -451,4 +451,4 @@ cd viewer && npm test      # viewer tests (node --test)
 Licensed under [MIT](LICENSE). quantumseal is an analysis instrument — it charts
 the migration; it never claims to fly it.
 
-<!-- draft note 298 -->
+<!-- draft note 299 -->

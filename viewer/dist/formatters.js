@@ -39,3 +39,18 @@ function palette(enabled) {
         blue: "\u001b[34m",
         green: "\u001b[32m",
         magenta: "\u001b[35m",
+    };
+}
+function bandColor(p, band) {
+    switch (band) {
+        case "critical":
+            return p.red + p.bold;
+        case "high":
+            return p.red;
+        case "medium":
+            return p.yellow;
+        case "low":
+            return p.blue;
+        case "informational":
+            return p.dim;
+    }

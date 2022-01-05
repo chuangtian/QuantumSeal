@@ -54,3 +54,17 @@ function bandColor(p, band) {
         case "informational":
             return p.dim;
     }
+}
+/** Sort components most-urgent first, matching the CLI ordering. */
+function sortComponents(components) {
+    return [...components].sort((a, b) => {
+        if (b.priority !== a.priority) {
+            return b.priority - a.priority;
+        }
+        return a.name.localeCompare(b.name);
+    });
+}
+/** Group components by band, preserving BAND_ORDER. */
+function groupByBand(components) {
+    const map = new Map();
+    for (const band of model_1.BAND_ORDER) {

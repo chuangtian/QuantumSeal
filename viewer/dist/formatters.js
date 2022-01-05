@@ -68,3 +68,18 @@ function sortComponents(components) {
 function groupByBand(components) {
     const map = new Map();
     for (const band of model_1.BAND_ORDER) {
+        map.set(band, []);
+    }
+    for (const c of sortComponents(components)) {
+        map.get(c.priority_band)?.push(c);
+    }
+    return map;
+}
+/* -------------------------------------------------------------------------- */
+/* Terminal                                                                   */
+/* -------------------------------------------------------------------------- */
+function formatTerminal(bom, options = {}) {
+    const p = palette(options.color ?? false);
+    const maxOcc = options.maxOccurrences ?? 5;
+    const lines = [];
+    lines.push(`${p.bold}quantumseal CryptoBOM${p.reset} — ${bom.root}`);

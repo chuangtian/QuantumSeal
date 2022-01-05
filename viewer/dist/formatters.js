@@ -83,3 +83,18 @@ function formatTerminal(bom, options = {}) {
     const maxOcc = options.maxOccurrences ?? 5;
     const lines = [];
     lines.push(`${p.bold}quantumseal CryptoBOM${p.reset} — ${bom.root}`);
+    lines.push(`${p.dim}${DISCLAIMER}${p.reset}`);
+    lines.push("=".repeat(72));
+    lines.push(`tool ${bom.tool} v${bom.tool_version}   ` +
+        `files=${bom.summary.files_scanned}   ` +
+        `components=${bom.summary.component_count}   ` +
+        `occurrences=${bom.summary.total_occurrences}`);
+    lines.push("");
+    if (bom.components.length === 0) {
+        lines.push(`${p.green}No cryptographic indicators detected.${p.reset}`);
+        return lines.join("\n") + "\n";
+    }
+    for (const c of sortComponents(bom.components)) {
+        const color = bandColor(p, c.priority_band);
+        lines.push(`${color}[${String(c.priority).padStart(3)}] ${c.name}` +
+            ` — ${c.priority_band.toUpperCase()}${p.reset}`);

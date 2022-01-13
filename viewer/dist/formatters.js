@@ -112,3 +112,18 @@ function formatTerminal(bom, options = {}) {
     }
     return lines.join("\n") + "\n";
 }
+/* -------------------------------------------------------------------------- */
+/* Markdown                                                                   */
+/* -------------------------------------------------------------------------- */
+function formatMarkdown(bom) {
+    const out = [];
+    out.push(`# quantumseal CryptoBOM — \`${bom.root}\``);
+    out.push("");
+    out.push(`> ${DISCLAIMER}`);
+    out.push("");
+    out.push(`**Tool:** ${bom.tool} v${bom.tool_version} · ` +
+        `**Files scanned:** ${bom.summary.files_scanned} · ` +
+        `**Components:** ${bom.summary.component_count} · ` +
+        `**Occurrences:** ${bom.summary.total_occurrences}`);
+    out.push("");
+    // Band histogram table.

@@ -127,3 +127,18 @@ function formatMarkdown(bom) {
         `**Occurrences:** ${bom.summary.total_occurrences}`);
     out.push("");
     // Band histogram table.
+    out.push("## Priority summary");
+    out.push("");
+    out.push("| Band | Components |");
+    out.push("| --- | ---: |");
+    for (const band of model_1.BAND_ORDER) {
+        const count = bom.summary.priority_bands[band] ?? 0;
+        if (count > 0) {
+            out.push(`| ${band} | ${count} |`);
+        }
+    }
+    out.push("");
+    if (bom.components.length === 0) {
+        out.push("_No cryptographic indicators detected._");
+        return out.join("\n") + "\n";
+    }

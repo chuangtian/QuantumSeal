@@ -142,3 +142,17 @@ function formatMarkdown(bom) {
         out.push("_No cryptographic indicators detected._");
         return out.join("\n") + "\n";
     }
+    // Component table.
+    out.push("## Components");
+    out.push("");
+    out.push("| Priority | Band | Component | Category | Quantum risk | Files | Occurrences |");
+    out.push("| ---: | --- | --- | --- | --- | ---: | ---: |");
+    for (const c of sortComponents(bom.components)) {
+        out.push(`| ${c.priority} | ${c.priority_band} | ${mdEscape(c.name)} | ${c.category} | ` +
+            `${c.quantum_risk} | ${c.file_count} | ${c.occurrence_count} |`);
+    }
+    out.push("");
+    // Guidance + occurrences detail.
+    out.push("## Details");
+    out.push("");
+    for (const c of sortComponents(bom.components)) {

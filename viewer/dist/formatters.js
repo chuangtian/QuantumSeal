@@ -171,3 +171,17 @@ function formatMarkdown(bom) {
 function mdEscape(text) {
     return text.replace(/([|`])/g, "\\$1");
 }
+/* -------------------------------------------------------------------------- */
+/* HTML                                                                       */
+/* -------------------------------------------------------------------------- */
+function formatHtml(bom) {
+    const rows = sortComponents(bom.components)
+        .map((c) => {
+        const occ = c.occurrences
+            .map((o) => `<li><code>${htmlEscape(o.file)}:${o.line}</code> — ` +
+            `<span class="excerpt">${htmlEscape(o.excerpt)}</span></li>`)
+            .join("");
+        return `
+      <tr class="band-${c.priority_band}">
+        <td class="num">${c.priority}</td>
+        <td><span class="badge badge-${c.priority_band}">${c.priority_band}</span></td>

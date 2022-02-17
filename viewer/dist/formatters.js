@@ -156,3 +156,18 @@ function formatMarkdown(bom) {
     out.push("## Details");
     out.push("");
     for (const c of sortComponents(bom.components)) {
+        out.push(`### ${mdEscape(c.name)} (priority ${c.priority}, ${c.priority_band})`);
+        out.push("");
+        out.push(`- **Quantum risk:** ${c.quantum_risk_label}`);
+        out.push(`- **Guidance:** ${mdEscape(c.guidance)}`);
+        out.push("");
+        for (const occ of c.occurrences) {
+            out.push(`  - \`${occ.file}:${occ.line}\` — \`${mdEscape(occ.excerpt)}\``);
+        }
+        out.push("");
+    }
+    return out.join("\n") + "\n";
+}
+function mdEscape(text) {
+    return text.replace(/([|`])/g, "\\$1");
+}

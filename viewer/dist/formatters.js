@@ -185,3 +185,18 @@ function formatHtml(bom) {
       <tr class="band-${c.priority_band}">
         <td class="num">${c.priority}</td>
         <td><span class="badge badge-${c.priority_band}">${c.priority_band}</span></td>
+        <td>${htmlEscape(c.name)}</td>
+        <td>${htmlEscape(c.category)}</td>
+        <td>${htmlEscape(c.quantum_risk_label)}</td>
+        <td class="num">${c.file_count}</td>
+        <td class="num">${c.occurrence_count}</td>
+      </tr>
+      <tr class="detail">
+        <td colspan="7">
+          <div class="guidance">${htmlEscape(c.guidance)}</div>
+          <ul class="occurrences">${occ}</ul>
+        </td>
+      </tr>`;
+    })
+        .join("");
+    const bandCounts = model_1.BAND_ORDER.map((band) => {

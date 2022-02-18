@@ -200,3 +200,18 @@ function formatHtml(bom) {
     })
         .join("");
     const bandCounts = model_1.BAND_ORDER.map((band) => {
+        const n = bom.summary.priority_bands[band] ?? 0;
+        return n > 0
+            ? `<span class="chip chip-${band}">${band}: ${n}</span>`
+            : "";
+    }).join("");
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>quantumseal CryptoBOM — ${htmlEscape(bom.root)}</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font: 15px/1.5 system-ui, sans-serif; margin: 0; padding: 2rem; background: #0f1115; color: #e6e6e6; }
+  h1 { font-size: 1.5rem; margin: 0 0 .25rem; }

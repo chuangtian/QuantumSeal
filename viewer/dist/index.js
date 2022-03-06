@@ -13,3 +13,6 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     }
     Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));

@@ -11,3 +11,10 @@
  */
 /** Quantum-risk classification codes emitted by the Rust CLI. */
 export type QuantumRisk = "low_resistant" | "moderate_grover" | "high_shor" | "critical_deprecated";
+/** Priority band codes. */
+export type PriorityBand = "informational" | "low" | "medium" | "high" | "critical";
+/** A single location where an indicator was found. */
+export interface Occurrence {
+    readonly file: string;
+    readonly line: number;
+    readonly excerpt: string;

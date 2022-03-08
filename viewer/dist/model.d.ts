@@ -18,3 +18,10 @@ export interface Occurrence {
     readonly file: string;
     readonly line: number;
     readonly excerpt: string;
+    readonly needle: string;
+}
+/** An aggregated cryptographic component. */
+export interface Component {
+    readonly id: string;
+    readonly name: string;
+    readonly category: string;

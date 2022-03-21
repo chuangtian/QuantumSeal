@@ -39,3 +39,10 @@ export interface Summary {
     readonly files_scanned: number;
     readonly entries_visited: number;
     readonly component_count: number;
+    readonly total_occurrences: number;
+    readonly priority_bands: Readonly<Record<string, number>>;
+}
+/** The full CryptoBOM document. */
+export interface CryptoBom {
+    readonly tool: string;
+    readonly tool_version: string;

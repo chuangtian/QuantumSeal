@@ -32,3 +32,10 @@ export interface Component {
     readonly file_count: number;
     readonly occurrence_count: number;
     readonly guidance: string;
+    readonly occurrences: readonly Occurrence[];
+}
+/** Summary block. */
+export interface Summary {
+    readonly files_scanned: number;
+    readonly entries_visited: number;
+    readonly component_count: number;

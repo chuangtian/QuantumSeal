@@ -46,3 +46,10 @@ export interface Summary {
 export interface CryptoBom {
     readonly tool: string;
     readonly tool_version: string;
+    readonly schema: string;
+    readonly root: string;
+    readonly analysis_only: boolean;
+    readonly disclaimer: string;
+    readonly summary: Summary;
+    readonly components: readonly Component[];
+}

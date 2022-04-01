@@ -12,3 +12,16 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InvalidCryptoBomError = exports.BAND_ORDER = void 0;
+exports.loadCryptoBom = loadCryptoBom;
+exports.parseCryptoBom = parseCryptoBom;
+/** Ordered list of bands from most to least urgent, for sorting/coloring. */
+exports.BAND_ORDER = [
+    "critical",
+    "high",
+    "medium",
+    "low",
+    "informational",
+];
+/** Thrown when a document does not conform to the CryptoBOM schema. */
+class InvalidCryptoBomError extends Error {
+    constructor(message) {

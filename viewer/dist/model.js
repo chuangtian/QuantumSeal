@@ -25,3 +25,15 @@ exports.BAND_ORDER = [
 /** Thrown when a document does not conform to the CryptoBOM schema. */
 class InvalidCryptoBomError extends Error {
     constructor(message) {
+        super(message);
+        this.name = "InvalidCryptoBomError";
+    }
+}
+exports.InvalidCryptoBomError = InvalidCryptoBomError;
+function isObject(value) {
+    return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+function requireString(obj, key) {
+    const v = obj[key];
+    if (typeof v !== "string") {
+        throw new InvalidCryptoBomError(`expected string field '${key}'`);

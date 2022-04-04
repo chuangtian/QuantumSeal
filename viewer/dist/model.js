@@ -37,3 +37,15 @@ function requireString(obj, key) {
     const v = obj[key];
     if (typeof v !== "string") {
         throw new InvalidCryptoBomError(`expected string field '${key}'`);
+    }
+    return v;
+}
+function requireNumber(obj, key) {
+    const v = obj[key];
+    if (typeof v !== "number" || !Number.isFinite(v)) {
+        throw new InvalidCryptoBomError(`expected numeric field '${key}'`);
+    }
+    return v;
+}
+function requireBool(obj, key) {
+    const v = obj[key];

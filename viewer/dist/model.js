@@ -61,3 +61,15 @@ function requireArray(obj, key) {
     }
     return v;
 }
+function parseOccurrence(value) {
+    if (!isObject(value)) {
+        throw new InvalidCryptoBomError("occurrence must be an object");
+    }
+    return {
+        file: requireString(value, "file"),
+        line: requireNumber(value, "line"),
+        excerpt: requireString(value, "excerpt"),
+        needle: requireString(value, "needle"),
+    };
+}
+function parseComponent(value) {

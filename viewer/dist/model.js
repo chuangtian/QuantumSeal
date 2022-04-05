@@ -49,3 +49,15 @@ function requireNumber(obj, key) {
 }
 function requireBool(obj, key) {
     const v = obj[key];
+    if (typeof v !== "boolean") {
+        throw new InvalidCryptoBomError(`expected boolean field '${key}'`);
+    }
+    return v;
+}
+function requireArray(obj, key) {
+    const v = obj[key];
+    if (!Array.isArray(v)) {
+        throw new InvalidCryptoBomError(`expected array field '${key}'`);
+    }
+    return v;
+}

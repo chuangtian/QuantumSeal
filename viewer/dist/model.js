@@ -98,3 +98,15 @@ function parseSummary(value) {
     const bandsRaw = value["priority_bands"];
     const bands = {};
     if (isObject(bandsRaw)) {
+        for (const [k, v] of Object.entries(bandsRaw)) {
+            if (typeof v === "number") {
+                bands[k] = v;
+            }
+        }
+    }
+    return {
+        files_scanned: requireNumber(value, "files_scanned"),
+        entries_visited: requireNumber(value, "entries_visited"),
+        component_count: requireNumber(value, "component_count"),
+        total_occurrences: requireNumber(value, "total_occurrences"),
+        priority_bands: bands,

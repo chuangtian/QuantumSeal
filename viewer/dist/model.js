@@ -86,3 +86,15 @@ function parseComponent(value) {
         priority: requireNumber(value, "priority"),
         priority_band: requireString(value, "priority_band"),
         file_count: requireNumber(value, "file_count"),
+        occurrence_count: requireNumber(value, "occurrence_count"),
+        guidance: requireString(value, "guidance"),
+        occurrences,
+    };
+}
+function parseSummary(value) {
+    if (!isObject(value)) {
+        throw new InvalidCryptoBomError("summary must be an object");
+    }
+    const bandsRaw = value["priority_bands"];
+    const bands = {};
+    if (isObject(bandsRaw)) {

@@ -110,3 +110,15 @@ function parseSummary(value) {
         component_count: requireNumber(value, "component_count"),
         total_occurrences: requireNumber(value, "total_occurrences"),
         priority_bands: bands,
+    };
+}
+/**
+ * Validate and type an already-parsed JSON value as a {@link CryptoBom}.
+ * @throws {InvalidCryptoBomError} if the shape is wrong.
+ */
+function loadCryptoBom(value) {
+    if (!isObject(value)) {
+        throw new InvalidCryptoBomError("root must be a JSON object");
+    }
+    const schema = requireString(value, "schema");
+    if (!schema.startsWith("quantumseal-cbom/")) {

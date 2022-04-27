@@ -10,3 +10,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const strict_1 = __importDefault(require("node:assert/strict"));
 const node_test_1 = require("node:test");
 const formatters_1 = require("./formatters");
+const model_1 = require("./model");
+const SAMPLE = {
+    tool: "quantumseal",
+    tool_version: "0.1.0",
+    schema: "quantumseal-cbom/1",
+    root: "fixtures/legacy_service",
+    analysis_only: true,
+    disclaimer: "Static analysis only.",
+    summary: {
+        files_scanned: 2,
+        entries_visited: 4,

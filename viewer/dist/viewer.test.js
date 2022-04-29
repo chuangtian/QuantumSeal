@@ -21,3 +21,14 @@ const SAMPLE = {
     summary: {
         files_scanned: 2,
         entries_visited: 4,
+        component_count: 2,
+        total_occurrences: 5,
+        priority_bands: { critical: 1, high: 1 },
+    },
+    components: [
+        {
+            id: "rsa",
+            name: "RSA",
+            category: "public_key",
+            quantum_risk: "high_shor",
+            quantum_risk_label: "High (Shor-breakable)",

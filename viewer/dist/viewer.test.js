@@ -32,3 +32,13 @@ const SAMPLE = {
             category: "public_key",
             quantum_risk: "high_shor",
             quantum_risk_label: "High (Shor-breakable)",
+            priority: 80,
+            priority_band: "high",
+            file_count: 2,
+            occurrence_count: 3,
+            guidance: "Migrate RSA to PQC.",
+            occurrences: [
+                { file: "a.rs", line: 1, excerpt: "rsa", needle: "rsa" },
+                { file: "b.rs", line: 2, excerpt: "rsa-oaep", needle: "rsa-oaep" },
+                { file: "c.rs", line: 3, excerpt: "rsa-pss", needle: "rsa-pss" },
+            ],

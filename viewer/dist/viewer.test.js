@@ -53,3 +53,13 @@ const SAMPLE = {
             priority_band: "critical",
             file_count: 1,
             occurrence_count: 2,
+            guidance: "Replace MD5.",
+            occurrences: [
+                { file: "a.rs", line: 4, excerpt: "md5", needle: "md5" },
+                { file: "a.rs", line: 5, excerpt: "md5", needle: "md5" },
+            ],
+        },
+    ],
+};
+function serialize(bom) {
+    return JSON.stringify(bom);

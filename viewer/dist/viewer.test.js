@@ -63,3 +63,14 @@ const SAMPLE = {
 };
 function serialize(bom) {
     return JSON.stringify(bom);
+}
+(0, node_test_1.test)("parseCryptoBom round-trips a valid document", () => {
+    const bom = (0, model_1.parseCryptoBom)(serialize(SAMPLE));
+    strict_1.default.equal(bom.tool, "quantumseal");
+    strict_1.default.equal(bom.components.length, 2);
+    strict_1.default.equal(bom.analysis_only, true);
+});
+(0, node_test_1.test)("loadCryptoBom rejects wrong schema", () => {
+    strict_1.default.throws(() => (0, model_1.loadCryptoBom)({ ...SAMPLE, schema: "other/1" }), model_1.InvalidCryptoBomError);
+});
+(0, node_test_1.test)("parseCryptoBom rejects invalid JSON", () => {

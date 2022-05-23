@@ -74,3 +74,13 @@ function serialize(bom) {
     strict_1.default.throws(() => (0, model_1.loadCryptoBom)({ ...SAMPLE, schema: "other/1" }), model_1.InvalidCryptoBomError);
 });
 (0, node_test_1.test)("parseCryptoBom rejects invalid JSON", () => {
+    strict_1.default.throws(() => (0, model_1.parseCryptoBom)("{not json"), model_1.InvalidCryptoBomError);
+});
+(0, node_test_1.test)("loadCryptoBom rejects missing required field", () => {
+    const broken = { ...SAMPLE };
+    delete broken.tool;
+    strict_1.default.throws(() => (0, model_1.loadCryptoBom)(broken), model_1.InvalidCryptoBomError);
+});
+(0, node_test_1.test)("sortComponents orders by descending priority", () => {
+    const sorted = (0, formatters_1.sortComponents)(SAMPLE.components);
+    strict_1.default.equal(sorted[0].id, "md5"); // 97

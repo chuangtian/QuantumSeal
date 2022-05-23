@@ -84,3 +84,14 @@ function serialize(bom) {
 (0, node_test_1.test)("sortComponents orders by descending priority", () => {
     const sorted = (0, formatters_1.sortComponents)(SAMPLE.components);
     strict_1.default.equal(sorted[0].id, "md5"); // 97
+    strict_1.default.equal(sorted[1].id, "rsa"); // 80
+});
+(0, node_test_1.test)("formatTerminal includes disclaimer and both components", () => {
+    const out = (0, formatters_1.formatTerminal)(SAMPLE, { color: false });
+    strict_1.default.match(out, /static analysis/i);
+    strict_1.default.match(out, /MD5/);
+    strict_1.default.match(out, /RSA/);
+    // No ANSI escapes when color disabled.
+    strict_1.default.ok(!out.includes("\u001b["));
+});
+(0, node_test_1.test)("formatTerminal respects maxOccurrences", () => {

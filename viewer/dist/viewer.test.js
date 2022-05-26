@@ -95,3 +95,14 @@ function serialize(bom) {
     strict_1.default.ok(!out.includes("\u001b["));
 });
 (0, node_test_1.test)("formatTerminal respects maxOccurrences", () => {
+    const out = (0, formatters_1.formatTerminal)(SAMPLE, { color: false, maxOccurrences: 1 });
+    strict_1.default.match(out, /and 2 more/);
+});
+(0, node_test_1.test)("formatMarkdown produces a component table", () => {
+    const md = (0, formatters_1.formatMarkdown)(SAMPLE);
+    strict_1.default.match(md, /\| Priority \| Band \| Component \|/);
+    strict_1.default.match(md, /\| 97 \| critical \| MD5 \|/);
+    strict_1.default.match(md, /## Details/);
+});
+(0, node_test_1.test)("formatHtml is a self-contained document", () => {
+    const html = (0, formatters_1.formatHtml)(SAMPLE);

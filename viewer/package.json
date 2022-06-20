@@ -1,2 +1,6 @@
 {
   "name": "@quantumseal/viewer",
+  "version": "0.1.0",
+  "description": "Dependency-free viewer and formatter for quantumseal CryptoBOM documents. Renders JSON CryptoBOMs as terminal, Markdown, or standalone HTML reports. Analysis presentation only — not a cryptographic implementation.",
+  "license": "MIT",
+  "type": "commonjs",

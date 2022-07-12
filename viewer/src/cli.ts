@@ -15,3 +15,19 @@
 import { readFileSync, writeFileSync } from "node:fs";
 
 import {
+  formatHtml,
+  formatMarkdown,
+  formatTerminal,
+} from "./formatters";
+import { InvalidCryptoBomError, parseCryptoBom } from "./model";
+
+type Format = "terminal" | "markdown" | "html";
+
+interface CliOptions {
+  input?: string;
+  format: Format;
+  out?: string;
+  color: boolean;
+  maxOccurrences: number;
+  help: boolean;
+}

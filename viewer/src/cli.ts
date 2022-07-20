@@ -47,3 +47,18 @@ OPTIONS:
 
 EXAMPLES:
   quantumseal-view cbom.json --format markdown --out report.md
+  quantumseal-view cbom.json --format html --out report.html
+  cat cbom.json | quantumseal-view --no-color
+`;
+
+function parseCliArgs(argv: readonly string[]): CliOptions {
+  const options: CliOptions = {
+    format: "terminal",
+    color: true,
+    maxOccurrences: 5,
+    help: false,
+  };
+
+  for (let i = 0; i < argv.length; i++) {
+    const arg = argv[i];
+    switch (arg) {

@@ -62,3 +62,19 @@ function parseCliArgs(argv: readonly string[]): CliOptions {
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
     switch (arg) {
+      case "-h":
+      case "--help":
+        options.help = true;
+        break;
+      case "--no-color":
+        options.color = false;
+        break;
+      case "--format": {
+        const value = argv[++i];
+        if (value !== "terminal" && value !== "markdown" && value !== "html") {
+          throw new Error(`invalid --format '${value ?? ""}' (terminal|markdown|html)`);
+        }
+        options.format = value;
+        break;
+      }
+      case "--out": {

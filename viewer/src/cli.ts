@@ -126,3 +126,19 @@ function main(argv: readonly string[]): number {
 
   if (options.help) {
     process.stdout.write(USAGE);
+    return 0;
+  }
+
+  let text: string;
+  try {
+    text = readInput(options.input);
+  } catch (err) {
+    process.stderr.write(`error: cannot read input: ${(err as Error).message}\n`);
+    return 2;
+  }
+
+  let rendered: string;
+  try {
+    const bom = parseCryptoBom(text);
+    switch (options.format) {
+      case "terminal":

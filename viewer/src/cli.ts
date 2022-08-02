@@ -94,3 +94,19 @@ function parseCliArgs(argv: readonly string[]): CliOptions {
         options.maxOccurrences = n;
         break;
       }
+      default:
+        if (arg.startsWith("--")) {
+          throw new Error(`unknown option '${arg}'`);
+        }
+        if (options.input !== undefined) {
+          throw new Error("only one input file may be given");
+        }
+        options.input = arg;
+    }
+  }
+  return options;
+}
+
+function readInput(input: string | undefined): string {
+  if (input !== undefined) {
+    return readFileSync(input, "utf8");

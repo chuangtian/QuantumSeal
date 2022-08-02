@@ -78,3 +78,19 @@ function parseCliArgs(argv: readonly string[]): CliOptions {
         break;
       }
       case "--out": {
+        const value = argv[++i];
+        if (value === undefined) {
+          throw new Error("--out requires a file path");
+        }
+        options.out = value;
+        break;
+      }
+      case "--max-occurrences": {
+        const value = argv[++i];
+        const n = Number(value);
+        if (!Number.isInteger(n) || n < 0) {
+          throw new Error("--max-occurrences requires a non-negative integer");
+        }
+        options.maxOccurrences = n;
+        break;
+      }

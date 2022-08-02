@@ -110,3 +110,19 @@ function parseCliArgs(argv: readonly string[]): CliOptions {
 function readInput(input: string | undefined): string {
   if (input !== undefined) {
     return readFileSync(input, "utf8");
+  }
+  // Read from stdin.
+  return readFileSync(0, "utf8");
+}
+
+function main(argv: readonly string[]): number {
+  let options: CliOptions;
+  try {
+    options = parseCliArgs(argv);
+  } catch (err) {
+    process.stderr.write(`error: ${(err as Error).message}\n\n${USAGE}`);
+    return 2;
+  }
+
+  if (options.help) {
+    process.stdout.write(USAGE);

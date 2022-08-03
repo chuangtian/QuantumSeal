@@ -31,3 +31,21 @@ interface Palette {
   magenta: string;
 }
 
+function palette(enabled: boolean): Palette {
+  if (!enabled) {
+    return {
+      reset: "",
+      bold: "",
+      dim: "",
+      red: "",
+      yellow: "",
+      blue: "",
+      green: "",
+      magenta: "",
+    };
+  }
+  return {
+    reset: "\u001b[0m",
+    bold: "\u001b[1m",
+    dim: "\u001b[2m",
+    red: "\u001b[31m",

@@ -103,3 +103,21 @@ export interface FormatOptions {
   maxOccurrences?: number;
 }
 
+/* -------------------------------------------------------------------------- */
+/* Terminal                                                                   */
+/* -------------------------------------------------------------------------- */
+
+export function formatTerminal(bom: CryptoBom, options: FormatOptions = {}): string {
+  const p = palette(options.color ?? false);
+  const maxOcc = options.maxOccurrences ?? 5;
+  const lines: string[] = [];
+
+  lines.push(`${p.bold}quantumseal CryptoBOM${p.reset} — ${bom.root}`);
+  lines.push(`${p.dim}${DISCLAIMER}${p.reset}`);
+  lines.push("=".repeat(72));
+  lines.push(
+    `tool ${bom.tool} v${bom.tool_version}   ` +
+      `files=${bom.summary.files_scanned}   ` +
+      `components=${bom.summary.component_count}   ` +
+      `occurrences=${bom.summary.total_occurrences}`,
+  );

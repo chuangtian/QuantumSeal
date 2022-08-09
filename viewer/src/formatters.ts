@@ -67,3 +67,21 @@ function bandColor(p: Palette, band: PriorityBand): string {
     case "low":
       return p.blue;
     case "informational":
+      return p.dim;
+  }
+}
+
+/** Sort components most-urgent first, matching the CLI ordering. */
+function sortComponents(components: readonly Component[]): Component[] {
+  return [...components].sort((a, b) => {
+    if (b.priority !== a.priority) {
+      return b.priority - a.priority;
+    }
+    return a.name.localeCompare(b.name);
+  });
+}
+
+/** Group components by band, preserving BAND_ORDER. */
+function groupByBand(
+  components: readonly Component[],
+): Map<PriorityBand, Component[]> {

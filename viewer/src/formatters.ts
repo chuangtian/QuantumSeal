@@ -121,3 +121,21 @@ export function formatTerminal(bom: CryptoBom, options: FormatOptions = {}): str
       `components=${bom.summary.component_count}   ` +
       `occurrences=${bom.summary.total_occurrences}`,
   );
+  lines.push("");
+
+  if (bom.components.length === 0) {
+    lines.push(`${p.green}No cryptographic indicators detected.${p.reset}`);
+    return lines.join("\n") + "\n";
+  }
+
+  for (const c of sortComponents(bom.components)) {
+    const color = bandColor(p, c.priority_band);
+    lines.push(
+      `${color}[${String(c.priority).padStart(3)}] ${c.name}` +
+        ` — ${c.priority_band.toUpperCase()}${p.reset}`,
+    );
+    lines.push(
+      `      ${p.dim}risk=${c.quantum_risk} category=${c.category}` +
+        ` files=${c.file_count} occurrences=${c.occurrence_count}${p.reset}`,
+    );
+    lines.push(`      ${c.guidance}`);

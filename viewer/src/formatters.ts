@@ -157,3 +157,21 @@ export function formatTerminal(bom: CryptoBom, options: FormatOptions = {}): str
 
 export function formatMarkdown(bom: CryptoBom): string {
   const out: string[] = [];
+  out.push(`# quantumseal CryptoBOM — \`${bom.root}\``);
+  out.push("");
+  out.push(`> ${DISCLAIMER}`);
+  out.push("");
+  out.push(
+    `**Tool:** ${bom.tool} v${bom.tool_version} · ` +
+      `**Files scanned:** ${bom.summary.files_scanned} · ` +
+      `**Components:** ${bom.summary.component_count} · ` +
+      `**Occurrences:** ${bom.summary.total_occurrences}`,
+  );
+  out.push("");
+
+  // Band histogram table.
+  out.push("## Priority summary");
+  out.push("");
+  out.push("| Band | Components |");
+  out.push("| --- | ---: |");
+  for (const band of BAND_ORDER) {

@@ -139,3 +139,21 @@ export function formatTerminal(bom: CryptoBom, options: FormatOptions = {}): str
         ` files=${c.file_count} occurrences=${c.occurrence_count}${p.reset}`,
     );
     lines.push(`      ${c.guidance}`);
+    const shown = maxOcc === 0 ? c.occurrences : c.occurrences.slice(0, maxOcc);
+    for (const occ of shown) {
+      lines.push(`        ${p.dim}${occ.file}:${occ.line}${p.reset}  «${occ.excerpt}»`);
+    }
+    if (maxOcc !== 0 && c.occurrences.length > maxOcc) {
+      lines.push(`        ${p.dim}… and ${c.occurrences.length - maxOcc} more${p.reset}`);
+    }
+    lines.push("");
+  }
+  return lines.join("\n") + "\n";
+}
+
+/* -------------------------------------------------------------------------- */
+/* Markdown                                                                   */
+/* -------------------------------------------------------------------------- */
+
+export function formatMarkdown(bom: CryptoBom): string {
+  const out: string[] = [];

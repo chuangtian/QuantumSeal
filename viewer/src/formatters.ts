@@ -85,3 +85,21 @@ function sortComponents(components: readonly Component[]): Component[] {
 function groupByBand(
   components: readonly Component[],
 ): Map<PriorityBand, Component[]> {
+  const map = new Map<PriorityBand, Component[]>();
+  for (const band of BAND_ORDER) {
+    map.set(band, []);
+  }
+  for (const c of sortComponents(components)) {
+    map.get(c.priority_band)?.push(c);
+  }
+  return map;
+}
+
+/** Options common to the formatters. */
+export interface FormatOptions {
+  /** Enable ANSI color (terminal only). */
+  color?: boolean;
+  /** Max occurrences to show per component (default 5, 0 = all). */
+  maxOccurrences?: number;
+}
+

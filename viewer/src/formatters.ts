@@ -193,3 +193,21 @@ export function formatMarkdown(bom: CryptoBom): string {
   out.push("| Priority | Band | Component | Category | Quantum risk | Files | Occurrences |");
   out.push("| ---: | --- | --- | --- | --- | ---: | ---: |");
   for (const c of sortComponents(bom.components)) {
+    out.push(
+      `| ${c.priority} | ${c.priority_band} | ${mdEscape(c.name)} | ${c.category} | ` +
+        `${c.quantum_risk} | ${c.file_count} | ${c.occurrence_count} |`,
+    );
+  }
+  out.push("");
+
+  // Guidance + occurrences detail.
+  out.push("## Details");
+  out.push("");
+  for (const c of sortComponents(bom.components)) {
+    out.push(`### ${mdEscape(c.name)} (priority ${c.priority}, ${c.priority_band})`);
+    out.push("");
+    out.push(`- **Quantum risk:** ${c.quantum_risk_label}`);
+    out.push(`- **Guidance:** ${mdEscape(c.guidance)}`);
+    out.push("");
+    for (const occ of c.occurrences) {
+      out.push(`  - \`${occ.file}:${occ.line}\` — \`${mdEscape(occ.excerpt)}\``);

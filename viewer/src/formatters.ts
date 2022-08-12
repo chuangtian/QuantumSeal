@@ -175,3 +175,21 @@ export function formatMarkdown(bom: CryptoBom): string {
   out.push("| Band | Components |");
   out.push("| --- | ---: |");
   for (const band of BAND_ORDER) {
+    const count = bom.summary.priority_bands[band] ?? 0;
+    if (count > 0) {
+      out.push(`| ${band} | ${count} |`);
+    }
+  }
+  out.push("");
+
+  if (bom.components.length === 0) {
+    out.push("_No cryptographic indicators detected._");
+    return out.join("\n") + "\n";
+  }
+
+  // Component table.
+  out.push("## Components");
+  out.push("");
+  out.push("| Priority | Band | Component | Category | Quantum risk | Files | Occurrences |");
+  out.push("| ---: | --- | --- | --- | --- | ---: | ---: |");
+  for (const c of sortComponents(bom.components)) {

@@ -247,3 +247,21 @@ export function formatHtml(bom: CryptoBom): string {
       </tr>
       <tr class="detail">
         <td colspan="7">
+          <div class="guidance">${htmlEscape(c.guidance)}</div>
+          <ul class="occurrences">${occ}</ul>
+        </td>
+      </tr>`;
+    })
+    .join("");
+
+  const bandCounts = BAND_ORDER.map((band) => {
+    const n = bom.summary.priority_bands[band] ?? 0;
+    return n > 0
+      ? `<span class="chip chip-${band}">${band}: ${n}</span>`
+      : "";
+  }).join("");
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />

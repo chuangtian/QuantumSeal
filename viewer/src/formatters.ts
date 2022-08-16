@@ -229,3 +229,21 @@ export function formatHtml(bom: CryptoBom): string {
   const rows = sortComponents(bom.components)
     .map((c) => {
       const occ = c.occurrences
+        .map(
+          (o) =>
+            `<li><code>${htmlEscape(o.file)}:${o.line}</code> — ` +
+            `<span class="excerpt">${htmlEscape(o.excerpt)}</span></li>`,
+        )
+        .join("");
+      return `
+      <tr class="band-${c.priority_band}">
+        <td class="num">${c.priority}</td>
+        <td><span class="badge badge-${c.priority_band}">${c.priority_band}</span></td>
+        <td>${htmlEscape(c.name)}</td>
+        <td>${htmlEscape(c.category)}</td>
+        <td>${htmlEscape(c.quantum_risk_label)}</td>
+        <td class="num">${c.file_count}</td>
+        <td class="num">${c.occurrence_count}</td>
+      </tr>
+      <tr class="detail">
+        <td colspan="7">

@@ -211,3 +211,21 @@ export function formatMarkdown(bom: CryptoBom): string {
     out.push("");
     for (const occ of c.occurrences) {
       out.push(`  - \`${occ.file}:${occ.line}\` — \`${mdEscape(occ.excerpt)}\``);
+    }
+    out.push("");
+  }
+  return out.join("\n") + "\n";
+}
+
+function mdEscape(text: string): string {
+  return text.replace(/([|`])/g, "\\$1");
+}
+
+/* -------------------------------------------------------------------------- */
+/* HTML                                                                       */
+/* -------------------------------------------------------------------------- */
+
+export function formatHtml(bom: CryptoBom): string {
+  const rows = sortComponents(bom.components)
+    .map((c) => {
+      const occ = c.occurrences

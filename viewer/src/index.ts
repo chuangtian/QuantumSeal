@@ -1,2 +1,3 @@
 /**
  * @quantumseal/viewer — public API.
+ *

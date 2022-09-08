@@ -19,3 +19,19 @@ export type QuantumRisk =
 
 /** Priority band codes. */
 export type PriorityBand =
+  | "informational"
+  | "low"
+  | "medium"
+  | "high"
+  | "critical";
+
+/** A single location where an indicator was found. */
+export interface Occurrence {
+  readonly file: string;
+  readonly line: number;
+  readonly excerpt: string;
+  readonly needle: string;
+}
+
+/** An aggregated cryptographic component. */
+export interface Component {

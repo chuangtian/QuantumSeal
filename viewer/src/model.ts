@@ -35,3 +35,20 @@ export interface Occurrence {
 
 /** An aggregated cryptographic component. */
 export interface Component {
+  readonly id: string;
+  readonly name: string;
+  readonly category: string;
+  readonly quantum_risk: QuantumRisk;
+  readonly quantum_risk_label: string;
+  readonly priority: number;
+  readonly priority_band: PriorityBand;
+  readonly file_count: number;
+  readonly occurrence_count: number;
+  readonly guidance: string;
+  readonly occurrences: readonly Occurrence[];
+}
+
+/** Summary block. */
+export interface Summary {
+  readonly files_scanned: number;
+  readonly entries_visited: number;

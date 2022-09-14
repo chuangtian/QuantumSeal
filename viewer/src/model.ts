@@ -68,3 +68,19 @@ export interface CryptoBom {
   readonly summary: Summary;
   readonly components: readonly Component[];
 }
+
+/** Ordered list of bands from most to least urgent, for sorting/coloring. */
+export const BAND_ORDER: readonly PriorityBand[] = [
+  "critical",
+  "high",
+  "medium",
+  "low",
+  "informational",
+];
+
+/** Thrown when a document does not conform to the CryptoBOM schema. */
+export class InvalidCryptoBomError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "InvalidCryptoBomError";
+  }

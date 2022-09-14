@@ -52,3 +52,19 @@ export interface Component {
 export interface Summary {
   readonly files_scanned: number;
   readonly entries_visited: number;
+  readonly component_count: number;
+  readonly total_occurrences: number;
+  readonly priority_bands: Readonly<Record<string, number>>;
+}
+
+/** The full CryptoBOM document. */
+export interface CryptoBom {
+  readonly tool: string;
+  readonly tool_version: string;
+  readonly schema: string;
+  readonly root: string;
+  readonly analysis_only: boolean;
+  readonly disclaimer: string;
+  readonly summary: Summary;
+  readonly components: readonly Component[];
+}

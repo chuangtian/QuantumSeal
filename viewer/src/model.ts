@@ -84,3 +84,19 @@ export class InvalidCryptoBomError extends Error {
     super(message);
     this.name = "InvalidCryptoBomError";
   }
+}
+
+function isObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function requireString(obj: Record<string, unknown>, key: string): string {
+  const v = obj[key];
+  if (typeof v !== "string") {
+    throw new InvalidCryptoBomError(`expected string field '${key}'`);
+  }
+  return v;
+}
+
+function requireNumber(obj: Record<string, unknown>, key: string): number {
+  const v = obj[key];

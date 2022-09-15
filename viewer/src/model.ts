@@ -132,3 +132,20 @@ function parseOccurrence(value: unknown): Occurrence {
     excerpt: requireString(value, "excerpt"),
     needle: requireString(value, "needle"),
   };
+}
+
+function parseComponent(value: unknown): Component {
+  if (!isObject(value)) {
+    throw new InvalidCryptoBomError("component must be an object");
+  }
+  const occurrences = requireArray(value, "occurrences").map(parseOccurrence);
+  return {
+    id: requireString(value, "id"),
+    name: requireString(value, "name"),
+    category: requireString(value, "category"),
+    quantum_risk: requireString(value, "quantum_risk") as QuantumRisk,
+    quantum_risk_label: requireString(value, "quantum_risk_label"),
+    priority: requireNumber(value, "priority"),
+    priority_band: requireString(value, "priority_band") as PriorityBand,
+    file_count: requireNumber(value, "file_count"),
+    occurrence_count: requireNumber(value, "occurrence_count"),

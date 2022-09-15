@@ -100,3 +100,19 @@ function requireString(obj: Record<string, unknown>, key: string): string {
 
 function requireNumber(obj: Record<string, unknown>, key: string): number {
   const v = obj[key];
+  if (typeof v !== "number" || !Number.isFinite(v)) {
+    throw new InvalidCryptoBomError(`expected numeric field '${key}'`);
+  }
+  return v;
+}
+
+function requireBool(obj: Record<string, unknown>, key: string): boolean {
+  const v = obj[key];
+  if (typeof v !== "boolean") {
+    throw new InvalidCryptoBomError(`expected boolean field '${key}'`);
+  }
+  return v;
+}
+
+function requireArray(obj: Record<string, unknown>, key: string): unknown[] {
+  const v = obj[key];

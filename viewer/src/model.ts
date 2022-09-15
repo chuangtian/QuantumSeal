@@ -116,3 +116,19 @@ function requireBool(obj: Record<string, unknown>, key: string): boolean {
 
 function requireArray(obj: Record<string, unknown>, key: string): unknown[] {
   const v = obj[key];
+  if (!Array.isArray(v)) {
+    throw new InvalidCryptoBomError(`expected array field '${key}'`);
+  }
+  return v;
+}
+
+function parseOccurrence(value: unknown): Occurrence {
+  if (!isObject(value)) {
+    throw new InvalidCryptoBomError("occurrence must be an object");
+  }
+  return {
+    file: requireString(value, "file"),
+    line: requireNumber(value, "line"),
+    excerpt: requireString(value, "excerpt"),
+    needle: requireString(value, "needle"),
+  };

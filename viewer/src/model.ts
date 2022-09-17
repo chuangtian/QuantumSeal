@@ -149,3 +149,19 @@ function parseComponent(value: unknown): Component {
     priority_band: requireString(value, "priority_band") as PriorityBand,
     file_count: requireNumber(value, "file_count"),
     occurrence_count: requireNumber(value, "occurrence_count"),
+    guidance: requireString(value, "guidance"),
+    occurrences,
+  };
+}
+
+function parseSummary(value: unknown): Summary {
+  if (!isObject(value)) {
+    throw new InvalidCryptoBomError("summary must be an object");
+  }
+  const bandsRaw = value["priority_bands"];
+  const bands: Record<string, number> = {};
+  if (isObject(bandsRaw)) {
+    for (const [k, v] of Object.entries(bandsRaw)) {
+      if (typeof v === "number") {
+        bands[k] = v;
+      }

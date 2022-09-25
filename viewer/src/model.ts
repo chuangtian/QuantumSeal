@@ -165,3 +165,19 @@ function parseSummary(value: unknown): Summary {
       if (typeof v === "number") {
         bands[k] = v;
       }
+    }
+  }
+  return {
+    files_scanned: requireNumber(value, "files_scanned"),
+    entries_visited: requireNumber(value, "entries_visited"),
+    component_count: requireNumber(value, "component_count"),
+    total_occurrences: requireNumber(value, "total_occurrences"),
+    priority_bands: bands,
+  };
+}
+
+/**
+ * Validate and type an already-parsed JSON value as a {@link CryptoBom}.
+ * @throws {InvalidCryptoBomError} if the shape is wrong.
+ */
+export function loadCryptoBom(value: unknown): CryptoBom {

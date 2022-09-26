@@ -13,3 +13,16 @@ import {
   sortComponents,
 } from "./formatters";
 import {
+  InvalidCryptoBomError,
+  loadCryptoBom,
+  parseCryptoBom,
+  type CryptoBom,
+} from "./model";
+
+const SAMPLE: CryptoBom = {
+  tool: "quantumseal",
+  tool_version: "0.1.0",
+  schema: "quantumseal-cbom/1",
+  root: "fixtures/legacy_service",
+  analysis_only: true,
+  disclaimer: "Static analysis only.",

@@ -95,3 +95,17 @@ test("parseCryptoBom rejects invalid JSON", () => {
 test("loadCryptoBom rejects missing required field", () => {
   const broken = { ...SAMPLE } as Record<string, unknown>;
   delete broken.tool;
+  assert.throws(() => loadCryptoBom(broken), InvalidCryptoBomError);
+});
+
+test("sortComponents orders by descending priority", () => {
+  const sorted = sortComponents(SAMPLE.components);
+  assert.equal(sorted[0].id, "md5"); // 97
+  assert.equal(sorted[1].id, "rsa"); // 80
+});
+
+test("formatTerminal includes disclaimer and both components", () => {
+  const out = formatTerminal(SAMPLE, { color: false });
+  assert.match(out, /static analysis/i);
+  assert.match(out, /MD5/);
+  assert.match(out, /RSA/);

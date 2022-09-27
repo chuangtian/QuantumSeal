@@ -81,3 +81,17 @@ test("parseCryptoBom round-trips a valid document", () => {
   assert.equal(bom.analysis_only, true);
 });
 
+test("loadCryptoBom rejects wrong schema", () => {
+  assert.throws(
+    () => loadCryptoBom({ ...SAMPLE, schema: "other/1" }),
+    InvalidCryptoBomError,
+  );
+});
+
+test("parseCryptoBom rejects invalid JSON", () => {
+  assert.throws(() => parseCryptoBom("{not json"), InvalidCryptoBomError);
+});
+
+test("loadCryptoBom rejects missing required field", () => {
+  const broken = { ...SAMPLE } as Record<string, unknown>;
+  delete broken.tool;

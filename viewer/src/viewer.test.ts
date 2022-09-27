@@ -68,3 +68,16 @@ const SAMPLE: CryptoBom = {
       ],
     },
   ],
+};
+
+function serialize(bom: CryptoBom): string {
+  return JSON.stringify(bom);
+}
+
+test("parseCryptoBom round-trips a valid document", () => {
+  const bom = parseCryptoBom(serialize(SAMPLE));
+  assert.equal(bom.tool, "quantumseal");
+  assert.equal(bom.components.length, 2);
+  assert.equal(bom.analysis_only, true);
+});
+

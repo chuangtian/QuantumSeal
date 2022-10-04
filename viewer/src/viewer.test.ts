@@ -109,3 +109,17 @@ test("formatTerminal includes disclaimer and both components", () => {
   assert.match(out, /static analysis/i);
   assert.match(out, /MD5/);
   assert.match(out, /RSA/);
+  // No ANSI escapes when color disabled.
+  assert.ok(!out.includes("\u001b["));
+});
+
+test("formatTerminal respects maxOccurrences", () => {
+  const out = formatTerminal(SAMPLE, { color: false, maxOccurrences: 1 });
+  assert.match(out, /and 2 more/);
+});
+
+test("formatMarkdown produces a component table", () => {
+  const md = formatMarkdown(SAMPLE);
+  assert.match(md, /\| Priority \| Band \| Component \|/);
+  assert.match(md, /\| 97 \| critical \| MD5 \|/);
+  assert.match(md, /## Details/);

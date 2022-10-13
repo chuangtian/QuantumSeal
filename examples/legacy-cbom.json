@@ -1,0 +1,38 @@
+{
+  "analysis_only": true,
+  "components": [
+    {
+      "category": "hash",
+      "file_count": 2,
+      "guidance": "MD5 is collision-broken. Replace with SHA-256/SHA-3; never use for signatures or integrity.",
+      "id": "md5",
+      "name": "MD5",
+      "occurrence_count": 3,
+      "occurrences": [
+        {
+          "excerpt": "legacy_checksum = \"md5\"",
+          "file": "fixtures/legacy_service/config/tls.toml",
+          "line": 17,
+          "needle": "md5"
+        },
+        {
+          "excerpt": "// MD5 and SHA-1 are collision-broken.",
+          "file": "fixtures/legacy_service/src/crypto.rs",
+          "line": 25,
+          "needle": "md5"
+        },
+        {
+          "excerpt": "let _md5 = \"md5\";",
+          "file": "fixtures/legacy_service/src/crypto.rs",
+          "line": 26,
+          "needle": "md5"
+        }
+      ],
+      "priority": 97,
+      "priority_band": "critical",
+      "quantum_risk": "critical_deprecated",
+      "quantum_risk_label": "Critical (deprecated + quantum-relevant)"
+    },
+    {
+      "category": "hash",
+      "file_count": 1,

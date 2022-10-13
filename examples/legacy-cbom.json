@@ -36,3 +36,22 @@
     {
       "category": "hash",
       "file_count": 1,
+      "guidance": "SHA-1 is collision-broken. Migrate to SHA-256 or SHA-3.",
+      "id": "sha1",
+      "name": "SHA-1",
+      "occurrence_count": 2,
+      "occurrences": [
+        {
+          "excerpt": "// MD5 and SHA-1 are collision-broken.",
+          "file": "fixtures/legacy_service/src/crypto.rs",
+          "line": 25,
+          "needle": "sha-1"
+        },
+        {
+          "excerpt": "let _sha1 = \"sha1\";",
+          "file": "fixtures/legacy_service/src/crypto.rs",
+          "line": 27,
+          "needle": "sha1"
+        }
+      ],
+      "priority": 93,

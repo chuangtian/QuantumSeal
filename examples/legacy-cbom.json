@@ -95,3 +95,22 @@
         }
       ],
       "priority": 90,
+      "priority_band": "critical",
+      "quantum_risk": "critical_deprecated",
+      "quantum_risk_label": "Critical (deprecated + quantum-relevant)"
+    },
+    {
+      "category": "public_key",
+      "file_count": 2,
+      "guidance": "Replace RSA key establishment/signatures with NIST PQC (ML-KEM for KEM, ML-DSA/SLH-DSA for signatures) or hybrid modes.",
+      "id": "rsa",
+      "name": "RSA",
+      "occurrence_count": 6,
+      "occurrences": [
+        {
+          "excerpt": "\"ECDHE-RSA-AES256-GCM-SHA384\",",
+          "file": "fixtures/legacy_service/config/tls.toml",
+          "line": 7,
+          "needle": "rsa"
+        },
+        {

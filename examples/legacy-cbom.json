@@ -75,3 +75,23 @@
         }
       ],
       "priority": 90,
+      "priority_band": "critical",
+      "quantum_risk": "critical_deprecated",
+      "quantum_risk_label": "Critical (deprecated + quantum-relevant)"
+    },
+    {
+      "category": "symmetric",
+      "file_count": 1,
+      "guidance": "RC4 is broken classically. Remove entirely and replace with an AEAD cipher (AES-GCM or ChaCha20-Poly1305).",
+      "id": "rc4",
+      "name": "RC4",
+      "occurrence_count": 1,
+      "occurrences": [
+        {
+          "excerpt": "let _rc4 = \"RC4\";         // broken stream cipher",
+          "file": "fixtures/legacy_service/src/crypto.rs",
+          "line": 29,
+          "needle": "rc4"
+        }
+      ],
+      "priority": 90,

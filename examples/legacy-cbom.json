@@ -114,3 +114,23 @@
           "needle": "rsa"
         },
         {
+          "excerpt": "host_key_algorithms = \"ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519\"",
+          "file": "fixtures/legacy_service/config/tls.toml",
+          "line": 13,
+          "needle": "rsa"
+        },
+        {
+          "excerpt": "/// Generates an RSA-2048 keypair for TLS termination.",
+          "file": "fixtures/legacy_service/src/crypto.rs",
+          "line": 7,
+          "needle": "rsa"
+        },
+        {
+          "excerpt": "// ssh-rsa host keys are also rotated here.",
+          "file": "fixtures/legacy_service/src/crypto.rs",
+          "line": 9,
+          "needle": "rsa"
+        },
+        {
+          "excerpt": "let _alg = \"RSA-OAEP\";",
+          "file": "fixtures/legacy_service/src/crypto.rs",

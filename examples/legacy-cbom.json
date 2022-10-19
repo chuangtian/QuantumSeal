@@ -134,3 +134,23 @@
         {
           "excerpt": "let _alg = \"RSA-OAEP\";",
           "file": "fixtures/legacy_service/src/crypto.rs",
+          "line": 10,
+          "needle": "rsa"
+        },
+        {
+          "excerpt": "let _sig = \"RSASSA-PSS\";",
+          "file": "fixtures/legacy_service/src/crypto.rs",
+          "line": 11,
+          "needle": "rsassa"
+        }
+      ],
+      "priority": 80,
+      "priority_band": "high",
+      "quantum_risk": "high_shor",
+      "quantum_risk_label": "High (Shor-breakable)"
+    },
+    {
+      "category": "public_key",
+      "file_count": 2,
+      "guidance": "Elliptic-curve schemes are Shor-breakable. Migrate to ML-KEM/ML-DSA; consider hybrid X25519+ML-KEM during transition.",
+      "id": "ecc",

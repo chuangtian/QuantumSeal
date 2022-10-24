@@ -154,3 +154,22 @@
       "file_count": 2,
       "guidance": "Elliptic-curve schemes are Shor-breakable. Migrate to ML-KEM/ML-DSA; consider hybrid X25519+ML-KEM during transition.",
       "id": "ecc",
+      "name": "Elliptic Curve (ECDSA/ECDH/EdDSA)",
+      "occurrence_count": 4,
+      "occurrences": [
+        {
+          "excerpt": "\"ECDHE-ECDSA-CHACHA20-POLY1305\",",
+          "file": "fixtures/legacy_service/config/tls.toml",
+          "line": 8,
+          "needle": "ecdsa"
+        },
+        {
+          "excerpt": "host_key_algorithms = \"ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519\"",
+          "file": "fixtures/legacy_service/config/tls.toml",
+          "line": 13,
+          "needle": "ecdsa"
+        },
+        {
+          "excerpt": "let _curve = \"secp256r1\"; // ECDSA on the NIST P-256 curve",
+          "file": "fixtures/legacy_service/src/crypto.rs",
+          "line": 12,

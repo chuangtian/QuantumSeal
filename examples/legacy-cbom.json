@@ -173,3 +173,23 @@
           "excerpt": "let _curve = \"secp256r1\"; // ECDSA on the NIST P-256 curve",
           "file": "fixtures/legacy_service/src/crypto.rs",
           "line": 12,
+          "needle": "ecdsa"
+        },
+        {
+          "excerpt": "let _kex = \"ECDH with X25519\";",
+          "file": "fixtures/legacy_service/src/crypto.rs",
+          "line": 13,
+          "needle": "ecdh"
+        }
+      ],
+      "priority": 77,
+      "priority_band": "high",
+      "quantum_risk": "high_shor",
+      "quantum_risk_label": "High (Shor-breakable)"
+    },
+    {
+      "category": "protocol",
+      "file_count": 2,
+      "guidance": "SSH host/user keys use RSA/ECDSA/Ed25519. Track OpenSSH PQC hybrid KEX (e.g. sntrup761x25519) adoption.",
+      "id": "ssh",
+      "name": "SSH",

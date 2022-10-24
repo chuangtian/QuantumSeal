@@ -212,3 +212,23 @@
       "priority_band": "high",
       "quantum_risk": "high_shor",
       "quantum_risk_label": "High (Shor-breakable)"
+    },
+    {
+      "category": "protocol",
+      "file_count": 2,
+      "guidance": "TLS key exchange relies on ECDHE/RSA today. Adopt TLS 1.3 and enable hybrid PQC key exchange when your stack supports it.",
+      "id": "tls",
+      "name": "TLS / SSL",
+      "occurrence_count": 2,
+      "occurrences": [
+        {
+          "excerpt": "min_version = \"TLSv1.2\"",
+          "file": "fixtures/legacy_service/config/tls.toml",
+          "line": 5,
+          "needle": "tlsv1"
+        },
+        {
+          "excerpt": "pub fn provision_tls_keys() -> Result<(), Box<dyn Error>> {",
+          "file": "fixtures/legacy_service/src/crypto.rs",
+          "line": 8,
+          "needle": "tls_"

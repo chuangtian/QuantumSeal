@@ -193,3 +193,22 @@
       "guidance": "SSH host/user keys use RSA/ECDSA/Ed25519. Track OpenSSH PQC hybrid KEX (e.g. sntrup761x25519) adoption.",
       "id": "ssh",
       "name": "SSH",
+      "occurrence_count": 2,
+      "occurrences": [
+        {
+          "excerpt": "host_key_algorithms = \"ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519\"",
+          "file": "fixtures/legacy_service/config/tls.toml",
+          "line": 13,
+          "needle": "ssh-rsa"
+        },
+        {
+          "excerpt": "// ssh-rsa host keys are also rotated here.",
+          "file": "fixtures/legacy_service/src/crypto.rs",
+          "line": 9,
+          "needle": "ssh-rsa"
+        }
+      ],
+      "priority": 77,
+      "priority_band": "high",
+      "quantum_risk": "high_shor",
+      "quantum_risk_label": "High (Shor-breakable)"

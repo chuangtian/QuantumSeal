@@ -291,3 +291,23 @@
       "quantum_risk": "high_shor",
       "quantum_risk_label": "High (Shor-breakable)"
     },
+    {
+      "category": "symmetric",
+      "file_count": 1,
+      "guidance": "AES remains viable; ensure >=256-bit keys so Grover's algorithm leaves ~128-bit effective strength.",
+      "id": "aes",
+      "name": "AES",
+      "occurrence_count": 2,
+      "occurrences": [
+        {
+          "excerpt": "\"ECDHE-RSA-AES256-GCM-SHA384\",",
+          "file": "fixtures/legacy_service/config/tls.toml",
+          "line": 7,
+          "needle": "aes256"
+        },
+        {
+          "excerpt": "\"AES128-SHA\",       # weaker legacy suite",
+          "file": "fixtures/legacy_service/config/tls.toml",
+          "line": 9,
+          "needle": "aes128"
+        }

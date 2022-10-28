@@ -232,3 +232,23 @@
           "file": "fixtures/legacy_service/src/crypto.rs",
           "line": 8,
           "needle": "tls_"
+        }
+      ],
+      "priority": 77,
+      "priority_band": "high",
+      "quantum_risk": "high_shor",
+      "quantum_risk_label": "High (Shor-breakable)"
+    },
+    {
+      "category": "protocol",
+      "file_count": 1,
+      "guidance": "Asymmetric JWT algs (RS256/ES256/PS256) are Shor-breakable. Plan for PQC-capable token signing; HS256 is symmetric.",
+      "id": "jwt",
+      "name": "JWT / JOSE",
+      "occurrence_count": 2,
+      "occurrences": [
+        {
+          "excerpt": "/// Legacy token signing still uses RS256 (asymmetric JWT).",
+          "file": "fixtures/legacy_service/src/crypto.rs",
+          "line": 17,
+          "needle": "jwt"

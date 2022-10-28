@@ -271,3 +271,23 @@
       "guidance": "Stored asymmetric key material may need reissuing with PQC algorithms; inventory and rotate as part of migration.",
       "id": "keystore",
       "name": "Key material / keystore",
+      "occurrence_count": 2,
+      "occurrences": [
+        {
+          "excerpt": "[keystore]",
+          "file": "fixtures/legacy_service/config/tls.toml",
+          "line": 19,
+          "needle": "keystore"
+        },
+        {
+          "excerpt": "path = \"/etc/service/keystore.pkcs12\"",
+          "file": "fixtures/legacy_service/config/tls.toml",
+          "line": 20,
+          "needle": "pkcs12"
+        }
+      ],
+      "priority": 73,
+      "priority_band": "high",
+      "quantum_risk": "high_shor",
+      "quantum_risk_label": "High (Shor-breakable)"
+    },

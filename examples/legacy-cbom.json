@@ -311,3 +311,22 @@
           "line": 9,
           "needle": "aes128"
         }
+      ],
+      "priority": 28,
+      "priority_band": "low",
+      "quantum_risk": "moderate_grover",
+      "quantum_risk_label": "Moderate (Grover-affected)"
+    },
+    {
+      "category": "hash",
+      "file_count": 1,
+      "guidance": "SHA-2 is fine; use >=SHA-384 where Grover margin matters for long-lived integrity.",
+      "id": "sha2",
+      "name": "SHA-2 family",
+      "occurrence_count": 2,
+      "occurrences": [
+        {
+          "excerpt": "\"ECDHE-RSA-AES256-GCM-SHA384\",",
+          "file": "fixtures/legacy_service/config/tls.toml",
+          "line": 7,
+          "needle": "sha384"

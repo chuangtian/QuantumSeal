@@ -252,3 +252,22 @@
           "file": "fixtures/legacy_service/src/crypto.rs",
           "line": 17,
           "needle": "jwt"
+        },
+        {
+          "excerpt": "// JWT alg header: RS256",
+          "file": "fixtures/legacy_service/src/crypto.rs",
+          "line": 19,
+          "needle": "jwt"
+        }
+      ],
+      "priority": 73,
+      "priority_band": "high",
+      "quantum_risk": "high_shor",
+      "quantum_risk_label": "High (Shor-breakable)"
+    },
+    {
+      "category": "random_or_keystore",
+      "file_count": 1,
+      "guidance": "Stored asymmetric key material may need reissuing with PQC algorithms; inventory and rotate as part of migration.",
+      "id": "keystore",
+      "name": "Key material / keystore",

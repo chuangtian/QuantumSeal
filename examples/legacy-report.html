@@ -81,3 +81,15 @@
         <td>Critical (deprecated + quantum-relevant)</td>
         <td class="num">1</td>
         <td class="num">1</td>
+      </tr>
+      <tr class="detail">
+        <td colspan="7">
+          <div class="guidance">DES/3DES are deprecated and weak. Replace immediately with AES-256; this is both a classical and quantum concern.</div>
+          <ul class="occurrences"><li><code>fixtures/legacy_service/src/crypto.rs:28</code> — <span class="excerpt">let _cipher = &quot;3DES-CBC&quot;; // Triple-DES, deprecated</span></li></ul>
+        </td>
+      </tr>
+      <tr class="band-critical">
+        <td class="num">90</td>
+        <td><span class="badge badge-critical">critical</span></td>
+        <td>RC4</td>
+        <td>symmetric</td>

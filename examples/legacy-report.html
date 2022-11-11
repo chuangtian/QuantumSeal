@@ -163,3 +163,15 @@
           <ul class="occurrences"><li><code>fixtures/legacy_service/config/tls.toml:5</code> — <span class="excerpt">min_version = &quot;TLSv1.2&quot;</span></li><li><code>fixtures/legacy_service/src/crypto.rs:8</code> — <span class="excerpt">pub fn provision_tls_keys() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {</span></li></ul>
         </td>
       </tr>
+      <tr class="band-high">
+        <td class="num">73</td>
+        <td><span class="badge badge-high">high</span></td>
+        <td>JWT / JOSE</td>
+        <td>protocol</td>
+        <td>High (Shor-breakable)</td>
+        <td class="num">1</td>
+        <td class="num">2</td>
+      </tr>
+      <tr class="detail">
+        <td colspan="7">
+          <div class="guidance">Asymmetric JWT algs (RS256/ES256/PS256) are Shor-breakable. Plan for PQC-capable token signing; HS256 is symmetric.</div>

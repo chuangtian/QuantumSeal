@@ -128,3 +128,15 @@
         <td class="num">4</td>
       </tr>
       <tr class="detail">
+        <td colspan="7">
+          <div class="guidance">Elliptic-curve schemes are Shor-breakable. Migrate to ML-KEM/ML-DSA; consider hybrid X25519+ML-KEM during transition.</div>
+          <ul class="occurrences"><li><code>fixtures/legacy_service/config/tls.toml:8</code> — <span class="excerpt">&quot;ECDHE-ECDSA-CHACHA20-POLY1305&quot;,</span></li><li><code>fixtures/legacy_service/config/tls.toml:13</code> — <span class="excerpt">host_key_algorithms = &quot;ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519&quot;</span></li><li><code>fixtures/legacy_service/src/crypto.rs:12</code> — <span class="excerpt">let _curve = &quot;secp256r1&quot;; // ECDSA on the NIST P-256 curve</span></li><li><code>fixtures/legacy_service/src/crypto.rs:13</code> — <span class="excerpt">let _kex = &quot;ECDH with X25519&quot;;</span></li></ul>
+        </td>
+      </tr>
+      <tr class="band-high">
+        <td class="num">77</td>
+        <td><span class="badge badge-high">high</span></td>
+        <td>SSH</td>
+        <td>protocol</td>
+        <td>High (Shor-breakable)</td>
+        <td class="num">2</td>

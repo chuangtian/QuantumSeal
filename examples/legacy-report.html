@@ -140,3 +140,14 @@
         <td>protocol</td>
         <td>High (Shor-breakable)</td>
         <td class="num">2</td>
+        <td class="num">2</td>
+      </tr>
+      <tr class="detail">
+        <td colspan="7">
+          <div class="guidance">SSH host/user keys use RSA/ECDSA/Ed25519. Track OpenSSH PQC hybrid KEX (e.g. sntrup761x25519) adoption.</div>
+          <ul class="occurrences"><li><code>fixtures/legacy_service/config/tls.toml:13</code> — <span class="excerpt">host_key_algorithms = &quot;ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519&quot;</span></li><li><code>fixtures/legacy_service/src/crypto.rs:9</code> — <span class="excerpt">// ssh-rsa host keys are also rotated here.</span></li></ul>
+        </td>
+      </tr>
+      <tr class="band-high">
+        <td class="num">77</td>
+        <td><span class="badge badge-high">high</span></td>

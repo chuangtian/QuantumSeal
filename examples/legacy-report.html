@@ -175,3 +175,15 @@
       <tr class="detail">
         <td colspan="7">
           <div class="guidance">Asymmetric JWT algs (RS256/ES256/PS256) are Shor-breakable. Plan for PQC-capable token signing; HS256 is symmetric.</div>
+          <ul class="occurrences"><li><code>fixtures/legacy_service/src/crypto.rs:17</code> — <span class="excerpt">/// Legacy token signing still uses RS256 (asymmetric JWT).</span></li><li><code>fixtures/legacy_service/src/crypto.rs:19</code> — <span class="excerpt">// JWT alg header: RS256</span></li></ul>
+        </td>
+      </tr>
+      <tr class="band-high">
+        <td class="num">73</td>
+        <td><span class="badge badge-high">high</span></td>
+        <td>Key material / keystore</td>
+        <td>random_or_keystore</td>
+        <td>High (Shor-breakable)</td>
+        <td class="num">1</td>
+        <td class="num">2</td>
+      </tr>

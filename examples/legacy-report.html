@@ -198,3 +198,15 @@
         <td><span class="badge badge-low">low</span></td>
         <td>AES</td>
         <td>symmetric</td>
+        <td>Moderate (Grover-affected)</td>
+        <td class="num">1</td>
+        <td class="num">2</td>
+      </tr>
+      <tr class="detail">
+        <td colspan="7">
+          <div class="guidance">AES remains viable; ensure &gt;=256-bit keys so Grover&#39;s algorithm leaves ~128-bit effective strength.</div>
+          <ul class="occurrences"><li><code>fixtures/legacy_service/config/tls.toml:7</code> — <span class="excerpt">&quot;ECDHE-RSA-AES256-GCM-SHA384&quot;,</span></li><li><code>fixtures/legacy_service/config/tls.toml:9</code> — <span class="excerpt">&quot;AES128-SHA&quot;,       # weaker legacy suite</span></li></ul>
+        </td>
+      </tr>
+      <tr class="band-low">
+        <td class="num">28</td>

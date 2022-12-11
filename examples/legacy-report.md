@@ -22,3 +22,14 @@
 | 90 | critical | RC4 | symmetric | critical_deprecated | 1 | 1 |
 | 80 | high | RSA | public_key | high_shor | 2 | 6 |
 | 77 | high | Elliptic Curve (ECDSA/ECDH/EdDSA) | public_key | high_shor | 2 | 4 |
+| 77 | high | SSH | protocol | high_shor | 2 | 2 |
+| 77 | high | TLS / SSL | protocol | high_shor | 2 | 2 |
+| 73 | high | JWT / JOSE | protocol | high_shor | 1 | 2 |
+| 73 | high | Key material / keystore | random_or_keystore | high_shor | 1 | 2 |
+| 28 | low | AES | symmetric | moderate_grover | 1 | 2 |
+| 28 | low | SHA-2 family | hash | moderate_grover | 1 | 2 |
+| 25 | low | ChaCha20 / Poly1305 | symmetric | moderate_grover | 1 | 1 |
+
+## Details
+
+### MD5 (priority 97, critical)

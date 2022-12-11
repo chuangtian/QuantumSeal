@@ -33,3 +33,13 @@
 ## Details
 
 ### MD5 (priority 97, critical)
+
+- **Quantum risk:** Critical (deprecated + quantum-relevant)
+- **Guidance:** MD5 is collision-broken. Replace with SHA-256/SHA-3; never use for signatures or integrity.
+
+  - `fixtures/legacy_service/config/tls.toml:17` — `legacy_checksum = "md5"`
+  - `fixtures/legacy_service/src/crypto.rs:25` — `// MD5 and SHA-1 are collision-broken.`
+  - `fixtures/legacy_service/src/crypto.rs:26` — `let _md5 = "md5";`
+
+### SHA-1 (priority 93, critical)
+

@@ -43,3 +43,14 @@
 
 ### SHA-1 (priority 93, critical)
 
+- **Quantum risk:** Critical (deprecated + quantum-relevant)
+- **Guidance:** SHA-1 is collision-broken. Migrate to SHA-256 or SHA-3.
+
+  - `fixtures/legacy_service/src/crypto.rs:25` — `// MD5 and SHA-1 are collision-broken.`
+  - `fixtures/legacy_service/src/crypto.rs:27` — `let _sha1 = "sha1";`
+
+### 3DES / DES (priority 90, critical)
+
+- **Quantum risk:** Critical (deprecated + quantum-relevant)
+- **Guidance:** DES/3DES are deprecated and weak. Replace immediately with AES-256; this is both a classical and quantum concern.
+

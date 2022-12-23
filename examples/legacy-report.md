@@ -54,3 +54,14 @@
 - **Quantum risk:** Critical (deprecated + quantum-relevant)
 - **Guidance:** DES/3DES are deprecated and weak. Replace immediately with AES-256; this is both a classical and quantum concern.
 
+  - `fixtures/legacy_service/src/crypto.rs:28` — `let _cipher = "3DES-CBC"; // Triple-DES, deprecated`
+
+### RC4 (priority 90, critical)
+
+- **Quantum risk:** Critical (deprecated + quantum-relevant)
+- **Guidance:** RC4 is broken classically. Remove entirely and replace with an AEAD cipher (AES-GCM or ChaCha20-Poly1305).
+
+  - `fixtures/legacy_service/src/crypto.rs:29` — `let _rc4 = "RC4";         // broken stream cipher`
+
+### RSA (priority 80, high)
+

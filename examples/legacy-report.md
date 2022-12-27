@@ -65,3 +65,13 @@
 
 ### RSA (priority 80, high)
 
+- **Quantum risk:** High (Shor-breakable)
+- **Guidance:** Replace RSA key establishment/signatures with NIST PQC (ML-KEM for KEM, ML-DSA/SLH-DSA for signatures) or hybrid modes.
+
+  - `fixtures/legacy_service/config/tls.toml:7` — `"ECDHE-RSA-AES256-GCM-SHA384",`
+  - `fixtures/legacy_service/config/tls.toml:13` — `host_key_algorithms = "ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519"`
+  - `fixtures/legacy_service/src/crypto.rs:7` — `/// Generates an RSA-2048 keypair for TLS termination.`
+  - `fixtures/legacy_service/src/crypto.rs:9` — `// ssh-rsa host keys are also rotated here.`
+  - `fixtures/legacy_service/src/crypto.rs:10` — `let _alg = "RSA-OAEP";`
+  - `fixtures/legacy_service/src/crypto.rs:11` — `let _sig = "RSASSA-PSS";`
+

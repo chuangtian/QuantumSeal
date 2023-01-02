@@ -75,3 +75,14 @@
   - `fixtures/legacy_service/src/crypto.rs:10` — `let _alg = "RSA-OAEP";`
   - `fixtures/legacy_service/src/crypto.rs:11` — `let _sig = "RSASSA-PSS";`
 
+### Elliptic Curve (ECDSA/ECDH/EdDSA) (priority 77, high)
+
+- **Quantum risk:** High (Shor-breakable)
+- **Guidance:** Elliptic-curve schemes are Shor-breakable. Migrate to ML-KEM/ML-DSA; consider hybrid X25519+ML-KEM during transition.
+
+  - `fixtures/legacy_service/config/tls.toml:8` — `"ECDHE-ECDSA-CHACHA20-POLY1305",`
+  - `fixtures/legacy_service/config/tls.toml:13` — `host_key_algorithms = "ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519"`
+  - `fixtures/legacy_service/src/crypto.rs:12` — `let _curve = "secp256r1"; // ECDSA on the NIST P-256 curve`
+  - `fixtures/legacy_service/src/crypto.rs:13` — `let _kex = "ECDH with X25519";`
+
+### SSH (priority 77, high)

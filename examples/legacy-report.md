@@ -107,3 +107,14 @@
 - **Guidance:** Asymmetric JWT algs (RS256/ES256/PS256) are Shor-breakable. Plan for PQC-capable token signing; HS256 is symmetric.
 
   - `fixtures/legacy_service/src/crypto.rs:17` — `/// Legacy token signing still uses RS256 (asymmetric JWT).`
+  - `fixtures/legacy_service/src/crypto.rs:19` — `// JWT alg header: RS256`
+
+### Key material / keystore (priority 73, high)
+
+- **Quantum risk:** High (Shor-breakable)
+- **Guidance:** Stored asymmetric key material may need reissuing with PQC algorithms; inventory and rotate as part of migration.
+
+  - `fixtures/legacy_service/config/tls.toml:19` — `[keystore]`
+  - `fixtures/legacy_service/config/tls.toml:20` — `path = "/etc/service/keystore.pkcs12"`
+
+### AES (priority 28, low)

@@ -96,3 +96,14 @@
 ### TLS / SSL (priority 77, high)
 
 - **Quantum risk:** High (Shor-breakable)
+- **Guidance:** TLS key exchange relies on ECDHE/RSA today. Adopt TLS 1.3 and enable hybrid PQC key exchange when your stack supports it.
+
+  - `fixtures/legacy_service/config/tls.toml:5` — `min_version = "TLSv1.2"`
+  - `fixtures/legacy_service/src/crypto.rs:8` — `pub fn provision_tls_keys() -> Result<(), Box<dyn Error>> {`
+
+### JWT / JOSE (priority 73, high)
+
+- **Quantum risk:** High (Shor-breakable)
+- **Guidance:** Asymmetric JWT algs (RS256/ES256/PS256) are Shor-breakable. Plan for PQC-capable token signing; HS256 is symmetric.
+
+  - `fixtures/legacy_service/src/crypto.rs:17` — `/// Legacy token signing still uses RS256 (asymmetric JWT).`

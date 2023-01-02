@@ -86,3 +86,13 @@
   - `fixtures/legacy_service/src/crypto.rs:13` — `let _kex = "ECDH with X25519";`
 
 ### SSH (priority 77, high)
+
+- **Quantum risk:** High (Shor-breakable)
+- **Guidance:** SSH host/user keys use RSA/ECDSA/Ed25519. Track OpenSSH PQC hybrid KEX (e.g. sntrup761x25519) adoption.
+
+  - `fixtures/legacy_service/config/tls.toml:13` — `host_key_algorithms = "ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519"`
+  - `fixtures/legacy_service/src/crypto.rs:9` — `// ssh-rsa host keys are also rotated here.`
+
+### TLS / SSL (priority 77, high)
+
+- **Quantum risk:** High (Shor-breakable)

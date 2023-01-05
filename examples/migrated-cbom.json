@@ -12,3 +12,16 @@
         {
           "excerpt": "// Hybrid: X25519 + ML-KEM-768 (FIPS 203).",
           "file": "fixtures/migrated_service/src/keyexchange.ts",
+          "line": 9,
+          "needle": "x25519"
+        },
+        {
+          "excerpt": "const classical = \"x25519\";    // still present during hybrid rollout",
+          "file": "fixtures/migrated_service/src/keyexchange.ts",
+          "line": 11,
+          "needle": "x25519"
+        }
+      ],
+      "priority": 73,
+      "priority_band": "high",
+      "quantum_risk": "high_shor",

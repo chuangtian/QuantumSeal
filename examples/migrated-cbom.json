@@ -38,3 +38,17 @@
         {
           "excerpt": "// Symmetric layer already uses AES-256-GCM (Grover-safe at 256-bit).",
           "file": "fixtures/migrated_service/src/keyexchange.ts",
+          "line": 21,
+          "needle": "aes-256"
+        },
+        {
+          "excerpt": "export const AEAD = \"AES-256-GCM\";",
+          "file": "fixtures/migrated_service/src/keyexchange.ts",
+          "line": 22,
+          "needle": "aes-256"
+        }
+      ],
+      "priority": 28,
+      "priority_band": "low",
+      "quantum_risk": "moderate_grover",
+      "quantum_risk_label": "Moderate (Grover-affected)"

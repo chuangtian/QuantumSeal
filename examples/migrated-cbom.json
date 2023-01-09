@@ -25,3 +25,16 @@
       "priority": 73,
       "priority_band": "high",
       "quantum_risk": "high_shor",
+      "quantum_risk_label": "High (Shor-breakable)"
+    },
+    {
+      "category": "symmetric",
+      "file_count": 1,
+      "guidance": "AES remains viable; ensure >=256-bit keys so Grover's algorithm leaves ~128-bit effective strength.",
+      "id": "aes",
+      "name": "AES",
+      "occurrence_count": 2,
+      "occurrences": [
+        {
+          "excerpt": "// Symmetric layer already uses AES-256-GCM (Grover-safe at 256-bit).",
+          "file": "fixtures/migrated_service/src/keyexchange.ts",

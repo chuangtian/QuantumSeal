@@ -52,3 +52,16 @@
       "priority_band": "low",
       "quantum_risk": "moderate_grover",
       "quantum_risk_label": "Moderate (Grover-affected)"
+    },
+    {
+      "category": "post_quantum",
+      "file_count": 1,
+      "guidance": "ML-DSA (FIPS 204) is a standardized PQ signature scheme. Good target.",
+      "id": "mldsa",
+      "name": "ML-DSA (Dilithium)",
+      "occurrence_count": 2,
+      "occurrences": [
+        {
+          "excerpt": "// Signatures migrated to ML-DSA (Dilithium, FIPS 204).",
+          "file": "fixtures/migrated_service/src/keyexchange.ts",
+          "line": 15,

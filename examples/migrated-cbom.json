@@ -78,3 +78,16 @@
       "priority_band": "informational",
       "quantum_risk": "low_resistant",
       "quantum_risk_label": "Low (quantum-resistant)"
+    },
+    {
+      "category": "post_quantum",
+      "file_count": 1,
+      "guidance": "ML-KEM (FIPS 203) is a standardized PQ KEM. Good target; verify parameter set (512/768/1024).",
+      "id": "mlkem",
+      "name": "ML-KEM (Kyber)",
+      "occurrence_count": 2,
+      "occurrences": [
+        {
+          "excerpt": "// Hybrid: X25519 + ML-KEM-768 (FIPS 203).",
+          "file": "fixtures/migrated_service/src/keyexchange.ts",
+          "line": 9,

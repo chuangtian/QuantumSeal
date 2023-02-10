@@ -104,3 +104,17 @@
       "priority_band": "informational",
       "quantum_risk": "low_resistant",
       "quantum_risk_label": "Low (quantum-resistant)"
+    },
+    {
+      "category": "post_quantum",
+      "file_count": 1,
+      "guidance": "SLH-DSA (FIPS 205) is a stateless hash-based PQ signature scheme. Good conservative target.",
+      "id": "slhdsa",
+      "name": "SLH-DSA (SPHINCS+)",
+      "occurrence_count": 1,
+      "occurrences": [
+        {
+          "excerpt": "export const FIRMWARE_SIG = \"SLH-DSA-SHA2-128s\"; // SPHINCS+",
+          "file": "fixtures/migrated_service/src/keyexchange.ts",
+          "line": 19,
+          "needle": "slh-dsa"

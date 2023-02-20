@@ -2,3 +2,5 @@
 // Used to verify quantumseal does not produce false positives on plain code.
 
 package inventory
+
+type Item struct {

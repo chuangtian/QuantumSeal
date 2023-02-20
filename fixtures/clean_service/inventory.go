@@ -4,3 +4,6 @@
 package inventory
 
 type Item struct {
+	SKU      string
+	Quantity int
+	Price    float64

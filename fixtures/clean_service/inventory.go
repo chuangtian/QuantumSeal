@@ -9,3 +9,6 @@ type Item struct {
 	Price    float64
 }
 
+func TotalValue(items []Item) float64 {
+	total := 0.0
+	for _, it := range items {

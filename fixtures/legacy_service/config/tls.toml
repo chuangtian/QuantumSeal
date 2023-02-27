@@ -5,3 +5,6 @@
 min_version = "TLSv1.2"
 ciphers = [
   "ECDHE-RSA-AES256-GCM-SHA384",
+  "ECDHE-ECDSA-CHACHA20-POLY1305",
+  "AES128-SHA",       # weaker legacy suite
+]

@@ -2,3 +2,6 @@
 # Illustrative only — not a deployable configuration.
 
 [tls]
+min_version = "TLSv1.2"
+ciphers = [
+  "ECDHE-RSA-AES256-GCM-SHA384",

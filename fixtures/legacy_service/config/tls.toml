@@ -8,3 +8,5 @@ ciphers = [
   "ECDHE-ECDSA-CHACHA20-POLY1305",
   "AES128-SHA",       # weaker legacy suite
 ]
+
+[ssh]

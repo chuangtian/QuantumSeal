@@ -1,2 +1,4 @@
 # Fixture: TLS/cipher configuration with mixed-risk indicators.
 # Illustrative only — not a deployable configuration.
+
+[tls]

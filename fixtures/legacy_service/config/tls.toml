@@ -10,3 +10,6 @@ ciphers = [
 ]
 
 [ssh]
+host_key_algorithms = "ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519"
+
+[hashing]

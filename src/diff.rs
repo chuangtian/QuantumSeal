@@ -288,3 +288,44 @@ mod tests {
 
     #[test]
     fn detects_added_removed_changed() {
+        let mut base = BTreeMap::new();
+        base.insert("rsa".to_string(), snap("rsa", 10));
+        base.insert("md5".to_string(), snap("md5", 3));
+
+        let mut cur = BTreeMap::new();
+        cur.insert("rsa".to_string(), snap("rsa", 4)); // decreased
+        cur.insert("mlkem".to_string(), snap("mlkem", 2)); // added
+
+        let d = diff_maps(&base, &cur);
+        assert_eq!(d.added.len(), 1);
+        assert_eq!(d.added[0].id, "mlkem");
+        assert_eq!(d.removed.len(), 1);
+        assert_eq!(d.removed[0].id, "md5");
+        assert_eq!(d.changed.len(), 1);
+        assert_eq!(d.changed[0].id, "rsa");
+    }
+
+    #[test]
+    fn regression_detection() {
+        let mut base = BTreeMap::new();
+        base.insert("rsa".to_string(), snap("rsa", 4));
+        let mut worse = BTreeMap::new();
+        worse.insert("rsa".to_string(), snap("rsa", 9)); // increased
+        assert!(diff_maps(&base, &worse).is_regression());
+
+        let mut better = BTreeMap::new();
+        better.insert("rsa".to_string(), snap("rsa", 2)); // decreased
+        assert!(!diff_maps(&base, &better).is_regression());
+    }
+
+    #[test]
+    fn parses_baseline_from_json() {
+        let doc = r#"{
+            "components": [
+                {"id":"rsa","name":"RSA","priority":72,"occurrence_count":5,"file_count":2}
+            ]
+        }"#;
+        let parsed = json::parse(doc).unwrap();
+        let snaps = snapshots_from_json(&parsed).unwrap();
+        assert_eq!(snaps.get("rsa").unwrap().occurrence_count, 5);
+    }

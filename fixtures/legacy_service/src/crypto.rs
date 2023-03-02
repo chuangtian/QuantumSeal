@@ -13,3 +13,8 @@ pub fn provision_tls_keys() -> Result<(), Box<dyn Error>> {
     let _kex = "ECDH with X25519";
     Ok(())
 }
+
+/// Legacy token signing still uses RS256 (asymmetric JWT).
+pub fn sign_token() -> String {
+    // JWT alg header: RS256
+    "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9".to_string()

@@ -18,3 +18,7 @@ pub fn provision_tls_keys() -> Result<(), Box<dyn Error>> {
 pub fn sign_token() -> String {
     // JWT alg header: RS256
     "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9".to_string()
+}
+
+/// Deprecated primitives that should be removed entirely.
+pub fn legacy_digest(input: &[u8]) -> Vec<u8> {

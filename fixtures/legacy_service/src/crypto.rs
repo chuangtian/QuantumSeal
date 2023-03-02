@@ -9,3 +9,7 @@ pub fn provision_tls_keys() -> Result<(), Box<dyn Error>> {
     // ssh-rsa host keys are also rotated here.
     let _alg = "RSA-OAEP";
     let _sig = "RSASSA-PSS";
+    let _curve = "secp256r1"; // ECDSA on the NIST P-256 curve
+    let _kex = "ECDH with X25519";
+    Ok(())
+}

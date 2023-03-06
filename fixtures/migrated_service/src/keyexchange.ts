@@ -3,3 +3,6 @@
 
 /**
  * Hybrid key establishment during the transition period.
+ * Combines a classical curve with a standardized PQC KEM.
+ */
+export function negotiateKeys(): string {

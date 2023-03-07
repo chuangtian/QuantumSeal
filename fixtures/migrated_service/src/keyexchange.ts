@@ -6,3 +6,6 @@
  * Combines a classical curve with a standardized PQC KEM.
  */
 export function negotiateKeys(): string {
+  // Hybrid: X25519 + ML-KEM-768 (FIPS 203).
+  const kem = "ML-KEM-768";      // a.k.a. Kyber
+  const classical = "x25519";    // still present during hybrid rollout

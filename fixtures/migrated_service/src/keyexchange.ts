@@ -12,3 +12,6 @@ export function negotiateKeys(): string {
   return `${classical}+${kem}`;
 }
 
+// Signatures migrated to ML-DSA (Dilithium, FIPS 204).
+export const SIGNATURE_ALG = "ML-DSA-65";
+

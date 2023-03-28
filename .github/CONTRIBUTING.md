@@ -7,3 +7,6 @@ reads text and never executes or implements cryptography.
 
 - **Rust (stable)** - the CLI and library live in `src/`:
   `cargo build`, `cargo test`, `cargo clippy --all-targets -- -D warnings`.
+- **Node 20+** - the viewer lives in `viewer/`:
+  `npm install`, `npm run typecheck`, `npm run build`, `npm test`.
+

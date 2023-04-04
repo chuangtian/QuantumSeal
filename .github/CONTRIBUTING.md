@@ -14,3 +14,6 @@ reads text and never executes or implements cryptography.
 
 1. `cargo fmt --check && cargo clippy --all-targets -- -D warnings && cargo test`
 2. `cd viewer && npm run typecheck && npm test`
+3. Add or update tests for any behavior change.
+4. Keep indicator rules data-driven (`src/rules.rs`) and document new rules in
+   `docs/RULES.md`.

@@ -10,3 +10,7 @@ assignees: ""
 
 **What you expected**
 
+**Reproduce**
+
+Command and a minimal fixture tree:
+

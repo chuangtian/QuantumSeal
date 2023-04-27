@@ -14,3 +14,6 @@ assignees: ""
 
 Command and a minimal fixture tree:
 
+```bash
+quantumseal scan fixtures/legacy_service --format json
+```

@@ -9,3 +9,13 @@ extend — the built-in catalog.
 > proof of insecure usage, and the absence of a match is **not** proof of
 > safety. Treat every finding as a starting point for human review, not a
 > security verdict. quantumseal does not implement, execute, break, or evaluate
+> any cryptography.
+
+## Quantum-risk model
+
+Each rule is assigned one of four quantum-risk classes, grounded in the widely
+understood impact of quantum algorithms on cryptography:
+
+| Class | Code | Meaning | Base weight |
+| --- | --- | --- | ---: |
+| Low (quantum-resistant) | `low_resistant` | Post-quantum schemes and large symmetric keys believed safe against known quantum attacks. | 5 |

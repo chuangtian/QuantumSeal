@@ -38,3 +38,13 @@ score = min(100, base_weight(risk) + occurrence_bonus + file_bonus)
   (1 → 0, 2–4 → 4, 5–9 → 8, 10+ → 12).
 
 Scores map to bands:
+
+| Band | Score range |
+| --- | --- |
+| `informational` | 0–9 |
+| `low` | 10–34 |
+| `medium` | 35–59 |
+| `high` | 60–84 |
+| `critical` | 85–100 |
+
+Risk always dominates prevalence: a single isolated Shor-breakable primitive

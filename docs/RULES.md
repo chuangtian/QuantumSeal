@@ -77,3 +77,13 @@ still outranks a heavily-used quantum-resistant one.
 | `chacha20` | ChaCha20 / Poly1305 | symmetric | moderate_grover |
 | `3des` | 3DES / DES | symmetric | critical_deprecated |
 | `rc4` | RC4 | symmetric | critical_deprecated |
+| `blowfish` | Blowfish | symmetric | moderate_grover |
+| `md5` | MD5 | hash | critical_deprecated |
+| `sha1` | SHA-1 | hash | critical_deprecated |
+| `sha2` | SHA-2 family | hash | moderate_grover |
+| `sha3` | SHA-3 / SHAKE | hash | moderate_grover |
+| `tls` | TLS / SSL | protocol | high_shor |
+| `ssh` | SSH | protocol | high_shor |
+| `jwt` | JWT / JOSE | protocol | high_shor |
+| `mlkem` | ML-KEM (Kyber) | post_quantum | low_resistant |
+| `mldsa` | ML-DSA (Dilithium) | post_quantum | low_resistant |

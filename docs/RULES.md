@@ -58,3 +58,12 @@ still outranks a heavily-used quantum-resistant one.
   embedded fragment when the adjacent character shares its boundary class —
   letter-next-to-letter or digit-next-to-digit. This is why `sha3-` does not
   fire on `sha384`, while `Dilithium3` and `generate_rsa_2048` still match.
+- **Line-level exclusions** (`exclude_if_line_contains`) disambiguate names that
+  are substrings of unrelated primitives. For example, the bare `dsa` family is
+  suppressed on any line containing `ml-dsa`, `slh-dsa`, or `ecdsa`.
+- Only **text-like files** are scanned (by extension); binaries and files
+  containing NUL bytes are skipped, as are common vendor directories
+  (`node_modules`, `target`, `.git`, `dist`, `build`, …).
+
+## Built-in catalog
+

@@ -48,3 +48,13 @@ Scores map to bands:
 | `critical` | 85–100 |
 
 Risk always dominates prevalence: a single isolated Shor-breakable primitive
+still outranks a heavily-used quantum-resistant one.
+
+## Matching semantics
+
+- Each source line is lowercased once, then tested against every rule's
+  **needles** (lowercase substrings).
+- **Class-aware boundaries** reduce false positives: a needle is rejected as an
+  embedded fragment when the adjacent character shares its boundary class —
+  letter-next-to-letter or digit-next-to-digit. This is why `sha3-` does not
+  fire on `sha384`, while `Dilithium3` and `generate_rsa_2048` still match.

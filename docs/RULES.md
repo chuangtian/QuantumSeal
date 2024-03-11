@@ -19,3 +19,13 @@ understood impact of quantum algorithms on cryptography:
 | Class | Code | Meaning | Base weight |
 | --- | --- | --- | ---: |
 | Low (quantum-resistant) | `low_resistant` | Post-quantum schemes and large symmetric keys believed safe against known quantum attacks. | 5 |
+| Moderate (Grover-affected) | `moderate_grover` | Symmetric ciphers / hashes whose effective strength is halved by Grover's algorithm but not broken; usually mitigated by larger sizes. | 25 |
+| High (Shor-breakable) | `high_shor` | Public-key primitives (RSA, ECC, finite-field DH, DSA) broken by Shor's algorithm — the primary migration targets. | 70 |
+| Critical (deprecated + quantum-relevant) | `critical_deprecated` | Primitives already weak classically (MD5, SHA-1, DES/3DES, RC4). Highest urgency. | 90 |
+
+## Priority scoring
+
+Each detected component receives a **0–100 priority score**:
+
+```
+score = min(100, base_weight(risk) + occurrence_bonus + file_bonus)

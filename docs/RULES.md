@@ -29,3 +29,12 @@ Each detected component receives a **0–100 priority score**:
 
 ```
 score = min(100, base_weight(risk) + occurrence_bonus + file_bonus)
+```
+
+- `base_weight(risk)` — dominant term from the table above.
+- `occurrence_bonus` — saturating bonus for how many times the indicator
+  appears (0 → 0, 2–4 → 3, 5–9 → 6, 10–24 → 9, 25+ → 12).
+- `file_bonus` — saturating bonus for how many distinct files contain it
+  (1 → 0, 2–4 → 4, 5–9 → 8, 10+ → 12).
+
+Scores map to bands:

@@ -67,3 +67,13 @@ still outranks a heavily-used quantum-resistant one.
 
 ## Built-in catalog
 
+| Rule id | Name | Category | Risk |
+| --- | --- | --- | --- |
+| `rsa` | RSA | public_key | high_shor |
+| `ecc` | Elliptic Curve (ECDSA/ECDH/EdDSA) | public_key | high_shor |
+| `dh` | Diffie-Hellman (finite field) | key_exchange | high_shor |
+| `dsa` | DSA | signature | high_shor |
+| `aes` | AES | symmetric | moderate_grover |
+| `chacha20` | ChaCha20 / Poly1305 | symmetric | moderate_grover |
+| `3des` | 3DES / DES | symmetric | critical_deprecated |
+| `rc4` | RC4 | symmetric | critical_deprecated |

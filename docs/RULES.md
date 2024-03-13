@@ -87,3 +87,12 @@ still outranks a heavily-used quantum-resistant one.
 | `jwt` | JWT / JOSE | protocol | high_shor |
 | `mlkem` | ML-KEM (Kyber) | post_quantum | low_resistant |
 | `mldsa` | ML-DSA (Dilithium) | post_quantum | low_resistant |
+| `slhdsa` | SLH-DSA (SPHINCS+) | post_quantum | low_resistant |
+| `keystore` | Key material / keystore | random_or_keystore | high_shor |
+| `weak_random` | Non-cryptographic RNG | random_or_keystore | moderate_grover |
+
+Run `quantumseal rules` to print the full catalog including every needle and the
+migration guidance attached to each rule.
+
+## Extending the catalog
+

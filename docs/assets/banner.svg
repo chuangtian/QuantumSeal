@@ -11,3 +11,8 @@
     <radialGradient id="qglow" cx="0.8" cy="0.28" r="0.62">
       <stop offset="0" stop-color="#22D3EE" stop-opacity="0.18"/>
       <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="300" fill="url(#qbg)"/>
+  <rect width="1200" height="300" fill="url(#qglow)"/>
+  <g fill="none" stroke="url(#qorbit)" stroke-width="1.3" opacity="0.55">

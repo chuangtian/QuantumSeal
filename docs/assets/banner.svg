@@ -16,3 +16,7 @@
   <rect width="1200" height="300" fill="url(#qbg)"/>
   <rect width="1200" height="300" fill="url(#qglow)"/>
   <g fill="none" stroke="url(#qorbit)" stroke-width="1.3" opacity="0.55">
+    <ellipse cx="952" cy="148" rx="214" ry="88" transform="rotate(-18 952 148)"/>
+    <ellipse cx="952" cy="148" rx="152" ry="62" transform="rotate(12 952 148)"/>
+    <circle cx="952" cy="148" r="36" stroke-dasharray="4 7"/>
+  </g>

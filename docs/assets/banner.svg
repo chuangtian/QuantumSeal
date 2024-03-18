@@ -25,3 +25,8 @@
   <circle cx="796" cy="214" r="4" fill="#34D399"/>
   <circle cx="1046" cy="226" r="3" fill="#22D3EE"/>
   <g font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif">
+    <text x="64" y="128" font-size="54" font-weight="700" fill="#EAF7FB" letter-spacing="0.5">QuantumSeal</text>
+    <text x="66" y="170" font-size="21" fill="#9FB6C6">Post-quantum migration observatory</text>
+    <text x="66" y="204" font-size="16" fill="#6E8598">CryptoBOM for RSA · ECC · MD5 · ML-KEM · TLS — scan, score, diff the migration</text>
+    <g transform="translate(66,232)">
+      <rect width="150" height="28" rx="14" fill="none" stroke="#22D3EE" stroke-opacity="0.45"/>

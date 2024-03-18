@@ -20,3 +20,8 @@
     <ellipse cx="952" cy="148" rx="152" ry="62" transform="rotate(12 952 148)"/>
     <circle cx="952" cy="148" r="36" stroke-dasharray="4 7"/>
   </g>
+  <circle cx="952" cy="148" r="13" fill="#22D3EE"/>
+  <circle cx="1132" cy="92" r="5" fill="#F59E0B"/>
+  <circle cx="796" cy="214" r="4" fill="#34D399"/>
+  <circle cx="1046" cy="226" r="3" fill="#22D3EE"/>
+  <g font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif">

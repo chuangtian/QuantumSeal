@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400" width="920" height="400" role="img" aria-labelledby="cbTitle cbDesc" font-family="'Cascadia Code','Consolas',ui-monospace,monospace">
+  <title id="cbTitle">CryptoBOM terminal and risk constellation</title>
+  <desc id="cbDesc">A mission-console split view: a scrolling quantumseal scan transcript on the left, and a constellation of detected cryptographic components plotted by quantum risk on the right.</desc>
+  <defs>
+    <linearGradient id="deep" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0c0620"/>
+      <stop offset="100%" stop-color="#03010a"/>
+    </linearGradient>
+    <linearGradient id="uv2" x1="0" y1="0" x2="1" y2="0">

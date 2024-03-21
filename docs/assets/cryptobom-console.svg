@@ -29,3 +29,10 @@
       <text x="36" y="74"><tspan fill="#22d3ee">▹</tspan> quantumseal scan fixtures/legacy_service</text>
       <text x="36" y="96" fill="#6a5a94" font-size="10">static analysis of crypto indicators only, not a security audit</text>
       <text x="36" y="120">Files scanned: 2   Components: 13   Occurrences: 30</text>
+
+      <g>
+        <text x="36" y="150"><tspan fill="#c026d3" font-weight="700">[ 97] MD5</tspan>  <tspan fill="#ff6ad5">CRITICAL</tspan></text>
+        <text x="52" y="166" fill="#8a7bbf" font-size="9.5">risk=critical_deprecated  category=hash  files=2</text>
+        <text x="36" y="192"><tspan fill="#c026d3" font-weight="700">[ 93] SHA-1</tspan>  <tspan fill="#ff6ad5">CRITICAL</tspan></text>
+        <text x="36" y="220"><tspan fill="#a855f7" font-weight="700">[ 80] RSA</tspan>  <tspan fill="#c9a4ff">HIGH · Shor</tspan></text>
+        <text x="52" y="236" fill="#8a7bbf" font-size="9.5">guidance: replace with ML-KEM / ML-DSA (or hybrid)</text>

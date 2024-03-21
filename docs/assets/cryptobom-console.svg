@@ -22,3 +22,10 @@
   <g>
     <rect x="20" y="20" width="470" height="360" rx="10" fill="#0a0518" stroke="#3b246b" stroke-width="1.2"/>
     <rect x="20" y="20" width="470" height="30" rx="10" fill="#150a30"/>
+    <circle cx="40" cy="35" r="5" fill="#c026d3"/><circle cx="58" cy="35" r="5" fill="#8b5cf6"/><circle cx="76" cy="35" r="5" fill="#22d3ee"/>
+    <text x="255" y="39" text-anchor="middle" fill="#8a7bbf" font-size="11">quantumseal: CryptoBOM console</text>
+
+    <g font-size="11.5" fill="#cbb8ff">
+      <text x="36" y="74"><tspan fill="#22d3ee">▹</tspan> quantumseal scan fixtures/legacy_service</text>
+      <text x="36" y="96" fill="#6a5a94" font-size="10">static analysis of crypto indicators only, not a security audit</text>
+      <text x="36" y="120">Files scanned: 2   Components: 13   Occurrences: 30</text>

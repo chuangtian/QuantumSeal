@@ -43,3 +43,11 @@
       <text x="36" y="330" fill="#5fc8bf">Highest priority band: CRITICAL</text>
       <g>
         <rect x="36" y="344" width="9" height="15" fill="#22d3ee"><animate attributeName="opacity" values="1;0;1" dur="1.1s" repeatCount="indefinite"/></rect>
+        <text x="52" y="357" fill="#8a7bbf" font-size="10">wrote CryptoBOM to cbom.json</text>
+      </g>
+    </g>
+    <!-- scanline sweep -->
+    <rect x="20" y="50" width="470" height="22" fill="#22d3ee" opacity="0.05">
+      <animate attributeName="y" values="50;358;50" dur="6s" repeatCount="indefinite"/>
+    </rect>
+  </g>

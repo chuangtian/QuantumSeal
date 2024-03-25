@@ -58,3 +58,10 @@
     <text x="195" y="28" text-anchor="middle" fill="#8a7bbf" font-size="11">risk constellation · plotted by priority</text>
 
     <!-- risk bands as concentric arcs -->
+    <g fill="none" stroke-width="0.8" opacity="0.4">
+      <circle cx="195" cy="200" r="150" stroke="#3b246b"/>
+      <circle cx="195" cy="200" r="105" stroke="#4a2d80"/>
+      <circle cx="195" cy="200" r="60" stroke="#c026d3"/>
+    </g>
+    <text x="195" y="66" text-anchor="middle" fill="#5a4a86" font-size="8.5">low / resistant</text>
+    <text x="195" y="108" text-anchor="middle" fill="#6a5a94" font-size="8.5">high · Shor</text>

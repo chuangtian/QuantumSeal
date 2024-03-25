@@ -51,3 +51,10 @@
       <animate attributeName="y" values="50;358;50" dur="6s" repeatCount="indefinite"/>
     </rect>
   </g>
+
+  <!-- ===== right: risk constellation ===== -->
+  <g transform="translate(510 20)">
+    <rect x="0" y="0" width="390" height="360" rx="10" fill="#0a0518" stroke="#3b246b" stroke-width="1.2"/>
+    <text x="195" y="28" text-anchor="middle" fill="#8a7bbf" font-size="11">risk constellation · plotted by priority</text>
+
+    <!-- risk bands as concentric arcs -->

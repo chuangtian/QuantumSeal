@@ -72,3 +72,11 @@
       <line x1="195" y1="200" x2="160" y2="150"/><line x1="195" y1="200" x2="240" y2="158"/>
       <line x1="195" y1="200" x2="110" y2="235"/><line x1="195" y1="200" x2="285" y2="240"/>
       <line x1="195" y1="200" x2="195" y2="80"/><line x1="195" y1="200" x2="300" y2="120"/>
+    </g>
+
+    <!-- nodes: size ~ occurrences, color ~ risk -->
+    <g filter="url(#g2)">
+      <circle cx="160" cy="150" r="9" fill="#c026d3"><animate attributeName="r" values="7;11;7" dur="3s" repeatCount="indefinite"/></circle>
+      <circle cx="240" cy="158" r="7" fill="#c026d3"><animate attributeName="r" values="9;6;9" dur="3.7s" repeatCount="indefinite"/></circle>
+      <circle cx="110" cy="235" r="10" fill="#a855f7"><animate attributeName="r" values="8;12;8" dur="4.2s" repeatCount="indefinite"/></circle>
+      <circle cx="285" cy="240" r="8" fill="#a855f7"><animate attributeName="r" values="10;7;10" dur="3.3s" repeatCount="indefinite"/></circle>

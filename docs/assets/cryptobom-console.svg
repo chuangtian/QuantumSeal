@@ -65,3 +65,10 @@
     </g>
     <text x="195" y="66" text-anchor="middle" fill="#5a4a86" font-size="8.5">low / resistant</text>
     <text x="195" y="108" text-anchor="middle" fill="#6a5a94" font-size="8.5">high · Shor</text>
+    <text x="195" y="152" text-anchor="middle" fill="#a03fb0" font-size="8.5">critical</text>
+
+    <!-- connecting lines -->
+    <g stroke="#4a2d80" stroke-width="0.7" opacity="0.6">
+      <line x1="195" y1="200" x2="160" y2="150"/><line x1="195" y1="200" x2="240" y2="158"/>
+      <line x1="195" y1="200" x2="110" y2="235"/><line x1="195" y1="200" x2="285" y2="240"/>
+      <line x1="195" y1="200" x2="195" y2="80"/><line x1="195" y1="200" x2="300" y2="120"/>

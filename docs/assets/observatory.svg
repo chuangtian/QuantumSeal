@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 360" width="920" height="360" role="img" aria-labelledby="obsTitle obsDesc" font-family="'Segoe UI',Helvetica,Arial,sans-serif">
+  <title id="obsTitle">quantumseal migration observatory</title>
+  <desc id="obsDesc">A dark orbital scene where legacy RSA and ECC signals decay along orbits and are re-plotted as post-quantum migration paths. Static analysis only; no cryptography is executed.</desc>
+  <defs>
+    <radialGradient id="void" cx="30%" cy="28%" r="95%">
+      <stop offset="0%" stop-color="#160a2e"/>
+      <stop offset="55%" stop-color="#0a0518"/>
+      <stop offset="100%" stop-color="#03010a"/>
+    </radialGradient>
+    <linearGradient id="uv" x1="0" y1="0" x2="1" y2="1">

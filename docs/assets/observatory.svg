@@ -15,3 +15,11 @@
       <stop offset="0%" stop-color="#22d3ee"/>
       <stop offset="100%" stop-color="#2dd4bf"/>
     </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3.4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="lattice" width="34" height="34" patternUnits="userSpaceOnUse" patternTransform="rotate(18)">
+      <path d="M17 0V34M0 17H34" stroke="#3b246b" stroke-width="0.6" opacity="0.5"/>
+      <circle cx="17" cy="17" r="1.1" fill="#5b3aa6" opacity="0.7"/>
+    </pattern>

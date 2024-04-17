@@ -46,3 +46,11 @@
     <circle r="30" fill="none" stroke="url(#uv)" stroke-width="2" filter="url(#glow)"/>
     <circle r="30" fill="#1b0f38"/>
     <text y="-2" text-anchor="middle" fill="#e9dfff" font-size="12" font-weight="700">RSA</text>
+    <text y="13" text-anchor="middle" fill="#b79cff" font-size="9">ECC · DH</text>
+
+    <!-- three tilted orbits -->
+    <g fill="none" stroke="#7c4dd6" stroke-width="1.1" opacity="0.6">
+      <ellipse rx="80" ry="34" transform="rotate(-18)"/>
+      <ellipse rx="112" ry="46" transform="rotate(22)"/>
+      <ellipse rx="140" ry="58" transform="rotate(6)"/>
+    </g>

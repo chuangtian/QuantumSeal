@@ -54,3 +54,11 @@
       <ellipse rx="112" ry="46" transform="rotate(22)"/>
       <ellipse rx="140" ry="58" transform="rotate(6)"/>
     </g>
+
+    <!-- legacy signals fading as they orbit -->
+    <g filter="url(#glow)">
+      <circle r="4.5" fill="#c026d3">
+        <animateMotion dur="7s" repeatCount="indefinite" rotate="auto" path="M0,0 m-80,0 a80,34 -18 1,0 160,0 a80,34 -18 1,0 -160,0"/>
+        <animate attributeName="opacity" values="1;1;0.15;1" dur="7s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="3.6" fill="#a855f7">

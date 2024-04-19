@@ -62,3 +62,10 @@
         <animate attributeName="opacity" values="1;1;0.15;1" dur="7s" repeatCount="indefinite"/>
       </circle>
       <circle r="3.6" fill="#a855f7">
+        <animateMotion dur="9.5s" repeatCount="indefinite" rotate="auto" path="M0,0 m-112,0 a112,46 22 1,0 224,0 a112,46 22 1,0 -224,0"/>
+        <animate attributeName="opacity" values="0.2;1;0.2" dur="9.5s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+  </g>
+
+  <!-- migration beam -->

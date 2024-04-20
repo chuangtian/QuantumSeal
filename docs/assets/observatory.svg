@@ -69,3 +69,11 @@
   </g>
 
   <!-- migration beam -->
+  <g>
+    <line x1="446" y1="210" x2="600" y2="210" stroke="url(#aqua)" stroke-width="2.4" stroke-dasharray="9 7" filter="url(#glow)">
+      <animate attributeName="stroke-dashoffset" values="0;-64" dur="1.4s" repeatCount="indefinite"/>
+    </line>
+    <polygon points="600,203 616,210 600,217" fill="#22d3ee"/>
+    <text x="523" y="198" text-anchor="middle" fill="#7fe6f0" font-size="10" letter-spacing="1.5">MIGRATE</text>
+  </g>
+

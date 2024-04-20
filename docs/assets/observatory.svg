@@ -77,3 +77,11 @@
     <text x="523" y="198" text-anchor="middle" fill="#7fe6f0" font-size="10" letter-spacing="1.5">MIGRATE</text>
   </g>
 
+  <!-- target PQC lattice constellation -->
+  <g transform="translate(700 210)">
+    <polygon points="0,-64 56,-32 56,32 0,64 -56,32 -56,-32" fill="none" stroke="url(#aqua)" stroke-width="1.6" opacity="0.8"/>
+    <g stroke="#2dd4bf" stroke-width="0.7" opacity="0.55">
+      <line x1="0" y1="-64" x2="0" y2="64"/><line x1="-56" y1="-32" x2="56" y2="32"/><line x1="-56" y1="32" x2="56" y2="-32"/>
+    </g>
+    <g fill="#22d3ee" filter="url(#glow)">
+      <circle cx="0" cy="-40" r="4.5"><animate attributeName="r" values="3.5;6;3.5" dur="3s" repeatCount="indefinite"/></circle>

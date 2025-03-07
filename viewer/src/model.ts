@@ -181,3 +181,36 @@ function parseSummary(value: unknown): Summary {
  * @throws {InvalidCryptoBomError} if the shape is wrong.
  */
 export function loadCryptoBom(value: unknown): CryptoBom {
+  if (!isObject(value)) {
+    throw new InvalidCryptoBomError("root must be a JSON object");
+  }
+  const schema = requireString(value, "schema");
+  if (!schema.startsWith("quantumseal-cbom/")) {
+    throw new InvalidCryptoBomError(
+      `unexpected schema '${schema}'; expected 'quantumseal-cbom/*'`,
+    );
+  }
+  const components = requireArray(value, "components").map(parseComponent);
+  return {
+    tool: requireString(value, "tool"),
+    tool_version: requireString(value, "tool_version"),
+    schema,
+    root: requireString(value, "root"),
+    analysis_only: requireBool(value, "analysis_only"),
+    disclaimer: requireString(value, "disclaimer"),
+    summary: parseSummary(value["summary"]),
+    components,
+  };
+}
+
+/** Parse CryptoBOM JSON text into a typed document. */
+export function parseCryptoBom(text: string): CryptoBom {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(text);
+  } catch (err) {
+    throw new InvalidCryptoBomError(
+      `input is not valid JSON: ${(err as Error).message}`,
+    );
+  }
+  return loadCryptoBom(parsed);

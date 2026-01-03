@@ -5,3 +5,7 @@
  * documents. See {@link parseCryptoBom} and the `format*` functions.
  */
 
+export * from "./model";
+export * from "./formatters";
+
+// draft note 861

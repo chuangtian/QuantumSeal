@@ -62,3 +62,16 @@ viewer-typecheck: ## Type-check the viewer without emitting
 all: build test viewer-build viewer-test ## Build and test everything
 
 .PHONY: demo
+demo: build viewer-build ## Run the end-to-end demo against the fixtures
+	./target/release/quantumseal scan fixtures/legacy_service --format json --output $(EXAMPLES_DIR)/legacy-cbom.json
+	./target/release/quantumseal scan fixtures/migrated_service --format json --output $(EXAMPLES_DIR)/migrated-cbom.json
+	node $(VIEWER_DIR)/dist/cli.js $(EXAMPLES_DIR)/legacy-cbom.json --format html --out $(EXAMPLES_DIR)/legacy-report.html
+	node $(VIEWER_DIR)/dist/cli.js $(EXAMPLES_DIR)/legacy-cbom.json --format markdown --out $(EXAMPLES_DIR)/legacy-report.md
+	./target/release/quantumseal diff $(EXAMPLES_DIR)/legacy-cbom.json --path fixtures/migrated_service
+
+.PHONY: clean
+clean: ## Remove build artifacts
+	$(CARGO) clean
+	cd $(VIEWER_DIR) && $(NPM) run clean
+
+<!-- draft note 860 -->

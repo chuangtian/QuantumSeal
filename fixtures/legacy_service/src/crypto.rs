@@ -22,3 +22,10 @@ pub fn sign_token() -> String {
 
 /// Deprecated primitives that should be removed entirely.
 pub fn legacy_digest(input: &[u8]) -> Vec<u8> {
+    // MD5 and SHA-1 are collision-broken.
+    let _md5 = "md5";
+    let _sha1 = "sha1";
+    let _cipher = "3DES-CBC"; // Triple-DES, deprecated
+    let _rc4 = "RC4";         // broken stream cipher
+    input.to_vec()
+}

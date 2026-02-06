@@ -15,3 +15,8 @@ export function negotiateKeys(): string {
 // Signatures migrated to ML-DSA (Dilithium, FIPS 204).
 export const SIGNATURE_ALG = "ML-DSA-65";
 
+// Long-term firmware signing uses a conservative hash-based scheme.
+export const FIRMWARE_SIG = "SLH-DSA-SHA2-128s"; // SPHINCS+
+
+// Symmetric layer already uses AES-256-GCM (Grover-safe at 256-bit).
+export const AEAD = "AES-256-GCM";

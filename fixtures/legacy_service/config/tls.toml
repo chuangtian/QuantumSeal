@@ -13,3 +13,8 @@ ciphers = [
 host_key_algorithms = "ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519"
 
 [hashing]
+password_hash = "sha512"
+legacy_checksum = "md5"
+
+[keystore]
+path = "/etc/service/keystore.pkcs12"

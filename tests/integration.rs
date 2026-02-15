@@ -72,3 +72,20 @@ fn json_roundtrips_and_is_parseable() {
 fn diff_detects_migration_progress() {
     // Baseline = legacy service; current = migrated service.
     let baseline = scan_fixture("fixtures/legacy_service");
+    let current = scan_fixture("fixtures/migrated_service");
+
+    let baseline_json = baseline.to_json_string();
+    let d = diff::compare(&baseline_json, &current).expect("diff should succeed");
+
+    // RSA/MD5/etc. were removed; PQC algorithms were added.
+    let removed_ids: Vec<&str> = d.removed.iter().map(|c| c.id.as_str()).collect();
+    assert!(removed_ids.contains(&"rsa"));
+    assert!(removed_ids.contains(&"md5"));
+
+    let added_ids: Vec<&str> = d.added.iter().map(|c| c.id.as_str()).collect();
+    assert!(added_ids.contains(&"mlkem"));
+
+    // Adding new components counts as "regression" in the neutral sense of new
+    // crypto exposure; the migrated code introduces new (PQC) components.
+    assert!(!d.is_empty());
+}

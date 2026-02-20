@@ -12,3 +12,7 @@ type Item struct {
 func TotalValue(items []Item) float64 {
 	total := 0.0
 	for _, it := range items {
+		total += it.Price * float64(it.Quantity)
+	}
+	return total
+}

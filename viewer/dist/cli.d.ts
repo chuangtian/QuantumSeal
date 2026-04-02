@@ -8,3 +8,7 @@
  *   quantumseal-view --help
  *
  * Reads a quantumseal CryptoBOM (JSON) and prints a formatted report. When no
+ * file is given, reads JSON from stdin. Dependency-free: Node standard library
+ * only.
+ */
+export {};

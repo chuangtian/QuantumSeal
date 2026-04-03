@@ -53,3 +53,16 @@ export interface CryptoBom {
     readonly summary: Summary;
     readonly components: readonly Component[];
 }
+/** Ordered list of bands from most to least urgent, for sorting/coloring. */
+export declare const BAND_ORDER: readonly PriorityBand[];
+/** Thrown when a document does not conform to the CryptoBOM schema. */
+export declare class InvalidCryptoBomError extends Error {
+    constructor(message: string);
+}
+/**
+ * Validate and type an already-parsed JSON value as a {@link CryptoBom}.
+ * @throws {InvalidCryptoBomError} if the shape is wrong.
+ */
+export declare function loadCryptoBom(value: unknown): CryptoBom;
+/** Parse CryptoBOM JSON text into a typed document. */
+export declare function parseCryptoBom(text: string): CryptoBom;

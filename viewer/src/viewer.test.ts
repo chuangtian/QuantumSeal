@@ -123,3 +123,29 @@ test("formatMarkdown produces a component table", () => {
   assert.match(md, /\| Priority \| Band \| Component \|/);
   assert.match(md, /\| 97 \| critical \| MD5 \|/);
   assert.match(md, /## Details/);
+});
+
+test("formatHtml is a self-contained document", () => {
+  const html = formatHtml(SAMPLE);
+  assert.match(html, /<!DOCTYPE html>/);
+  assert.match(html, /quantumseal CryptoBOM/);
+  assert.match(html, /badge-critical/);
+  // HTML escaping is applied.
+  const withAngle = formatHtml({
+    ...SAMPLE,
+    root: "<script>alert(1)</script>",
+  });
+  assert.ok(!withAngle.includes("<script>alert(1)"));
+  assert.match(withAngle, /&lt;script&gt;/);
+});
+
+test("empty component list renders gracefully", () => {
+  const empty: CryptoBom = {
+    ...SAMPLE,
+    summary: { ...SAMPLE.summary, component_count: 0, total_occurrences: 0, priority_bands: {} },
+    components: [],
+  };
+  assert.match(formatTerminal(empty, { color: false }), /No cryptographic indicators/);
+  assert.match(formatMarkdown(empty), /No cryptographic indicators/);
+  assert.match(formatHtml(empty), /No cryptographic indicators/);
+});

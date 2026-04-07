@@ -330,3 +330,54 @@
           "file": "fixtures/legacy_service/config/tls.toml",
           "line": 7,
           "needle": "sha384"
+        },
+        {
+          "excerpt": "password_hash = \"sha512\"",
+          "file": "fixtures/legacy_service/config/tls.toml",
+          "line": 16,
+          "needle": "sha512"
+        }
+      ],
+      "priority": 28,
+      "priority_band": "low",
+      "quantum_risk": "moderate_grover",
+      "quantum_risk_label": "Moderate (Grover-affected)"
+    },
+    {
+      "category": "symmetric",
+      "file_count": 1,
+      "guidance": "ChaCha20-Poly1305 (256-bit) is a solid symmetric choice; no PQC replacement needed, retain large keys.",
+      "id": "chacha20",
+      "name": "ChaCha20 / Poly1305",
+      "occurrence_count": 1,
+      "occurrences": [
+        {
+          "excerpt": "\"ECDHE-ECDSA-CHACHA20-POLY1305\",",
+          "file": "fixtures/legacy_service/config/tls.toml",
+          "line": 8,
+          "needle": "chacha20"
+        }
+      ],
+      "priority": 25,
+      "priority_band": "low",
+      "quantum_risk": "moderate_grover",
+      "quantum_risk_label": "Moderate (Grover-affected)"
+    }
+  ],
+  "disclaimer": "Static analysis of cryptographic indicators only. Not a cryptographic implementation and not a security audit.",
+  "root": "fixtures/legacy_service",
+  "schema": "quantumseal-cbom/1",
+  "summary": {
+    "component_count": 13,
+    "entries_visited": 4,
+    "files_scanned": 2,
+    "priority_bands": {
+      "critical": 4,
+      "high": 6,
+      "low": 3
+    },
+    "total_occurrences": 30
+  },
+  "tool": "quantumseal",
+  "tool_version": "0.1.0"
+}

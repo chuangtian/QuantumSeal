@@ -118,3 +118,28 @@
           "file": "fixtures/migrated_service/src/keyexchange.ts",
           "line": 19,
           "needle": "slh-dsa"
+        }
+      ],
+      "priority": 5,
+      "priority_band": "informational",
+      "quantum_risk": "low_resistant",
+      "quantum_risk_label": "Low (quantum-resistant)"
+    }
+  ],
+  "disclaimer": "Static analysis of cryptographic indicators only. Not a cryptographic implementation and not a security audit.",
+  "root": "fixtures/migrated_service",
+  "schema": "quantumseal-cbom/1",
+  "summary": {
+    "component_count": 5,
+    "entries_visited": 2,
+    "files_scanned": 1,
+    "priority_bands": {
+      "high": 1,
+      "informational": 3,
+      "low": 1
+    },
+    "total_occurrences": 9
+  },
+  "tool": "quantumseal",
+  "tool_version": "0.1.0"
+}

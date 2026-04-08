@@ -214,3 +214,4 @@ export function parseCryptoBom(text: string): CryptoBom {
     );
   }
   return loadCryptoBom(parsed);
+}

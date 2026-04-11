@@ -18,3 +18,8 @@ export interface FormatOptions {
     /** Max occurrences to show per component (default 5, 0 = all). */
     maxOccurrences?: number;
 }
+export declare function formatTerminal(bom: CryptoBom, options?: FormatOptions): string;
+export declare function formatMarkdown(bom: CryptoBom): string;
+export declare function formatHtml(bom: CryptoBom): string;
+/** Group export kept for potential downstream tooling/testing. */
+export { groupByBand, sortComponents };

@@ -327,3 +327,4 @@ function htmlEscape(text: string): string {
 }
 
 /** Group export kept for potential downstream tooling/testing. */
+export { groupByBand, sortComponents };

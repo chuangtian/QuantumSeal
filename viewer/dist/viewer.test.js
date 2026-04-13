@@ -106,3 +106,24 @@ function serialize(bom) {
 });
 (0, node_test_1.test)("formatHtml is a self-contained document", () => {
     const html = (0, formatters_1.formatHtml)(SAMPLE);
+    strict_1.default.match(html, /<!DOCTYPE html>/);
+    strict_1.default.match(html, /quantumseal CryptoBOM/);
+    strict_1.default.match(html, /badge-critical/);
+    // HTML escaping is applied.
+    const withAngle = (0, formatters_1.formatHtml)({
+        ...SAMPLE,
+        root: "<script>alert(1)</script>",
+    });
+    strict_1.default.ok(!withAngle.includes("<script>alert(1)"));
+    strict_1.default.match(withAngle, /&lt;script&gt;/);
+});
+(0, node_test_1.test)("empty component list renders gracefully", () => {
+    const empty = {
+        ...SAMPLE,
+        summary: { ...SAMPLE.summary, component_count: 0, total_occurrences: 0, priority_bands: {} },
+        components: [],
+    };
+    strict_1.default.match((0, formatters_1.formatTerminal)(empty, { color: false }), /No cryptographic indicators/);
+    strict_1.default.match((0, formatters_1.formatMarkdown)(empty), /No cryptographic indicators/);
+    strict_1.default.match((0, formatters_1.formatHtml)(empty), /No cryptographic indicators/);
+});

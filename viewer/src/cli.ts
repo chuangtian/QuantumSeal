@@ -142,3 +142,33 @@ function main(argv: readonly string[]): number {
     const bom = parseCryptoBom(text);
     switch (options.format) {
       case "terminal":
+        rendered = formatTerminal(bom, {
+          color: options.color,
+          maxOccurrences: options.maxOccurrences,
+        });
+        break;
+      case "markdown":
+        rendered = formatMarkdown(bom);
+        break;
+      case "html":
+        rendered = formatHtml(bom);
+        break;
+    }
+  } catch (err) {
+    if (err instanceof InvalidCryptoBomError) {
+      process.stderr.write(`error: ${err.message}\n`);
+      return 1;
+    }
+    throw err;
+  }
+
+  if (options.out !== undefined) {
+    writeFileSync(options.out, rendered, "utf8");
+    process.stderr.write(`wrote report to ${options.out}\n`);
+  } else {
+    process.stdout.write(rendered);
+  }
+  return 0;
+}
+
+process.exit(main(process.argv.slice(2)));

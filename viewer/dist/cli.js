@@ -126,3 +126,28 @@ function main(argv) {
                     maxOccurrences: options.maxOccurrences,
                 });
                 break;
+            case "markdown":
+                rendered = (0, formatters_1.formatMarkdown)(bom);
+                break;
+            case "html":
+                rendered = (0, formatters_1.formatHtml)(bom);
+                break;
+        }
+    }
+    catch (err) {
+        if (err instanceof model_1.InvalidCryptoBomError) {
+            process.stderr.write(`error: ${err.message}\n`);
+            return 1;
+        }
+        throw err;
+    }
+    if (options.out !== undefined) {
+        (0, node_fs_1.writeFileSync)(options.out, rendered, "utf8");
+        process.stderr.write(`wrote report to ${options.out}\n`);
+    }
+    else {
+        process.stdout.write(rendered);
+    }
+    return 0;
+}
+process.exit(main(process.argv.slice(2)));

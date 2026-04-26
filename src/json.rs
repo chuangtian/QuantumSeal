@@ -426,3 +426,60 @@ impl<'a> Parser<'a> {
                 self.pos += 1;
             }
         }
+        let text = std::str::from_utf8(&self.bytes[start..self.pos])
+            .map_err(|_| self.err("invalid number encoding"))?;
+        text.parse::<f64>()
+            .map(Json::Number)
+            .map_err(|_| self.err("invalid number"))
+    }
+}
+
+fn utf8_len(first: u8) -> usize {
+    if first < 0x80 {
+        1
+    } else if first >> 5 == 0b110 {
+        2
+    } else if first >> 4 == 0b1110 {
+        3
+    } else {
+        4
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn round_trips_object() {
+        let mut map = BTreeMap::new();
+        map.insert("name".to_string(), Json::String("rsa".to_string()));
+        map.insert("bits".to_string(), Json::int(2048));
+        map.insert("quantum_safe".to_string(), Json::Bool(false));
+        let value = Json::Object(map);
+        let text = value.to_pretty_string();
+        let reparsed = parse(&text).unwrap();
+        assert_eq!(value, reparsed);
+    }
+
+    #[test]
+    fn parses_nested_and_escapes() {
+        let input = r#"{ "a": [1, 2, 3], "b": "line\nbreak", "c": null }"#;
+        let value = parse(input).unwrap();
+        let obj = value.as_object().unwrap();
+        assert_eq!(obj.get("a").unwrap().as_array().unwrap().len(), 3);
+        assert_eq!(obj.get("b").unwrap().as_str().unwrap(), "line\nbreak");
+        assert_eq!(obj.get("c").unwrap(), &Json::Null);
+    }
+
+    #[test]
+    fn rejects_trailing_garbage() {
+        assert!(parse("{} extra").is_err());
+    }
+
+    #[test]
+    fn parses_unicode_escape() {
+        let value = parse(r#""\u0041\u00e9""#).unwrap();
+        assert_eq!(value.as_str().unwrap(), "Aé");
+    }
+}

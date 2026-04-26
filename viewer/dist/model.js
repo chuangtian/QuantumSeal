@@ -122,3 +122,28 @@ function loadCryptoBom(value) {
     }
     const schema = requireString(value, "schema");
     if (!schema.startsWith("quantumseal-cbom/")) {
+        throw new InvalidCryptoBomError(`unexpected schema '${schema}'; expected 'quantumseal-cbom/*'`);
+    }
+    const components = requireArray(value, "components").map(parseComponent);
+    return {
+        tool: requireString(value, "tool"),
+        tool_version: requireString(value, "tool_version"),
+        schema,
+        root: requireString(value, "root"),
+        analysis_only: requireBool(value, "analysis_only"),
+        disclaimer: requireString(value, "disclaimer"),
+        summary: parseSummary(value["summary"]),
+        components,
+    };
+}
+/** Parse CryptoBOM JSON text into a typed document. */
+function parseCryptoBom(text) {
+    let parsed;
+    try {
+        parsed = JSON.parse(text);
+    }
+    catch (err) {
+        throw new InvalidCryptoBomError(`input is not valid JSON: ${err.message}`);
+    }
+    return loadCryptoBom(parsed);
+}

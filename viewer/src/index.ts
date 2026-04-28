@@ -7,5 +7,3 @@
 
 export * from "./model";
 export * from "./formatters";
-
-// draft note 861

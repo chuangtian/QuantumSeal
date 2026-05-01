@@ -118,3 +118,25 @@
   - `fixtures/legacy_service/config/tls.toml:20` — `path = "/etc/service/keystore.pkcs12"`
 
 ### AES (priority 28, low)
+
+- **Quantum risk:** Moderate (Grover-affected)
+- **Guidance:** AES remains viable; ensure >=256-bit keys so Grover's algorithm leaves ~128-bit effective strength.
+
+  - `fixtures/legacy_service/config/tls.toml:7` — `"ECDHE-RSA-AES256-GCM-SHA384",`
+  - `fixtures/legacy_service/config/tls.toml:9` — `"AES128-SHA",       # weaker legacy suite`
+
+### SHA-2 family (priority 28, low)
+
+- **Quantum risk:** Moderate (Grover-affected)
+- **Guidance:** SHA-2 is fine; use >=SHA-384 where Grover margin matters for long-lived integrity.
+
+  - `fixtures/legacy_service/config/tls.toml:7` — `"ECDHE-RSA-AES256-GCM-SHA384",`
+  - `fixtures/legacy_service/config/tls.toml:16` — `password_hash = "sha512"`
+
+### ChaCha20 / Poly1305 (priority 25, low)
+
+- **Quantum risk:** Moderate (Grover-affected)
+- **Guidance:** ChaCha20-Poly1305 (256-bit) is a solid symmetric choice; no PQC replacement needed, retain large keys.
+
+  - `fixtures/legacy_service/config/tls.toml:8` — `"ECDHE-ECDSA-CHACHA20-POLY1305",`
+

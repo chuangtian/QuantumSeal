@@ -359,3 +359,4 @@ mod tests {
         assert!(QuantumRisk::HighShor > QuantumRisk::ModerateGrover);
         assert!(QuantumRisk::ModerateGrover > QuantumRisk::LowResistant);
     }
+}

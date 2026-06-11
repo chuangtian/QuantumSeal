@@ -329,3 +329,4 @@ mod tests {
         let snaps = snapshots_from_json(&parsed).unwrap();
         assert_eq!(snaps.get("rsa").unwrap().occurrence_count, 5);
     }
+}

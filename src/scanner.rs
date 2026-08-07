@@ -475,3 +475,4 @@ mod tests {
         let m3 = match_lines("cert_sig = dsaWithSHA1");
         assert!(m3.iter().any(|m| m.rule_id == "dsa"), "{m3:?}");
     }
+}

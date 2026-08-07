@@ -21,3 +21,9 @@
 //! - [`scanner`]: recursive file walking and line matching.
 //! - [`cbom`]: CryptoBOM assembly, prioritization, and rendering.
 //! - [`diff`]: baseline comparison.
+
+pub mod cbom;
+pub mod diff;
+pub mod json;
+pub mod rules;
+pub mod scanner;

@@ -210,3 +210,40 @@ fn cmd_diff(args: &[String]) -> Result<ExitCode, String> {
 
     let rendered = match format.as_str() {
         "json" => diff.to_json().to_pretty_string(),
+        "text" => diff.to_text(),
+        other => return Err(format!("unknown format '{other}' (use json|text)")),
+    };
+    print!("{rendered}");
+    if !rendered.ends_with('\n') {
+        println!();
+    }
+
+    if parsed.flags.contains_key("fail-on-regression") && diff.is_regression() {
+        eprintln!("regression detected: new or increased cryptographic exposure");
+        return Ok(ExitCode::from(1));
+    }
+
+    Ok(ExitCode::SUCCESS)
+}
+
+fn cmd_rules() -> Result<ExitCode, String> {
+    println!(
+        "quantumseal built-in crypto indicator catalog ({} rules)",
+        RULES.len()
+    );
+    println!("{}", "=".repeat(70));
+    for rule in RULES {
+        println!(
+            "{:<10} {:<30} risk={:<20} category={}",
+            rule.id,
+            rule.name,
+            rule.risk.code(),
+            rule.category.code()
+        );
+        println!("           needles: {}", rule.needles.join(", "));
+        println!("           {}", rule.guidance);
+        println!();
+    }
+    println!("These indicators drive static analysis only — not a security verdict.");
+    Ok(ExitCode::SUCCESS)
+}

@@ -380,3 +380,4 @@ mod tests {
         let json = bom.to_json_string();
         assert!(json.contains("analysis_only"));
     }
+}

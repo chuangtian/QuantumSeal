@@ -50,3 +50,16 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install Rust toolchain
         run: rustup toolchain install stable --profile minimal
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build Rust CLI
+        run: cargo build --release
+      - name: Build viewer
+        run: cd viewer && npm install && npm run build
+      - name: Scan fixtures to CryptoBOM
+        run: ./target/release/quantumseal scan fixtures/legacy_service --format json --output cbom.json
+      - name: Render report via viewer
+        run: node viewer/dist/cli.js cbom.json --format markdown --out report.md
+      - name: Diff against migrated fixture (expect changes)
+        run: ./target/release/quantumseal diff cbom.json --path fixtures/migrated_service

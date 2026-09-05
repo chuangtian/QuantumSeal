@@ -96,3 +96,23 @@ migration guidance attached to each rule.
 
 ## Extending the catalog
 
+Rules live in [`src/rules.rs`](../src/rules.rs) as a static array. To add one,
+append a `Rule` entry with:
+
+- a unique `id`,
+- a display `name`,
+- a `category` and `risk`,
+- lowercase `needles`,
+- optional `exclude_if_line_contains` tokens for disambiguation,
+- and human-facing `guidance`.
+
+The unit tests enforce that rule ids are unique and all needles are lowercase,
+so a malformed addition fails `cargo test`.
+
+## Standards references
+
+The classification reflects the NIST post-quantum cryptography standards:
+ML-KEM (FIPS 203), ML-DSA (FIPS 204), and SLH-DSA (FIPS 205), together with the
+well-known effects of Shor's and Grover's algorithms on classical primitives.
+quantumseal cites these to *categorize* names — it does not implement any of
+these schemes.

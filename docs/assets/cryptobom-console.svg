@@ -80,3 +80,18 @@
       <circle cx="240" cy="158" r="7" fill="#c026d3"><animate attributeName="r" values="9;6;9" dur="3.7s" repeatCount="indefinite"/></circle>
       <circle cx="110" cy="235" r="10" fill="#a855f7"><animate attributeName="r" values="8;12;8" dur="4.2s" repeatCount="indefinite"/></circle>
       <circle cx="285" cy="240" r="8" fill="#a855f7"><animate attributeName="r" values="10;7;10" dur="3.3s" repeatCount="indefinite"/></circle>
+      <circle cx="195" cy="80" r="6" fill="#22d3ee"><animate attributeName="r" values="5;8;5" dur="4.6s" repeatCount="indefinite"/></circle>
+      <circle cx="300" cy="120" r="6" fill="#22d3ee"><animate attributeName="r" values="8;5;8" dur="4s" repeatCount="indefinite"/></circle>
+    </g>
+    <g font-size="9" fill="#e9dfff">
+      <text x="160" y="136" text-anchor="middle">MD5</text>
+      <text x="240" y="145" text-anchor="middle">SHA-1</text>
+      <text x="110" y="221" text-anchor="middle">RSA</text>
+      <text x="285" y="226" text-anchor="middle">ECC</text>
+      <text x="195" y="68" text-anchor="middle" fill="#9fe9f2">ML-KEM</text>
+      <text x="300" y="108" text-anchor="middle" fill="#9fe9f2">AES-256</text>
+    </g>
+
+    <text x="195" y="345" text-anchor="middle" fill="#6a5a94" font-size="9">node size ≈ occurrences · hue ≈ quantum-risk class</text>
+  </g>
+</svg>

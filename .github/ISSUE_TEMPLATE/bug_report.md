@@ -17,3 +17,9 @@ Command and a minimal fixture tree:
 ```bash
 quantumseal scan fixtures/legacy_service --format json
 ```
+
+**Environment**
+
+- OS:
+- Rust version (`rustc --version`):
+- QuantumSeal version (`quantumseal --version`):

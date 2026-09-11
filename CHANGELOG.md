@@ -61,3 +61,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [0.2.0] - 2019-09-17
 
+### Added
+
+- MD5/SHA-1 weak-hash indicators with severity mapping.
+- JSON output schema documented.
+
+## [0.1.0] - 2018-06-05
+
+### Added
+
+- First public release: RSA/ECC indicator scan over a source tree.
+- Text report with per-file findings.

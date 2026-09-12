@@ -85,3 +85,19 @@
     </g>
     <g fill="#22d3ee" filter="url(#glow)">
       <circle cx="0" cy="-40" r="4.5"><animate attributeName="r" values="3.5;6;3.5" dur="3s" repeatCount="indefinite"/></circle>
+      <circle cx="34" cy="12" r="4"><animate attributeName="r" values="6;3.5;6" dur="3.4s" repeatCount="indefinite"/></circle>
+      <circle cx="-34" cy="12" r="4"><animate attributeName="r" values="3.5;6;3.5" dur="4.1s" repeatCount="indefinite"/></circle>
+    </g>
+    <text y="4" text-anchor="middle" fill="#d3fbff" font-size="10" font-weight="700">ML-KEM</text>
+    <text y="18" text-anchor="middle" fill="#8fe9de" font-size="8.5">ML-DSA · SLH-DSA</text>
+    <text y="92" text-anchor="middle" fill="#5fc8bf" font-size="9" letter-spacing="1">NIST PQC TARGETS</text>
+  </g>
+
+  <!-- risk ledger footer -->
+  <g transform="translate(40 322)" font-size="10.5">
+    <rect x="0" y="-14" width="12" height="12" rx="2" fill="#c026d3"/><text x="18" y="-4" fill="#cbb8ff">critical / deprecated</text>
+    <rect x="185" y="-14" width="12" height="12" rx="2" fill="#a855f7"/><text x="203" y="-4" fill="#cbb8ff">high · Shor-breakable</text>
+    <rect x="380" y="-14" width="12" height="12" rx="2" fill="#22d3ee"/><text x="398" y="-4" fill="#9fe9f2">moderate / resistant</text>
+    <text x="640" y="-4" fill="#6a5a94">priority is scored, not judged · v0.1.0</text>
+  </g>
+</svg>

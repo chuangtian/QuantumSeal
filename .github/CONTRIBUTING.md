@@ -17,3 +17,9 @@ reads text and never executes or implements cryptography.
 3. Add or update tests for any behavior change.
 4. Keep indicator rules data-driven (`src/rules.rs`) and document new rules in
    `docs/RULES.md`.
+
+## Pull requests
+
+- One topic per PR, conventional commit titles (`feat:`, `fix:`, `docs:`...).
+- Describe the motivation, not just the diff.
+- By participating you agree to the [Code of Conduct](CODE_OF_CONDUCT.md).

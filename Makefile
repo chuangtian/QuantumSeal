@@ -73,5 +73,3 @@ demo: build viewer-build ## Run the end-to-end demo against the fixtures
 clean: ## Remove build artifacts
 	$(CARGO) clean
 	cd $(VIEWER_DIR) && $(NPM) run clean
-
-<!-- draft note 860 -->
